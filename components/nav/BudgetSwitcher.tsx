@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button, Field, Input, Modal, Mono, Select } from '@/components/ui';
+import { Button, Field, Input, Modal, Select } from '@/components/ui';
 import {
   createBudgetAction,
   deleteBudgetAction,
@@ -143,7 +143,7 @@ export function BudgetSwitcher({
         open={mode.kind === 'create'}
         onOpenChange={(o) => !o && setMode({ kind: 'idle' })}
         title="New budget"
-        description="A separate workspace with its own accounts, categories, and transactions."
+        description="A separate workspace with its own accounts, categories, and transactions"
       >
         <CreateBudgetForm
           onDone={() => {

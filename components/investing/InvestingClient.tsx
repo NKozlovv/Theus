@@ -16,8 +16,8 @@ import type { InvestmentLot } from '@/lib/supabase/types';
 const SCOL = ['#e0568a', '#ef9a3c', '#8b5cf6'];
 const POS = '#0f9d8a';
 const NEG = '#c93f68';
-const eyebrow = 'text-[11px] font-bold uppercase tracking-[0.1em] text-ink-mute';
-const th = 'whitespace-nowrap border-b border-white/60 px-2.5 py-2 text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute';
+const eyebrow = 'text-[12px] font-semibold text-ink-mute';
+const th = 'whitespace-nowrap border-b border-white/60 px-2.5 py-2 text-[11px] font-semibold text-ink-mute';
 const td = 'whitespace-nowrap border-b border-white/45 px-2.5 py-2.5 tabular-nums';
 
 type Plan = NonNullable<SavedPlan['p']>;
@@ -28,11 +28,11 @@ const DEFAULT_PLAN: Plan = { contrib: 6000, inc: 0, yield: 7, spread: 3, horizon
 function Tile({ label, value, sub, color }: { label: string; value: string; sub: string; color?: string }) {
   return (
     <div className="glass-tile !rounded-[22px] px-4 py-3.5">
-      <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">{label}</div>
-      <div className="mt-1.5 text-[22px] font-extrabold -tracking-[0.03em] tabular-nums" style={{ color }}>
+      <div className="text-[11px] font-semibold text-ink-mute">{label}</div>
+      <div className="mt-1.5 text-[22px] font-semibold tabular-nums" style={{ color }}>
         {value}
       </div>
-      <div className="mt-[3px] text-[12px] font-semibold text-ink-soft">{sub}</div>
+      <div className="mt-[3px] text-[12px] font-medium text-ink-soft">{sub}</div>
     </div>
   );
 }
@@ -54,9 +54,9 @@ function Seg<T extends string | number>({
           type="button"
           onClick={() => onPick(it.k)}
           className={cn(
-            'whitespace-nowrap rounded-full px-[13px] py-[7px] text-[12.5px] font-bold transition-colors',
+            'whitespace-nowrap rounded-full px-[13px] py-[7px] text-[13px] font-semibold transition-colors',
             it.k === value
-              ? 'bg-[linear-gradient(180deg,#5a6be8,#4152d6)] text-white [box-shadow:0_8px_18px_-8px_rgba(74,92,224,.6)]'
+              ? 'bg-indigo text-white '
               : 'text-ink-soft hover:bg-white/60',
           )}
         >
@@ -91,8 +91,8 @@ function Slider({
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-baseline justify-between gap-2.5">
-        <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-mute">{title}</span>
-        <span className={cn('text-[17px] font-extrabold tabular-nums', displayClass)}>{display}</span>
+        <span className="text-[12px] font-semibold text-ink-mute">{title}</span>
+        <span className={cn('text-[17px] font-semibold tabular-nums', displayClass)}>{display}</span>
       </div>
       <input
         type="range"
@@ -103,7 +103,7 @@ function Slider({
         onChange={(e) => onChange(Number(e.target.value))}
         className="m-0 w-full accent-indigo"
       />
-      {sub ? <div className="text-[12px] font-semibold text-ink-mute">{sub}</div> : null}
+      {sub ? <div className="text-[12px] font-medium text-ink-mute">{sub}</div> : null}
     </div>
   );
 }
@@ -286,34 +286,34 @@ export function InvestingClient({
         <div className="flex flex-wrap items-start justify-between gap-5">
           <div className="min-w-0 flex-[1_1_320px]">
             <div className="flex flex-wrap items-center gap-2.5">
-              <span className={cn(eyebrow, 'tracking-[0.12em]')}>Portfolio · {ticker}</span>
+              <span className={cn(eyebrow, '')}>Portfolio · {ticker}</span>
               {market ? (
-                <span className="inline-flex items-center gap-[7px] whitespace-nowrap rounded-full bg-[rgba(31,185,164,.15)] px-[11px] py-1 text-[11.5px] font-bold text-[#0f7f72]">
+                <span className="inline-flex items-center gap-[7px] whitespace-nowrap rounded-full bg-[rgba(31,185,164,.15)] px-[11px] py-1 text-[12px] font-semibold text-[#0f7f72]">
                   <span className="h-[7px] w-[7px] rounded-full bg-teal" />
                   {eur(live, 3)} · {pct(dayPct)} · as of {priceDate}
                 </span>
               ) : (
-                <span className="inline-flex items-center rounded-full bg-[rgba(244,165,69,.22)] px-[11px] py-1 text-[11.5px] font-bold text-[#8a5a10]">
+                <span className="inline-flex items-center rounded-full bg-[rgba(244,165,69,.22)] px-[11px] py-1 text-[12px] font-semibold text-[#8a5a10]">
                   Live price unavailable · using last buy price
                 </span>
               )}
             </div>
             <div className="mt-2 flex items-baseline gap-1 whitespace-nowrap">
-              <span className="text-[clamp(24px,2.2vw,32px)] font-bold text-ink-mute">€</span>
-              <span className="text-[clamp(42px,5vw,72px)] font-extrabold leading-none -tracking-[0.042em] tabular-nums">
+              <span className="text-[clamp(24px,2.2vw,32px)] font-semibold text-ink-mute">€</span>
+              <span className="text-[clamp(42px,5vw,72px)] font-semibold leading-none -tracking-[0.042em] tabular-nums">
                 {Number(vWhole).toLocaleString('en-US')}
               </span>
-              <span className="text-[clamp(24px,2.2vw,34px)] font-bold tabular-nums text-ink-mute">.{vCents}</span>
+              <span className="text-[clamp(24px,2.2vw,34px)] font-semibold tabular-nums text-ink-mute">.{vCents}</span>
             </div>
             {hasLots ? (
               <div className="mt-3 flex flex-wrap gap-2.5">
                 <span
-                  className="rounded-full px-[13px] py-1.5 text-[13.5px] font-extrabold tabular-nums"
+                  className="rounded-full px-[13px] py-1.5 text-[14px] font-semibold tabular-nums"
                   style={{ background: up ? 'rgba(31,185,164,.18)' : 'rgba(242,112,143,.18)', color: up ? '#0f7f72' : NEG }}
                 >
                   {signed(pl)} · {pct(plPct)} all time
                 </span>
-                <span className="rounded-full bg-white/50 px-[13px] py-1.5 text-[13.5px] font-bold tabular-nums" style={{ color: dayAbs >= 0 ? POS : NEG }}>
+                <span className="rounded-full bg-white/50 px-[13px] py-1.5 text-[14px] font-semibold tabular-nums" style={{ color: dayAbs >= 0 ? POS : NEG }}>
                   {signed(dayAbs)} today
                 </span>
               </div>
@@ -341,7 +341,7 @@ export function InvestingClient({
             />
           </div>
         ) : (
-          <div className="rounded-[22px] bg-white/40 p-6 text-center text-[13.5px] font-semibold text-ink-soft">
+          <div className="rounded-[22px] bg-white/40 p-6 text-center text-[14px] font-medium text-ink-soft">
             No position yet. Use “Log a buy” → “Existing position” to enter what you already hold, then log each new buy.
           </div>
         )}
@@ -352,8 +352,8 @@ export function InvestingClient({
         <section className="glass flex flex-col gap-[18px] !rounded-[34px] px-[26px] py-6">
           <div className="flex flex-wrap items-start justify-between gap-3.5">
             <div>
-              <div className="text-[17px] font-extrabold -tracking-[0.02em]">Track record</div>
-              <div className="mt-1 text-[13px] font-semibold text-ink-soft">
+              <div className="text-[17px] font-semibold">Track record</div>
+              <div className="mt-1 text-[13px] font-medium text-ink-soft">
                 {inProg ? `${hy} so far. Closes into a full-year record on 31 Dec.` : `Full calendar year ${hy}.`}
               </div>
             </div>
@@ -387,7 +387,7 @@ export function InvestingClient({
                 />
               ) : null}
             </div>
-            <div className="flex flex-wrap gap-4 text-[12px] font-semibold text-ink-soft">
+            <div className="flex flex-wrap gap-4 text-[12px] font-medium text-ink-soft">
               {[...flowSegs.map((s) => ({ t: s.t, color: s.color })), ...(lossSeg ? [{ t: lossSeg.t, color: '#f2708f' }] : [])].map((s) => (
                 <span key={s.t} className="flex items-center gap-[7px]">
                   <span className="h-[11px] w-[11px] rounded-[4px]" style={{ background: s.color }} />
@@ -417,9 +417,9 @@ export function InvestingClient({
                       const c = x.ret >= 0 ? POS : NEG;
                       return (
                         <tr key={x.m}>
-                          <td className={cn(td, 'text-[13px] font-bold')}>{monthShort(x.m)}{x.partial ? ' (so far)' : ''}</td>
-                          <td className={cn(td, 'text-right text-[13px] font-semibold text-[#3a49c4]')}>{x.inv ? eur(x.inv, 0) : '—'}</td>
-                          <td className={cn(td, 'text-right text-[13px] font-bold')} style={{ color: c }}>{signed(x.ret, 0)}</td>
+                          <td className={cn(td, 'text-[13px] font-semibold')}>{monthShort(x.m)}{x.partial ? ' (so far)' : ''}</td>
+                          <td className={cn(td, 'text-right text-[13px] font-medium text-[#3a49c4]')}>{x.inv ? eur(x.inv, 0) : '—'}</td>
+                          <td className={cn(td, 'text-right text-[13px] font-semibold')} style={{ color: c }}>{signed(x.ret, 0)}</td>
                           <td className={td}>
                             <div className="relative h-2.5">
                               <div className="absolute -bottom-[3px] -top-[3px] left-1/2 w-px bg-[rgba(21,26,45,.2)]" />
@@ -429,7 +429,7 @@ export function InvestingClient({
                               />
                             </div>
                           </td>
-                          <td className={cn(td, 'text-right text-[13px] font-extrabold')}>{eur(x.ev, 0)}</td>
+                          <td className={cn(td, 'text-right text-[13px] font-semibold')}>{eur(x.ev, 0)}</td>
                         </tr>
                       );
                     })}
@@ -458,21 +458,21 @@ export function InvestingClient({
                       return (
                         <tr key={x.y} onClick={() => setHistYear(x.y)} className={cn('cursor-pointer hover:bg-white/45', x.y === hy && 'bg-white/40')}>
                           <td className={td}>
-                            <div className="text-[13.5px] font-extrabold">{x.y}</div>
-                            <div className={cn('text-[11px] font-bold', x.y === yr0 ? 'text-[#3a49c4]' : 'text-ink-mute')}>{x.y === yr0 ? 'In progress' : 'Closed'}</div>
+                            <div className="text-[14px] font-semibold">{x.y}</div>
+                            <div className={cn('text-[12px] font-semibold', x.y === yr0 ? 'text-[#3a49c4]' : 'text-ink-mute')}>{x.y === yr0 ? 'In progress' : 'Closed'}</div>
                           </td>
-                          <td className={cn(td, 'text-right text-[13px] font-semibold text-ink-soft')}>{eur(x.sv, 0)}</td>
-                          <td className={cn(td, 'text-right text-[13px] font-semibold text-[#3a49c4]')}>{eur(x.inv, 0)}</td>
-                          <td className={cn(td, 'text-right text-[13px] font-bold')} style={{ color: c }}>{signed(x.ret, 0)}</td>
-                          <td className={cn(td, 'text-right text-[13.5px] font-extrabold')}>{eur(x.ev, 0)}</td>
-                          <td className={cn(td, 'text-right text-[13px] font-extrabold')} style={{ color: c }}>{pct(x.yld)}</td>
+                          <td className={cn(td, 'text-right text-[13px] font-medium text-ink-soft')}>{eur(x.sv, 0)}</td>
+                          <td className={cn(td, 'text-right text-[13px] font-medium text-[#3a49c4]')}>{eur(x.inv, 0)}</td>
+                          <td className={cn(td, 'text-right text-[13px] font-semibold')} style={{ color: c }}>{signed(x.ret, 0)}</td>
+                          <td className={cn(td, 'text-right text-[14px] font-semibold')}>{eur(x.ev, 0)}</td>
+                          <td className={cn(td, 'text-right text-[13px] font-semibold')} style={{ color: c }}>{pct(x.yld)}</td>
                         </tr>
                       );
                     })}
                   </tbody>
                 </table>
               </div>
-              <div className="text-[12px] font-semibold text-ink-soft">
+              <div className="text-[12px] font-medium text-ink-soft">
                 Yield is money-weighted: each buy only counts for the part of the year it was invested, so a December buy doesn’t dilute the year’s result. Fees are included in Invested, so Return is after fees.
                 {` Your opening position counts as money put in on its “as of” date.`}
               </div>
@@ -485,8 +485,8 @@ export function InvestingClient({
       <section className="glass flex flex-col gap-5 !rounded-[34px] px-[26px] py-6">
         <div className="flex flex-wrap items-start justify-between gap-3.5">
           <div>
-            <div className="text-[17px] font-extrabold -tracking-[0.02em]">Where this could go</div>
-            <div className="mt-1 text-[13px] font-semibold text-ink-soft">Starts from today’s value and adds your contributions monthly. Returns compound monthly.</div>
+            <div className="text-[17px] font-semibold">Where this could go</div>
+            <div className="mt-1 text-[13px] font-medium text-ink-soft">Starts from today’s value and adds your contributions monthly. Returns compound monthly.</div>
           </div>
           <Seg
             items={[5, 10, 20, 30].map((h) => ({ k: h, label: `${h} yrs` }))}
@@ -516,7 +516,7 @@ export function InvestingClient({
                     key={r.v}
                     type="button"
                     onClick={() => setP('yield', r.v)}
-                    className={cn('whitespace-nowrap rounded-full px-2.5 py-[5px] text-[11.5px] font-bold', p.yield === r.v ? 'bg-ink text-white' : 'bg-white/60 text-ink-soft')}
+                    className={cn('whitespace-nowrap rounded-full px-2.5 py-[5px] text-[12px] font-semibold', p.yield === r.v ? 'bg-ink text-white' : 'bg-white/60 text-ink-soft')}
                   >
                     {r.l}
                   </button>
@@ -539,7 +539,7 @@ export function InvestingClient({
                 disabled={!canSave}
                 onClick={() => setSaved((s) => [...s, { name: 'Scenario ' + 'ABC'[s.length], contrib: p.contrib, inc: p.inc, yield: p.yield, overrides: { ...overrides } }])}
                 className={cn(
-                  'w-full rounded-full px-3.5 py-2.5 text-[13px] font-bold',
+                  'w-full rounded-full px-3.5 py-2.5 text-[13px] font-semibold',
                   canSave ? 'bg-ink text-white [box-shadow:0_10px_20px_-10px_rgba(21,26,45,.6)]' : 'cursor-default bg-white/55 text-ink-mute',
                 )}
               >
@@ -551,19 +551,19 @@ export function InvestingClient({
           <div className="flex min-w-0 flex-[999_1_520px] flex-col gap-3.5">
             <div className="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-3">
               <div>
-                <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">In {H} years · {yr0 + H}</div>
-                <div className="mt-1 text-[32px] font-extrabold -tracking-[0.035em] tabular-nums text-[#0f7f72]">{big(endV)}</div>
-                <div className="text-[12px] font-semibold tabular-nums text-ink-soft">range {big(lo.vals[H] ?? 0)} – {big(hi.vals[H] ?? 0)}</div>
+                <div className="text-[11px] font-semibold text-ink-mute">In {H} years · {yr0 + H}</div>
+                <div className="mt-1 text-[32px] font-semibold -tracking-[0.035em] tabular-nums text-[#0f7f72]">{big(endV)}</div>
+                <div className="text-[12px] font-medium tabular-nums text-ink-soft">range {big(lo.vals[H] ?? 0)} – {big(hi.vals[H] ?? 0)}</div>
               </div>
               <div>
-                <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">You put in</div>
-                <div className="mt-1 text-2xl font-extrabold -tracking-[0.03em] tabular-nums">{big(endC)}</div>
-                <div className="text-[12px] font-semibold text-ink-soft">{big(invested)} so far + {big(base.contribs[H] ?? 0)} new</div>
+                <div className="text-[11px] font-semibold text-ink-mute">You put in</div>
+                <div className="mt-1 text-2xl font-semibold tabular-nums">{big(endC)}</div>
+                <div className="text-[12px] font-medium text-ink-soft">{big(invested)} so far + {big(base.contribs[H] ?? 0)} new</div>
               </div>
               <div>
-                <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">Growth earned</div>
-                <div className="mt-1 text-2xl font-extrabold -tracking-[0.03em] tabular-nums text-[#0f9d8a]">{big(endG)}</div>
-                <div className="text-[12px] font-semibold text-ink-soft">{endV ? Math.round((endG / endV) * 100) : 0}% of the final value</div>
+                <div className="text-[11px] font-semibold text-ink-mute">Growth earned</div>
+                <div className="mt-1 text-2xl font-semibold tabular-nums text-[#0f9d8a]">{big(endG)}</div>
+                <div className="text-[12px] font-medium text-ink-soft">{endV ? Math.round((endG / endV) * 100) : 0}% of the final value</div>
               </div>
             </div>
 
@@ -591,13 +591,13 @@ export function InvestingClient({
                 <path d={valueLine} fill="none" stroke="#0f9d8a" strokeWidth="3" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
               </svg>
               {yGrid.map((g, i) => (
-                <div key={i} className="absolute left-0 -translate-y-[120%] text-[11px] font-bold tabular-nums text-ink-mute" style={{ top: `${g.y / 3.2}%` }}>
+                <div key={i} className="absolute left-0 -translate-y-[120%] text-[12px] font-semibold tabular-nums text-ink-mute" style={{ top: `${g.y / 3.2}%` }}>
                   {g.label}
                 </div>
               ))}
               {msDots.map((x) => (
                 <div key={x.m} className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2" style={{ left: `${X(x.i) / 10}%`, top: `${Y(base.vals[x.i] ?? 0) / 3.2}%` }}>
-                  <span className="block -translate-y-3.5 whitespace-nowrap rounded-full bg-white/85 px-2 py-[3px] text-[10.5px] font-extrabold text-[#0f7f72] [box-shadow:0_4px_10px_-4px_rgba(31,39,66,.25)]">
+                  <span className="block -translate-y-3.5 whitespace-nowrap rounded-full bg-white/85 px-2 py-[3px] text-[11px] font-semibold text-[#0f7f72] [box-shadow:0_4px_10px_-4px_rgba(31,39,66,.25)]">
                     {big(x.m)}
                   </span>
                 </div>
@@ -613,22 +613,22 @@ export function InvestingClient({
                     className="pointer-events-none absolute top-1.5 whitespace-nowrap rounded-[16px] bg-white/90 px-[13px] py-2.5 [box-shadow:0_12px_28px_-10px_rgba(31,39,66,.35)]"
                     style={{ left: `${X(hv) / 10}%`, transform: `translateX(${(hover ?? 0) > 0.65 ? 'calc(-100% - 12px)' : '12px'})` }}
                   >
-                    <div className="text-[11.5px] font-bold text-ink-mute">{hv === 0 ? 'Today' : `End of ${yr0 + hv} · year ${hv}`}</div>
-                    <div className="mt-[3px] text-base font-extrabold tabular-nums text-[#0f7f72]">{eur(base.vals[hv] ?? 0, 0)}</div>
-                    <div className="text-[12px] font-semibold tabular-nums text-ink-soft">{big(lo.vals[hv] ?? 0)} – {big(hi.vals[hv] ?? 0)}</div>
-                    <div className="text-[12px] font-semibold tabular-nums text-indigo">Put in {eur(contribAbs[hv] ?? 0, 0)}</div>
+                    <div className="text-[12px] font-semibold text-ink-mute">{hv === 0 ? 'Today' : `End of ${yr0 + hv} · year ${hv}`}</div>
+                    <div className="mt-[3px] text-base font-semibold tabular-nums text-[#0f7f72]">{eur(base.vals[hv] ?? 0, 0)}</div>
+                    <div className="text-[12px] font-medium tabular-nums text-ink-soft">{big(lo.vals[hv] ?? 0)} – {big(hi.vals[hv] ?? 0)}</div>
+                    <div className="text-[12px] font-medium tabular-nums text-indigo">Put in {eur(contribAbs[hv] ?? 0, 0)}</div>
                   </div>
                 </>
               ) : null}
             </div>
             <div className="relative h-4">
               {xTicks.map((t) => (
-                <span key={t.label} className="absolute whitespace-nowrap text-[11.5px] font-bold text-ink-mute" style={{ left: `${t.left}%`, transform: `translateX(${t.shift})` }}>
+                <span key={t.label} className="absolute whitespace-nowrap text-[12px] font-semibold text-ink-mute" style={{ left: `${t.left}%`, transform: `translateX(${t.shift})` }}>
                   {t.label}
                 </span>
               ))}
             </div>
-            <div className="flex flex-wrap gap-4 text-[12px] font-semibold text-ink-soft">
+            <div className="flex flex-wrap gap-4 text-[12px] font-medium text-ink-soft">
               <span className="flex items-center gap-[7px]"><span className="h-[3px] w-[18px] rounded-sm bg-[#0f9d8a]" />Projected value</span>
               <span className="flex items-center gap-[7px]"><span className="h-2.5 w-3.5 rounded-[3px] bg-[rgba(31,185,164,.22)]" />Good to bad years</span>
               <span className="flex items-center gap-[7px]"><span className="h-2.5 w-3.5 rounded-[3px] bg-[rgba(74,92,224,.24)]" />Money put in</span>
@@ -645,8 +645,8 @@ export function InvestingClient({
         <section className="glass flex flex-col gap-3.5 !rounded-[34px] px-[26px] py-6">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <div className="text-[17px] font-extrabold -tracking-[0.02em]">Year by year</div>
-              <div className="mt-1 text-[13px] font-semibold text-ink-soft">Type over any year’s amount to plan a pause, a bonus year or a step-up.</div>
+              <div className="text-[17px] font-semibold">Year by year</div>
+              <div className="mt-1 text-[13px] font-medium text-ink-soft">Type over any year’s amount to plan a pause, a bonus year or a step-up.</div>
             </div>
             {oc > 0 ? (
               <Button variant="secondary" size="sm" onClick={() => setP('overrides', {})}>
@@ -659,7 +659,7 @@ export function InvestingClient({
               <thead>
                 <tr>
                   {['Year', 'Invest', 'Growth', 'End value'].map((h, i) => (
-                    <th key={h} className={cn('sticky top-0 bg-[rgba(240,234,250,.9)] px-2.5 py-2 text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute', i === 0 ? 'text-left' : 'text-right')}>
+                    <th key={h} className={cn('sticky top-0 bg-[rgba(240,234,250,.9)] px-2.5 py-2 text-[11px] font-semibold text-ink-mute', i === 0 ? 'text-left' : 'text-right')}>
                       {h}
                     </th>
                   ))}
@@ -670,7 +670,7 @@ export function InvestingClient({
                   const o = overrides[String(r.y)];
                   return (
                     <tr key={r.y} className={o != null ? 'bg-[rgba(74,92,224,.06)]' : ''}>
-                      <td className="border-b border-white/50 px-2.5 py-1.5 text-[13.5px] font-bold">{yr0 + r.y}</td>
+                      <td className="border-b border-white/50 px-2.5 py-1.5 text-[14px] font-semibold">{yr0 + r.y}</td>
                       <td className="border-b border-white/50 px-2.5 py-1.5 text-right">
                         <input
                           type="number"
@@ -686,13 +686,13 @@ export function InvestingClient({
                             setP('overrides', next);
                           }}
                           className={cn(
-                            'w-[110px] rounded-[11px] border px-2.5 py-[7px] text-right text-[13px] font-bold tabular-nums text-ink outline-none',
+                            'w-[110px] rounded-[11px] border px-2.5 py-[7px] text-right text-[13px] font-semibold tabular-nums text-ink outline-none',
                             o != null ? 'border-indigo bg-[rgba(74,92,224,.1)]' : 'border-white/80 bg-white/60',
                           )}
                         />
                       </td>
-                      <td className="border-b border-white/50 px-2.5 py-1.5 text-right text-[13px] font-bold tabular-nums text-[#0f9d8a]">+{big(r.growth)}</td>
-                      <td className="border-b border-white/50 px-2.5 py-1.5 text-right text-[13.5px] font-extrabold tabular-nums">{big(r.end)}</td>
+                      <td className="border-b border-white/50 px-2.5 py-1.5 text-right text-[13px] font-semibold tabular-nums text-[#0f9d8a]">+{big(r.growth)}</td>
+                      <td className="border-b border-white/50 px-2.5 py-1.5 text-right text-[14px] font-semibold tabular-nums">{big(r.end)}</td>
                     </tr>
                   );
                 })}
@@ -704,8 +704,8 @@ export function InvestingClient({
         {/* Scenarios */}
         <section className="glass flex flex-col gap-4 !rounded-[34px] px-[26px] py-6">
           <div>
-            <div className="text-[17px] font-extrabold -tracking-[0.02em]">Scenarios</div>
-            <div className="mt-1 text-[13px] font-semibold text-ink-soft">
+            <div className="text-[17px] font-semibold">Scenarios</div>
+            <div className="mt-1 text-[13px] font-medium text-ink-soft">
               {saved.length ? `Value in ${H} years. Dashed lines on the chart.` : 'Save the current plan, change the sliders, and compare. Up to 3.'}
             </div>
           </div>
@@ -713,12 +713,12 @@ export function InvestingClient({
             <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-[13px] rounded-[20px] bg-[rgba(31,185,164,.1)] px-[15px] py-[13px]">
               <span className="w-[18px] border-t-[3px] border-solid border-[#0f9d8a]" />
               <div className="min-w-0">
-                <div className="text-[14px] font-extrabold">Current plan</div>
-                <div className="mt-0.5 truncate text-[12px] font-semibold text-ink-mute">{scenDetail({ ...p, overrides })}</div>
+                <div className="text-[14px] font-semibold">Current plan</div>
+                <div className="mt-0.5 truncate text-[12px] font-medium text-ink-mute">{scenDetail({ ...p, overrides })}</div>
               </div>
               <div className="text-right">
-                <div className="text-[15px] font-extrabold tabular-nums">{big(endV)}</div>
-                <div className="text-[11.5px] font-bold text-ink-mute">baseline</div>
+                <div className="text-[15px] font-semibold tabular-nums">{big(endV)}</div>
+                <div className="text-[12px] font-semibold text-ink-mute">baseline</div>
               </div>
             </div>
             {sc.map((s, i) => {
@@ -728,27 +728,27 @@ export function InvestingClient({
                 <div key={s.name} className="glass-tile grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-[13px] !rounded-[20px] px-[15px] py-[13px]">
                   <span className="w-[18px] border-t-[3px] border-dashed" style={{ borderColor: s.color }} />
                   <div className="min-w-0">
-                    <div className="text-[14px] font-extrabold">{s.name}</div>
-                    <div className="mt-0.5 truncate text-[12px] font-semibold text-ink-mute">{scenDetail(s)}</div>
+                    <div className="text-[14px] font-semibold">{s.name}</div>
+                    <div className="mt-0.5 truncate text-[12px] font-medium text-ink-mute">{scenDetail(s)}</div>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <div className="text-right">
-                      <div className="text-[15px] font-extrabold tabular-nums">{big(e)}</div>
-                      <div className="text-[11.5px] font-bold tabular-nums" style={{ color: d >= 0 ? POS : NEG }}>
+                      <div className="text-[15px] font-semibold tabular-nums">{big(e)}</div>
+                      <div className="text-[12px] font-semibold tabular-nums" style={{ color: d >= 0 ? POS : NEG }}>
                         {d >= 0 ? '+' : '−'}{big(Math.abs(d))} vs current
                       </div>
                     </div>
                     <div className="flex flex-col gap-1">
                       <button
                         type="button"
-                        className="rounded-full bg-white/60 px-[9px] py-[5px] text-[11px] font-bold text-[#3a49c4]"
+                        className="rounded-full bg-white/60 px-[9px] py-[5px] text-[12px] font-semibold text-[#3a49c4]"
                         onClick={() => setPState((cur2) => ({ ...cur2, contrib: s.contrib, inc: s.inc, yield: s.yield, overrides: { ...s.overrides } }))}
                       >
                         Load
                       </button>
                       <button
                         type="button"
-                        className="rounded-full bg-white/60 px-[9px] py-[5px] text-[11px] font-bold text-ink-mute"
+                        className="rounded-full bg-white/60 px-[9px] py-[5px] text-[12px] font-semibold text-ink-mute"
                         onClick={() => setSaved((all) => all.filter((_, j) => j !== i).map((x, j) => ({ ...x, name: 'Scenario ' + 'ABC'[j] })))}
                       >
                         Remove
@@ -765,8 +765,8 @@ export function InvestingClient({
               <div className="grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-2.5">
                 {milestones.map((x) => (
                   <div key={x.m} className="rounded-[18px] bg-white/[0.36] px-3.5 py-3">
-                    <div className="text-[15px] font-extrabold tabular-nums">{big(x.m)}</div>
-                    <div className="mt-0.5 text-[12.5px] font-bold" style={{ color: x.i > 0 ? '#0f7f72' : '#7b8296' }}>
+                    <div className="text-[15px] font-semibold tabular-nums">{big(x.m)}</div>
+                    <div className="mt-0.5 text-[13px] font-semibold" style={{ color: x.i > 0 ? '#0f7f72' : '#7b8296' }}>
                       {x.i > 0 ? `${yr0 + x.i} · in ${x.i} ${x.i === 1 ? 'yr' : 'yrs'}` : `Beyond ${yr0 + H}`}
                     </div>
                   </div>

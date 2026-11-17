@@ -16,7 +16,6 @@ export function KpiTile({
   deltaTone = 'pos',
   deltaIcon,
   sub,
-  hero = false,
   className,
   children,
 }: {

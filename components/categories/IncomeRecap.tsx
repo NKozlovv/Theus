@@ -45,7 +45,7 @@ export function IncomeRecap({
 
       <div className="glass !rounded-[26px] p-[10px]">
         {summaries.length === 0 ? (
-          <div className="px-5 py-12 text-center text-[13px] text-ink-mute">No income categories yet.</div>
+          <div className="px-5 py-12 text-center text-[13px] text-ink-mute">No income categories yet</div>
         ) : (
           <>
             <div className="grid grid-cols-[34px_minmax(0,1.6fr)_110px_100px] gap-4 px-[18px] pb-1.5 pt-1 text-[11px] font-semibold text-ink-mute">

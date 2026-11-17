@@ -201,7 +201,7 @@ export function TransactionForm({
 
       {transferEnabled ? (
         <>
-          <Field label="To account" hint={isTransfer ? undefined : 'Leave empty for a plain balance adjustment.'}>
+          <Field label="To account" hint={isTransfer ? undefined : 'Leave empty for a plain balance adjustment'}>
             {({ id }) => (
               <Select id={id} value={toAccountId} onChange={(e) => setToAccountId(e.target.value)}>
                 <option value="">— balance adjustment only —</option>
@@ -223,7 +223,7 @@ export function TransactionForm({
             </Field>
           ) : null}
           {isTransfer && toAccount ? (
-            <Field label={`Transfer fee (${toAccount.currency}, optional)`} hint="Booked as Bills → Fees on the receiving account.">
+            <Field label={`Transfer fee (${toAccount.currency}, optional)`} hint="Booked as Bills → Fees on the receiving account">
               {({ id }) => (
                 <Input id={id} type="number" step="0.01" min="0" value={fee} onChange={(e) => setFee(e.target.value)} />
               )}
@@ -264,7 +264,7 @@ export function TransactionForm({
       )}
 
       {isTravel && !isAdjustment ? (
-        <Field label="Trip" hint="Pick a previous trip or type a new one.">
+        <Field label="Trip" hint="Pick a previous trip or type a new one">
           {({ id }) => <TripField id={id} value={trip} onChange={setTrip} suggestions={existingTrips} />}
         </Field>
       ) : null}

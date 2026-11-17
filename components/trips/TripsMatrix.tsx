@@ -64,10 +64,10 @@ export function TripsMatrix({
           <div className="text-[17px] font-semibold text-ink">Subcategory by trip</div>
           <div className="mt-1 text-[13px] font-medium text-ink-soft">
             {metric === 'total'
-              ? 'Absolute spend per subcategory.'
+              ? 'Absolute spend per subcategory'
               : metric === 'perDay'
-                ? 'Spend per subcategory, per day away.'
-                : 'Spend per subcategory, per person-day.'}
+                ? 'Spend per subcategory, per day away'
+                : 'Spend per subcategory, per person-day'}
           </div>
         </div>
         <div className="flex items-center gap-2 text-[12px] font-medium text-ink-soft">

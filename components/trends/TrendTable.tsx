@@ -217,16 +217,14 @@ function ValueCell({ value, prev, avg, compact }: { value: number; prev: number;
   const isZero = Math.abs(value) < 0.005;
 
   let bg = 'rgba(139,149,184,.07)'; // --slate .07, "on plan"
-  let textWhite = false;
+  // Tint depth is capped at .5 so ink text stays readable on every cell.
   if (!isZero && avg > 0) {
     if (ratio > 1.02) {
-      const alpha = Math.min(0.82, Math.max(0.12, Math.abs(ratio - 1) * 1.25));
+      const alpha = Math.min(0.5, Math.max(0.12, Math.abs(ratio - 1) * 0.9));
       bg = tint('#d94a6f', alpha);
-      textWhite = alpha > 0.5;
     } else if (ratio < 0.98) {
-      const alpha = Math.min(0.82, Math.max(0.12, Math.abs(ratio - 1) * 1.25));
+      const alpha = Math.min(0.5, Math.max(0.12, Math.abs(ratio - 1) * 0.9));
       bg = tint('#12a08c', alpha);
-      textWhite = alpha > 0.5;
     }
   }
 
@@ -239,7 +237,7 @@ function ValueCell({ value, prev, avg, compact }: { value: number; prev: number;
       className={cn(
         'cursor-default whitespace-nowrap rounded-[10px] px-[8px] text-right font-semibold tabular-nums transition-transform duration-200 ease-theus hover:z-10 hover:ring-1 hover:ring-[rgba(21,26,45,.25)]',
         compact ? 'py-[7px] text-[12px]' : 'py-[11px]',
-        textWhite ? 'text-white' : 'text-ink',
+        'text-ink',
       )}
       style={{ background: bg }}
       title={`${fmtEUR(value, { decimals: 0 })}${avg > 0 ? ` · ${pctVsAvg >= 0 ? '+' : ''}${pctVsAvg}% vs average` : ''}`}

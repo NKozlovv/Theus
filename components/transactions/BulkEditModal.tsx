@@ -163,7 +163,7 @@ export function BulkEditModal({
           </p>
         ) : tripActive ? (
           <div className="pl-[26px]">
-            <Field label="Trip" hint="Pick a previous trip or type a new one.">
+            <Field label="Trip" hint="Pick a previous trip or type a new one">
               {({ id }) => <TripField id={id} value={trip} onChange={setTrip} suggestions={existingTrips} />}
             </Field>
           </div>

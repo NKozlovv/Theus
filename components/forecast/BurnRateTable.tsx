@@ -25,8 +25,8 @@ export function BurnRateTable({
   return (
     <div className="flex min-w-0 flex-col gap-3">
       <div>
-        <h2 className="text-[20px] font-extrabold -tracking-[0.025em] text-ink">{title}</h2>
-        {subtitle ? <p className="mt-1.5 text-[13.5px] font-medium text-ink-soft">{subtitle}</p> : null}
+        <h2 className="text-[20px] font-semibold text-ink">{title}</h2>
+        {subtitle ? <p className="mt-1.5 text-[14px] font-medium text-ink-soft">{subtitle}</p> : null}
       </div>
 
       {rows.length === 0 ? (
@@ -50,27 +50,27 @@ export function BurnRateTable({
                 const partial = r.monthsActive < monthsElapsed;
                 return (
                   <tr key={r.name} className="transition-colors duration-150 hover:bg-white/[0.55]">
-                    <td className="whitespace-nowrap border-b border-[rgba(31,39,66,.06)] py-[11px] pr-3 text-[13.5px] font-bold text-ink">
+                    <td className="whitespace-nowrap border-b border-[rgba(31,39,66,.06)] py-[11px] pr-3 text-[14px] font-semibold text-ink">
                       <span className="inline-flex items-center gap-2.5">
                         <span className="h-2.5 w-2.5 shrink-0 rounded-sm" style={{ background: categoryColor(r.name) }} />
                         {r.name}
                       </span>
                     </td>
-                    <td className="whitespace-nowrap border-b border-[rgba(31,39,66,.06)] px-3 py-[11px] text-right text-[13.5px] font-semibold tabular-nums text-ink-mute">
+                    <td className="whitespace-nowrap border-b border-[rgba(31,39,66,.06)] px-3 py-[11px] text-right text-[14px] font-medium tabular-nums text-ink-mute">
                       {fmtEUR(r.avgMonthly, { decimals: 0 })}
                     </td>
                     <td
-                      className="whitespace-nowrap border-b border-[rgba(31,39,66,.06)] px-3 py-[11px] text-right text-[13.5px] font-extrabold tabular-nums"
+                      className="whitespace-nowrap border-b border-[rgba(31,39,66,.06)] px-3 py-[11px] text-right text-[14px] font-semibold tabular-nums"
                       style={{ color: r.thisMonth > 0 ? toneColor : 'var(--ink-mute)' }}
                     >
                       {r.thisMonth > 0 ? fmtEUR(r.thisMonth, { decimals: 0 }) : '—'}
                     </td>
-                    <td className="whitespace-nowrap border-b border-[rgba(31,39,66,.06)] px-3 py-[11px] text-right text-[13.5px] font-semibold tabular-nums text-ink-mute">
+                    <td className="whitespace-nowrap border-b border-[rgba(31,39,66,.06)] px-3 py-[11px] text-right text-[14px] font-medium tabular-nums text-ink-mute">
                       {fmtEUR(r.projectedYearTotal, { decimals: 0 })}
                     </td>
                     <td className="whitespace-nowrap border-b border-[rgba(31,39,66,.06)] py-[11px] pl-3 text-right">
                       <span
-                        className={`rounded-full px-[9px] py-[3px] text-[11px] font-bold tabular-nums ${
+                        className={`rounded-full px-[9px] py-[3px] text-[12px] font-semibold tabular-nums ${
                           partial ? 'bg-amber/[0.2] text-[#a4670e]' : 'bg-[rgba(31,39,66,.07)] text-ink-soft'
                         }`}
                       >
@@ -99,7 +99,7 @@ function Th({
 }) {
   return (
     <th
-      className={`border-b border-[rgba(31,39,66,.12)] py-2.5 text-[10px] font-bold uppercase tracking-[0.1em] text-ink-mute ${
+      className={`border-b border-[rgba(31,39,66,.12)] py-2.5 text-[11px] font-semibold text-ink-mute ${
         align === 'right' ? 'text-right' : 'text-left'
       } ${last ? 'pl-3' : 'px-3'}`}
     >

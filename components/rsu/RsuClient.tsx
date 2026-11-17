@@ -14,7 +14,7 @@ const COLORS = ['#4a5ce0', '#1fb9a4', '#f2708f', '#ef9a3c', '#8b5cf6', '#2ea3e8'
 const EVERY: Record<number, string> = { 1: 'monthly', 3: 'quarterly', 6: 'every 6 months', 12: 'yearly' };
 const DAY = 864e5;
 
-const label = 'text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute';
+const label = 'text-[11px] font-semibold text-ink-mute';
 
 function Stat({
   title,
@@ -35,10 +35,10 @@ function Stat({
         {dot}
         <span className={label}>{title}</span>
       </div>
-      <div className={cn('mt-[7px] text-[28px] font-extrabold -tracking-[0.03em] tabular-nums', valueClass)}>
+      <div className={cn('mt-[7px] text-[28px] font-semibold -tracking-[0.03em] tabular-nums', valueClass)}>
         {value}
       </div>
-      <div className="mt-[3px] text-[12.5px] font-semibold text-ink-soft">{sub}</div>
+      <div className="mt-[3px] text-[13px] font-medium text-ink-soft">{sub}</div>
     </div>
   );
 }
@@ -323,9 +323,9 @@ export function RsuClient({
 
   const seg = (active: boolean) =>
     cn(
-      'rounded-full px-[13px] py-[7px] text-[12.5px] font-bold transition-colors',
+      'rounded-full px-[13px] py-[7px] text-[13px] font-semibold transition-colors',
       active
-        ? 'bg-[linear-gradient(180deg,#5a6be8,#4152d6)] text-white [box-shadow:0_8px_18px_-8px_rgba(74,92,224,.6)]'
+        ? 'bg-indigo text-white '
         : 'text-ink-soft hover:bg-white/60',
     );
 
@@ -339,12 +339,12 @@ export function RsuClient({
           <div className="min-w-0 flex-[1_1_320px]">
             <div className={label}>RSU · total grant value at today’s price</div>
             <div className="mt-2 flex items-baseline gap-1 whitespace-nowrap">
-              <span className="text-[clamp(24px,2.2vw,32px)] font-bold text-ink-mute">€</span>
-              <span className="text-[clamp(42px,5vw,72px)] font-extrabold leading-none -tracking-[0.042em] tabular-nums">
+              <span className="text-[clamp(24px,2.2vw,32px)] font-semibold text-ink-mute">€</span>
+              <span className="text-[clamp(42px,5vw,72px)] font-semibold leading-none -tracking-[0.042em] tabular-nums">
                 {Math.round(m.total * price).toLocaleString('en-US')}
               </span>
             </div>
-            <div className="mt-[9px] text-[13.5px] font-semibold text-ink-soft">
+            <div className="mt-[9px] text-[14px] font-medium text-ink-soft">
               {grants.length === 0
                 ? 'No grants yet — add one below.'
                 : `${num(m.total)} shares across ${grants.length} ${grants.length === 1 ? 'grant' : 'grants'}. ${Math.round(m.vpct)}% vested, fully vested ${niceDateLong(m.last)}.`}
@@ -361,7 +361,7 @@ export function RsuClient({
               onChange={(e) => setPriceInput(e.target.value)}
               onBlur={commitPrice}
               onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
-              className="!w-[150px] !text-[20px] !font-extrabold tabular-nums"
+              className="!w-[150px] !text-[20px] !font-semibold tabular-nums"
             />
           </label>
         </div>
@@ -369,7 +369,7 @@ export function RsuClient({
         <div>
           <div className="flex h-[22px] gap-[3px] overflow-hidden rounded-full bg-white/40 [box-shadow:inset_0_0_0_1px_rgba(255,255,255,.5)]">
             <div
-              className="rounded-full bg-[linear-gradient(90deg,#4a5ce0,#1fb9a4)]"
+              className="rounded-full bg-indigo"
               style={{ width: `${m.vpct.toFixed(2)}%` }}
             />
           </div>
@@ -378,7 +378,7 @@ export function RsuClient({
               title="Vested · yours"
               value={eur(m.vested * price, 0)}
               sub={`${num(m.vested)} shares · ${m.past.length} vest events so far`}
-              dot={<span className="h-2.5 w-2.5 rounded-[4px] bg-[linear-gradient(135deg,#4a5ce0,#1fb9a4)]" />}
+              dot={<span className="h-2.5 w-2.5 rounded-[4px] bg-indigo" />}
             />
             <Stat
               title="Unvested · still to come"
@@ -419,14 +419,14 @@ export function RsuClient({
         <section className="glass flex flex-col gap-4 !rounded-[34px] px-[26px] py-6">
           <div className="flex flex-wrap items-start justify-between gap-3.5">
             <div>
-              <div className="text-[17px] font-extrabold -tracking-[0.02em]">Vesting timeline</div>
-              <div className="mt-1 text-[13px] font-semibold text-ink-soft">
+              <div className="text-[17px] font-semibold">Vesting timeline</div>
+              <div className="mt-1 text-[13px] font-medium text-ink-soft">
                 Cumulative shares vested, all grants stacked. Solid is behind you, dashed is scheduled.
               </div>
             </div>
             <div className="flex flex-col items-end gap-2.5">
               <div className="flex items-center gap-2">
-                <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-mute">Show</span>
+                <span className="text-[12px] font-semibold text-ink-mute">Show</span>
                 <div className="flex gap-1 rounded-full bg-white/[0.44] p-1">
                   {([['eoy', 'End of year'], ['1y', '1 year'], ['2y', '2 years'], ['5y', '5 years'], ['all', 'All']] as const).map(([k, l]) => (
                     <button key={k} type="button" className={seg(horizon === k)} onClick={() => setHorizon(k)}>
@@ -437,7 +437,7 @@ export function RsuClient({
               </div>
               <div className="flex flex-wrap justify-end gap-3.5">
                 {grants.map((g) => (
-                  <span key={g.id} className="flex items-center gap-[7px] text-[12px] font-semibold text-ink-soft">
+                  <span key={g.id} className="flex items-center gap-[7px] text-[12px] font-medium text-ink-soft">
                     <span className="h-[11px] w-[11px] rounded-[4px]" style={{ background: m.colorOf(g.id) }} />
                     {g.name}
                   </span>
@@ -473,14 +473,14 @@ export function RsuClient({
             {m.yGrid.map((g, i) => (
               <div
                 key={i}
-                className="absolute left-0 -translate-y-[120%] text-[11px] font-bold tabular-nums text-ink-mute"
+                className="absolute left-0 -translate-y-[120%] text-[12px] font-semibold tabular-nums text-ink-mute"
                 style={{ top: `${g.y / 2.8}%` }}
               >
                 {g.label}
               </div>
             ))}
             <div
-              className="absolute -top-1 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e0568a] px-2.5 py-1 text-[11px] font-bold text-white"
+              className="absolute -top-1 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e0568a] px-2.5 py-1 text-[12px] font-semibold text-white"
               style={{ left: `${m.todayX / 10}%` }}
             >
               Today · {Math.round(m.vpct)}% vested
@@ -500,10 +500,10 @@ export function RsuClient({
                   }}
                 >
                   <div className="flex items-center justify-between gap-3">
-                    <span className="text-[11.5px] font-bold text-ink-mute">End of {tip.title}</span>
+                    <span className="text-[12px] font-semibold text-ink-mute">End of {tip.title}</span>
                     <span
                       className={cn(
-                        'rounded-full px-2 py-0.5 text-[10.5px] font-bold',
+                        'rounded-full px-2 py-0.5 text-[11px] font-semibold',
                         tip.status === 'vested' && 'bg-[rgba(31,185,164,.18)] text-[#0f7f72]',
                         tip.status === 'scheduled' && 'bg-[rgba(74,92,224,.14)] text-indigo-dark',
                       )}
@@ -511,18 +511,18 @@ export function RsuClient({
                       {tip.status === 'vested' ? 'Already vested' : 'Scheduled'}
                     </span>
                   </div>
-                  <div className="mt-[3px] text-[16px] font-extrabold tabular-nums">
+                  <div className="mt-[3px] text-[16px] font-semibold tabular-nums">
                     {num(tip.tot)} shares vested <span className="text-ink-mute">· {tip.pct}%</span>
                   </div>
-                  <div className="text-[12px] font-semibold tabular-nums text-ink-soft">
+                  <div className="text-[12px] font-medium tabular-nums text-ink-soft">
                     worth {eur(tip.tot * price, 0)} at today’s share price
                   </div>
                   {tip.rows.length > 0 ? (
                     <div className="mt-1.5 flex flex-col gap-1 border-t border-[rgba(21,26,45,.08)] pt-1.5">
                       {tip.rows.map((r) => (
-                        <div key={r.id} className="flex items-center gap-[7px] text-[11.5px] font-semibold tabular-nums text-ink-soft">
+                        <div key={r.id} className="flex items-center gap-[7px] text-[12px] font-medium tabular-nums text-ink-soft">
                           <span className="h-2 w-2 rounded-[3px]" style={{ background: m.colorOf(r.id) }} />
-                          <span className="font-bold text-ink">{r.name}</span>
+                          <span className="font-semibold text-ink">{r.name}</span>
                           <span className="ml-auto pl-3">
                             {num(r.shares)} sh · {eur(r.shares * price, 0)}
                           </span>
@@ -542,8 +542,8 @@ export function RsuClient({
               <span
                 key={t.label + t.left}
                 className={cn(
-                  'absolute top-2 -translate-x-1/2 whitespace-nowrap text-[11.5px] text-ink-mute',
-                  t.major ? 'font-extrabold text-ink-soft' : 'font-semibold',
+                  'absolute top-2 -translate-x-1/2 whitespace-nowrap text-[12px] text-ink-mute',
+                  t.major ? 'font-semibold text-ink-soft' : 'font-medium',
                 )}
                 style={{ left: `${t.left}%` }}
               >
@@ -559,8 +559,8 @@ export function RsuClient({
         <section className="glass flex flex-col gap-3.5 !rounded-[34px] px-[26px] py-6">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <div className="text-[17px] font-extrabold -tracking-[0.02em]">Vest events</div>
-              <div className="mt-1 text-[13px] font-semibold text-ink-soft">
+              <div className="text-[17px] font-semibold">Vest events</div>
+              <div className="mt-1 text-[13px] font-medium text-ink-soft">
                 {view === 'upcoming' ? 'Valued at today’s share price.' : 'Most recent first, valued at today’s share price.'}
               </div>
             </div>
@@ -592,14 +592,14 @@ export function RsuClient({
                       style={{ background: m.colorOf(e.grantId), boxShadow: d > 0 ? '0 0 0 2px #fff' : 'none' }}
                     />
                     <div className="min-w-0">
-                      <div className="whitespace-nowrap text-[13.5px] font-bold">{niceDateLong(e.date)}</div>
-                      <div className="truncate text-[12px] font-semibold text-ink-mute">
+                      <div className="whitespace-nowrap text-[14px] font-semibold">{niceDateLong(e.date)}</div>
+                      <div className="truncate text-[12px] font-medium text-ink-mute">
                         {grantName(e.grantId)} · {num(e.shares)} shares{e.isCliff ? ' · cliff' : ''}
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-[13.5px] font-extrabold tabular-nums">{eur(e.shares * price, 0)}</div>
-                      <div className={cn('whitespace-nowrap text-[11.5px] font-bold', d > 0 ? 'text-indigo-dark' : 'text-ink-mute')}>
+                      <div className="text-[14px] font-semibold tabular-nums">{eur(e.shares * price, 0)}</div>
+                      <div className={cn('whitespace-nowrap text-[12px] font-semibold', d > 0 ? 'text-indigo-dark' : 'text-ink-mute')}>
                         {d > 0 ? 'in ' + span(d) : span(-d) + ' ago'}
                       </div>
                     </div>
@@ -614,8 +614,8 @@ export function RsuClient({
         <section className="glass flex flex-col gap-4 !rounded-[34px] px-[26px] py-6">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <div className="text-[17px] font-extrabold -tracking-[0.02em]">Grants</div>
-              <div className="mt-1 text-[13px] font-semibold text-ink-soft">Each grant follows its own schedule.</div>
+              <div className="text-[17px] font-semibold">Grants</div>
+              <div className="mt-1 text-[13px] font-medium text-ink-soft">Each grant follows its own schedule.</div>
             </div>
             <Button size="sm" variant={showForm ? 'secondary' : 'primary'} onClick={() => {
                 if (showForm) closeForm();
@@ -679,8 +679,8 @@ export function RsuClient({
                     )}
                   </Field>
               </div>
-              {error ? <p className="text-[13px] font-bold text-out" role="alert">{error}</p> : null}
-              <div className="text-[12.5px] font-semibold text-ink-soft">
+              {error ? <p className="text-[13px] font-semibold text-out" role="alert">{error}</p> : null}
+              <div className="text-[13px] font-medium text-ink-soft">
                 {preview.length
                   ? `${preview.length} vest events, first on ${niceDateLong(preview[0]!.date)} (${num(preview[0]!.shares)} shares), last on ${niceDateLong(preview[preview.length - 1]!.date)}.`
                   : 'Fill in shares to preview the schedule.'}
@@ -690,7 +690,7 @@ export function RsuClient({
               </Button>
             </div>
           ) : error ? (
-            <p className="text-[13px] font-bold text-out" role="alert">{error}</p>
+            <p className="text-[13px] font-semibold text-out" role="alert">{error}</p>
           ) : null}
 
           <div className="flex flex-col gap-3">
@@ -708,14 +708,14 @@ export function RsuClient({
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
                         <span className="h-2.5 w-2.5 rounded-[4px]" style={{ background: m.colorOf(g.id) }} />
-                        <span className="text-[15px] font-extrabold -tracking-[0.01em]">{g.name}</span>
+                        <span className="text-[15px] font-semibold">{g.name}</span>
                       </div>
-                      <div className="mt-[3px] text-[12px] font-semibold text-ink-mute">
+                      <div className="mt-[3px] text-[12px] font-medium text-ink-mute">
                         {num(g.shares)} shares · {g.months / 12} yrs, {EVERY[g.every] ?? `every ${g.every} months`}
                         {g.cliff ? `, ${g.cliff}-month cliff` : ', no cliff'} · from {niceDateLong(g.start_date)}
                       </div>
                       {g.grant_price != null ? (
-                        <div className="mt-[3px] text-[12px] font-bold tabular-nums text-ink-soft">
+                        <div className="mt-[3px] text-[12px] font-semibold tabular-nums text-ink-soft">
                           Granted at {eur(g.grant_price, 2)} · now {eur(price, 2)}
                           {g.grant_price > 0 ? ` (${pct((price / g.grant_price - 1) * 100)})` : ""}
                         </div>
@@ -725,7 +725,7 @@ export function RsuClient({
                     <button
                       type="button"
                       onClick={() => startEdit(g)}
-                      className="whitespace-nowrap rounded-full bg-white/50 px-2.5 py-1.5 text-[11.5px] font-bold text-ink-mute hover:bg-white/80"
+                      className="whitespace-nowrap rounded-full bg-white/50 px-2.5 py-1.5 text-[12px] font-semibold text-ink-mute hover:bg-white/80"
                     >
                       Edit
                     </button>
@@ -733,7 +733,7 @@ export function RsuClient({
                       type="button"
                       onClick={() => remove(g.id)}
                       className={cn(
-                        'whitespace-nowrap rounded-full px-2.5 py-1.5 text-[11.5px] font-bold',
+                        'whitespace-nowrap rounded-full px-2.5 py-1.5 text-[12px] font-semibold',
                         conf ? 'bg-[#e0568a] text-white' : 'bg-white/50 text-ink-mute hover:bg-white/80',
                       )}
                     >
@@ -744,7 +744,7 @@ export function RsuClient({
                   <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-white/50">
                     <div className="h-full rounded-full" style={{ width: `${((v / g.shares) * 100).toFixed(2)}%`, background: m.colorOf(g.id) }} />
                   </div>
-                  <div className="mt-2 flex justify-between gap-2.5 text-[12.5px] font-bold tabular-nums">
+                  <div className="mt-2 flex justify-between gap-2.5 text-[13px] font-semibold tabular-nums">
                     <span>{num(v)} vested · {eur(v * price, 0)}</span>
                     <span className="text-ink-mute">{num(g.shares - v)} to go</span>
                   </div>

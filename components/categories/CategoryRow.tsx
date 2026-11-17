@@ -118,7 +118,7 @@ export function CategoryRow({
       {open ? (
         <div className="rise ml-[62px] mr-[10px] mb-[10px] mt-0.5 rounded-[16px] bg-white/50 px-4 py-2.5" style={{ animationDuration: '240ms' }}>
           {subcategories.length === 0 ? (
-            <div className="py-2 text-[13px] text-ink-mute">No subcategories yet.</div>
+            <div className="py-2 text-[13px] text-ink-mute">No subcategories yet</div>
           ) : (
             <>
               <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_90px_90px] gap-4 pb-1.5 text-[11px] font-semibold text-ink-mute">

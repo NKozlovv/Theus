@@ -22,7 +22,7 @@ export function TripsRanked({ trips, metric }: { trips: TripSummary[]; metric: T
     <section className="glass flex flex-col gap-[18px] !rounded-[34px] p-[24px] px-[26px]">
       <div>
         <div className="text-[17px] font-semibold text-ink">Trips ranked</div>
-        <div className="mt-1 text-[13px] font-medium text-ink-soft">Most recent trip first.</div>
+        <div className="mt-1 text-[13px] font-medium text-ink-soft">Most recent trip first</div>
       </div>
 
       <div className="flex flex-col gap-3">

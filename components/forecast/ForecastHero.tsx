@@ -33,7 +33,7 @@ export function ForecastHero({
   return (
     <section className="glass flex flex-col gap-5 !rounded-[34px] p-[24px] px-[26px]">
       <div>
-        <h1 className="text-[26px] font-extrabold -tracking-[0.03em] text-ink">Forecast</h1>
+        <h1 className="text-[26px] font-semibold -tracking-[0.03em] text-ink">Forecast</h1>
       </div>
 
       <div className="grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))] gap-3">
@@ -58,7 +58,7 @@ export function ForecastHero({
 
       <div className="glass-inner flex flex-col gap-3 !rounded-[22px] p-4 px-[22px]">
         <div className="flex flex-wrap items-baseline justify-between gap-[14px]">
-          <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-ink-mute">
+          <span className="text-[12px] font-semibold text-ink-mute">
             Balance · 12 months back, {forwardMonths} to year-end
           </span>
           <div className="flex flex-wrap gap-4">
@@ -87,14 +87,14 @@ function KpiTile({
 }) {
   return (
     <div className="glass-tile flex min-h-[104px] flex-col justify-between gap-[9px] !rounded-[22px] p-4 px-5">
-      <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">{label}</div>
+      <div className="text-[11px] font-semibold text-ink-mute">{label}</div>
       <div
-        className="whitespace-nowrap text-[clamp(28px,2.6vw,36px)] font-extrabold -tracking-[0.038em] tabular-nums leading-none"
+        className="whitespace-nowrap text-[clamp(28px,2.6vw,36px)] font-semibold -tracking-[0.038em] tabular-nums leading-none"
         style={{ color: valueColor }}
       >
         {value}
       </div>
-      <div className="text-[12.5px] font-bold tabular-nums" style={{ color: subColor ?? 'var(--ink-mute)' }}>
+      <div className="text-[13px] font-semibold tabular-nums" style={{ color: subColor ?? 'var(--ink-mute)' }}>
         {sub}
       </div>
     </div>
@@ -103,7 +103,7 @@ function KpiTile({
 
 function Legend({ color, dashed, label }: { color: string; dashed: boolean; label: string }) {
   return (
-    <span className="inline-flex items-center gap-[7px] text-[12px] font-semibold text-ink-soft">
+    <span className="inline-flex items-center gap-[7px] text-[12px] font-medium text-ink-soft">
       {dashed ? (
         <svg width="18" height="4" aria-hidden>
           <line x1="0" y1="2" x2="18" y2="2" stroke={color} strokeWidth={2.5} strokeDasharray="4 3" />

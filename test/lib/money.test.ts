@@ -13,6 +13,7 @@ function tx(partial: Partial<Transaction> = {}): Transaction {
     fx_rate: null,
     category: null,
     subcategory: null,
+    trip: null,
     account_id: null,
     comment: null,
     created_by: null,

@@ -44,8 +44,8 @@ export function PerCategoryOutlook({
   return (
     <div className="flex flex-col gap-4">
       <div>
-        <h2 className="text-[20px] font-extrabold -tracking-[0.025em] text-ink">Categories to watch</h2>
-        <p className="mt-1.5 text-[13.5px] font-medium text-ink-soft">
+        <h2 className="text-[20px] font-semibold text-ink">Categories to watch</h2>
+        <p className="mt-1.5 text-[14px] font-medium text-ink-soft">
           Average so far this year against next month&apos;s projection, which leans toward the
           most recent month.
         </p>
@@ -64,14 +64,14 @@ export function PerCategoryOutlook({
             return (
               <div
                 key={r.name}
-                className="glass-tile flex flex-col gap-[9px] !rounded-[20px] p-[15px] px-[17px] transition-transform duration-200 ease-theus hover:-translate-y-0.5"
+                className="glass-tile flex flex-col gap-[9px] !rounded-[20px] p-[15px] px-[17px] transition-transform duration-200 ease-theus"
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-3">
-                  <span className="text-[15px] font-extrabold -tracking-[0.015em] text-ink">{r.name}</span>
+                  <span className="text-[15px] font-semibold text-ink">{r.name}</span>
                   <span className="inline-flex items-baseline gap-[9px] whitespace-nowrap tabular-nums">
-                    <span className="text-[13px] font-semibold text-ink-mute">{fmtEUR(r.avg, { decimals: 0 })} avg</span>
+                    <span className="text-[13px] font-medium text-ink-mute">{fmtEUR(r.avg, { decimals: 0 })} avg</span>
                     <span
-                      className="text-[16px] font-extrabold"
+                      className="text-[16px] font-semibold"
                       style={{ color: over ? 'var(--out)' : under ? 'var(--in)' : 'var(--ink)' }}
                     >
                       {fmtEUR(r.projected, { decimals: 0 })}
@@ -90,7 +90,7 @@ export function PerCategoryOutlook({
                     style={{ width: `${wProj}%`, background: color, opacity: 0.85 }}
                   />
                 </div>
-                <div className="text-[12px] font-semibold text-ink-mute">{trendNote(r.avg, r.projected)}</div>
+                <div className="text-[12px] font-medium text-ink-mute">{trendNote(r.avg, r.projected)}</div>
               </div>
             );
           })}
