@@ -100,30 +100,30 @@ export function CategoryDetailModal({
     >
       <div className="flex flex-col gap-5">
         {/* Header strip */}
-        <div className="glass-tile flex items-center gap-4 p-4">
+        <div className="glass-tile flex items-center gap-4 !rounded-[16px] p-4">
           <span
-            className="flex h-12 w-12 items-center justify-center rounded-[8px]"
+            className="flex h-12 w-12 items-center justify-center rounded-[12px]"
             style={{ background: `${color}1F` }}
           >
             <Icon name={icon} size={20} color={color} />
           </span>
           <div className="flex-1">
             <Mono size="xs">This month</Mono>
-            <div className="text-[20px] font-medium tabular-nums text-ink">
+            <div className="font-mono text-[20px] font-semibold tabular-nums text-ink">
               {fmtEUR(summary.thisMonth, { decimals: 0 })}
             </div>
           </div>
-          <div className="border-l border-line pl-4">
+          <div className="border-l border-white/60 pl-4">
             <Mono size="xs">YTD avg / mo</Mono>
-            <div className="text-[14px] tabular-nums text-ink-soft">
+            <div className="font-mono text-[14px] font-medium tabular-nums text-ink-soft">
               {fmtEUR(summary.avgMonthly, { decimals: 0 })}
             </div>
           </div>
         </div>
 
         {/* Subcategories */}
-        <div className="glass-tile">
-          <div className="flex items-center justify-between border-b border-line px-4 py-3">
+        <div className="glass-tile !rounded-[16px]">
+          <div className="flex items-center justify-between border-b border-white/60 px-4 py-3">
             <Mono size="xs">Subcategories</Mono>
             <button
               type="button"
@@ -139,7 +139,7 @@ export function CategoryDetailModal({
               No subcategories yet.
             </div>
           ) : (
-            <ul className="divide-y divide-[color:var(--line)]">
+            <ul className="divide-y divide-white/60">
               {localSubs.map((s) => (
                 <li
                   key={s.subcategory.id}
@@ -153,10 +153,10 @@ export function CategoryDetailModal({
                   <span className="min-w-0 flex-1 truncate text-[13px] text-ink-soft">
                     {s.subcategory.name}
                   </span>
-                  <span className="text-[13px] tabular-nums text-ink">
+                  <span className="font-mono text-[12px] tabular-nums text-ink">
                     {fmtEUR(s.thisMonth, { decimals: 0 })}
                   </span>
-                  <span className="text-[12px] tabular-nums text-ink-mute">
+                  <span className="font-mono text-[11px] tabular-nums text-ink-mute">
                     YTD {fmtEUR(s.ytd, { decimals: 0 })}
                   </span>
                   {isTravel ? (
@@ -165,10 +165,10 @@ export function CategoryDetailModal({
                       onClick={() => toggleFixedCost(s.subcategory.id, !s.subcategory.is_fixed_cost)}
                       title="Whether the Trips page counts this as a fixed (booked-ahead) or daily (on-the-ground) cost"
                       className={cn(
-                        'shrink-0 rounded-[6px] px-2 py-1 text-[12px] font-medium transition-colors duration-150',
+                        'shrink-0 rounded-full px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-[0.04em] transition-colors',
                         s.subcategory.is_fixed_cost
-                          ? 'bg-indigo/10 text-indigo'
-                          : 'bg-surface text-ink-mute hover:text-ink',
+                          ? 'bg-indigo/[0.14] text-indigo-dark'
+                          : 'bg-white/60 text-ink-mute hover:bg-white',
                       )}
                     >
                       {s.subcategory.is_fixed_cost ? 'Fixed' : 'Daily'}
@@ -178,7 +178,7 @@ export function CategoryDetailModal({
                     <button
                       type="button"
                       onClick={() => setSubMode({ kind: 'rename', sub: s.subcategory })}
-                      className="text-[12px] text-ink-mute hover:text-indigo hover:underline"
+                      className="text-[11px] text-ink-mute hover:text-indigo hover:underline"
                     >
                       Rename
                     </button>
@@ -186,7 +186,7 @@ export function CategoryDetailModal({
                     <button
                       type="button"
                       onClick={() => setSubMode({ kind: 'delete', sub: s.subcategory })}
-                      className="text-[12px] text-ink-mute hover:text-out hover:underline"
+                      className="text-[11px] text-ink-mute hover:text-out hover:underline"
                     >
                       Delete
                     </button>
@@ -198,7 +198,7 @@ export function CategoryDetailModal({
         </div>
 
         {/* Category-level actions */}
-        <div className="flex items-center justify-between border-t border-line pt-4">
+        <div className="flex items-center justify-between border-t border-white/60 pt-4">
           <button
             type="button"
             onClick={() => setConfirmingDelete(true)}

@@ -10,17 +10,17 @@ import type { TripSummary } from './summary';
  * distinctness is guaranteed rather than left to a hash collision.
  */
 const TRIP_SUBCATEGORY_HUES = [
-  '#2f45b8', // indigo
-  '#c8596b', // coral
-  '#2a8f86', // teal
-  '#c98a2b', // amber
-  '#7a63c4', // violet
-  '#a8486f', // rose
-  '#3f8fc4', // sky
+  '#4a5ce0', // indigo
+  '#f2708f', // coral
+  '#1fb9a4', // teal
+  '#f4a545', // amber
+  '#8b5cf6', // violet
+  '#d6336c', // rose
+  '#2ea3e8', // sky
   '#7c9a3a', // olive
 ];
 
-const FALLBACK = '#8a90a3';
+const FALLBACK = '#8b95b8';
 
 /**
  * One color per subcategory name, ranked by total spend across every trip

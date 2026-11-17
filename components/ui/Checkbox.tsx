@@ -31,10 +31,10 @@ export function Checkbox({
     >
       <span
         className={cn(
-          'flex h-[16px] w-[16px] shrink-0 items-center justify-center rounded-[4px] border-[1.5px] transition-colors',
+          'flex h-[16px] w-[16px] shrink-0 items-center justify-center rounded-[5px] border-[1.5px] transition-colors',
           checked
             ? 'border-indigo bg-indigo'
-            : 'border-[color:var(--line-strong)] bg-surface group-hover/check:border-indigo',
+            : 'border-[#c2c8d8] group-hover/check:border-indigo group-hover/check:bg-indigo/[0.16]',
         )}
       >
         {checked ? (
@@ -51,7 +51,7 @@ export function Checkbox({
           </svg>
         ) : null}
       </span>
-      <span className="text-[14px] text-ink">{label}</span>
+      <span className="text-[13.5px] font-semibold text-ink">{label}</span>
     </button>
   );
 }

@@ -92,7 +92,7 @@ export default async function CategoriesPage() {
         title="Categories"
         meta={`${monthLabel} ${year} · ${totalCount} ${
           totalCount === 1 ? 'category' : 'categories'
-        }`}
+        } tracked`}
         actions={<AddCategoryButton />}
       />
 

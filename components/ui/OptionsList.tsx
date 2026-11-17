@@ -37,7 +37,7 @@ export function OptionsList({
       role="listbox"
       aria-multiselectable={selected ? true : undefined}
       className={cn(
-        'glass-popover absolute z-50 mt-1 max-h-64 min-w-full overflow-auto p-1',
+        'glass-popover absolute z-50 mt-1.5 max-h-64 min-w-full overflow-auto !rounded-[16px] p-1',
         className,
       )}
     >
@@ -52,13 +52,13 @@ export function OptionsList({
             disabled={o.disabled}
             onClick={() => !o.disabled && onSelect(o.value)}
             className={cn(
-              'flex w-full items-center justify-between gap-2 rounded-[8px] px-3 py-2 text-left text-[14px] transition-colors',
-              isSelected ? 'bg-raised font-medium text-ink' : 'text-ink hover:bg-raised',
+              'flex w-full items-center justify-between gap-2 rounded-[6px] px-3 py-2 text-left text-[13px] transition-colors',
+              isSelected ? 'bg-indigo/[0.12] text-indigo-dark' : 'text-ink hover:bg-white/70',
               o.disabled && 'cursor-not-allowed opacity-40 hover:bg-transparent',
             )}
           >
             <span className="truncate">{o.label}</span>
-            {isSelected ? <Icon name="check" size={14} className="shrink-0 text-indigo" /> : null}
+            {isSelected ? <Icon name="check" size={13} className="shrink-0" /> : null}
           </button>
         );
       })}

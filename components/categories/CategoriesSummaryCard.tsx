@@ -2,8 +2,9 @@ import { fmtEUR } from '@/lib/money';
 import type { CategorySummary } from '@/lib/categories/summary';
 
 /**
- * Three stat cards — spent this month, YTD average, pace against average.
- * A label and a figure each. Expense categories only; income has its own
+ * Three stat cards — Spent / YTD average / pace vs average (design_handoff_
+ * theus_rehaul README "Categories"). Same glass-card construction as the
+ * Transactions stat strip. Expense categories only — income has its own
  * recap section below the table.
  */
 export function CategoriesSummaryCard({
@@ -19,22 +20,26 @@ export function CategoriesSummaryCard({
   const over = pace > 0;
 
   const tiles = [
-    { label: `Spent in ${monthLabel}`, value: fmtEUR(totalThisMonth, { decimals: 0 }), color: 'var(--ink)' },
-    { label: 'YTD average per month', value: fmtEUR(totalAvg, { decimals: 0 }), color: 'var(--ink)' },
+    { hue: 'var(--coral)', label: `Spent · ${monthLabel}`, value: fmtEUR(totalThisMonth, { decimals: 0 }), color: '#d94a6f' },
+    { hue: 'var(--indigo)', label: 'YTD average', value: fmtEUR(totalAvg, { decimals: 0 }), color: '#3a49c4' },
     {
+      hue: over ? 'var(--amber)' : 'var(--teal)',
       label: over ? 'Over pace by' : 'Under pace by',
       value: `${pace >= 0 ? '+' : ''}${fmtEUR(pace, { decimals: 0 })}`,
-      color: over ? 'var(--out)' : 'var(--in)',
+      color: over ? '#d94a6f' : '#12a08c',
     },
   ];
 
   return (
     <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
       {tiles.map((tile) => (
-        <div key={tile.label} className="glass p-5">
-          <div className="text-[13px] text-ink-mute">{tile.label}</div>
+        <div key={tile.label} className="glass !rounded-[22px] p-5 px-[22px]">
+          <div className="flex items-center gap-2">
+            <span className="h-[9px] w-[9px] shrink-0 rounded-[2px]" style={{ background: tile.hue }} />
+            <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-ink-mute">{tile.label}</span>
+          </div>
           <div
-            className="mt-2 text-[28px] font-medium leading-none tabular-nums"
+            className="mt-2 text-[27px] font-extrabold -tracking-[0.03em] tabular-nums"
             style={{ color: tile.color }}
           >
             {tile.value}

@@ -19,7 +19,10 @@ export function Field({
   const id = useId();
   return (
     <div className={cn('flex flex-col gap-1.5', className)}>
-      <label htmlFor={id} className="text-[12px] font-medium text-ink-soft">
+      <label
+        htmlFor={id}
+        className="text-[11px] font-medium uppercase tracking-[0.06em] text-ink-mute"
+      >
         {label}
       </label>
       {children({ id })}

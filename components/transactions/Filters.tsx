@@ -35,11 +35,16 @@ function monthLabel(yyyymm: string): string {
 }
 
 /**
- * Filter row: type chips, a Month filter (at 1000+ transactions it is
- * genuinely needed), and Category/Subcategory/Account/Month dropdowns that
- * use the themed `OptionsList` popover instead of native `<select>`
- * elements. Type chips stay single-select; "Clear" appears once anything is
- * engaged; the search box and the live count sit to the right.
+ * Filter row — design_handoff_theus_rehaul README "Transactions", with
+ * two departures from the mockup based on direct feedback: a Month
+ * filter (the design doesn't have one, but at 1000+ transactions it's
+ * genuinely needed), and the Category/Subcategory/Account/Month pills
+ * are a themed popover (glass `OptionsList`) instead of real native
+ * `<select>` elements — the spec's rationale for native selects was
+ * free keyboard/mobile/screen-reader support, but the browser's own
+ * unthemeable dropdown chrome read as visibly off-system, which won
+ * out. Sign pills stay single-select; "Clear" appears once anything
+ * is engaged; the search box and the live count sit to the right.
  */
 export function Filters({
   accounts,
@@ -85,7 +90,7 @@ export function Filters({
     value.search.length > 0;
 
   return (
-    <div className="flex flex-wrap items-center gap-2">
+    <div className="flex flex-wrap items-center gap-[9px]">
       <FilterPill active={value.type === 'All'} onClick={() => patch({ type: 'All' })}>
         All
       </FilterPill>
@@ -128,24 +133,24 @@ export function Filters({
         <button
           type="button"
           onClick={() => onChange(emptyTxFilters())}
-          className="px-1 text-[13px] text-ink-mute transition-colors hover:text-ink"
+          className="text-[12.5px] font-semibold text-ink-mute hover:text-ink hover:underline"
         >
           Clear
         </button>
       ) : null}
 
       <div className="ml-auto flex items-center gap-3">
-        <span className="whitespace-nowrap text-[13px] tabular-nums text-ink-mute">
+        <span className="whitespace-nowrap text-[12.5px] font-semibold text-ink-mute">
           Showing {shown} of {total}
         </span>
-        <div className="flex h-8 w-[240px] items-center gap-2 rounded-control border border-line bg-surface px-3 transition-colors duration-150 focus-within:border-indigo hover:border-[color:var(--line-strong)]">
-          <Icon name="search" size={14} className="shrink-0 text-ink-mute" />
+        <div className="flex w-[210px] items-center gap-2 rounded-full border border-white/90 bg-white/[0.72] px-[18px] py-[11px] transition-colors duration-200 focus-within:bg-white focus-within:[box-shadow:0_0_0_3px_rgba(74,92,224,.25)] hover:bg-white">
+          <Icon name="search" size={13} className="shrink-0 text-ink-mute" />
           <input
             type="search"
             placeholder="Search merchant or note"
             value={value.search}
             onChange={(e) => patch({ search: e.target.value })}
-            className="w-full bg-transparent text-[14px] text-ink placeholder:text-ink-mute focus:outline-none"
+            className="w-full bg-transparent text-[13.5px] text-ink placeholder:text-ink-mute focus:outline-none"
           />
         </div>
       </div>
@@ -178,20 +183,20 @@ function CapsuleSelect({
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
         className={cn(
-          'flex h-8 max-w-[190px] items-center gap-1.5 rounded-control border pl-3 pr-2 text-[13px] font-medium transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50',
+          'flex max-w-[190px] items-center gap-1.5 rounded-full py-[10px] pl-4 pr-3 text-[13.5px] font-semibold transition-colors duration-200 focus:outline-none focus-visible:[box-shadow:0_0_0_3px_rgba(74,92,224,.25)] disabled:cursor-not-allowed disabled:opacity-50',
           engaged
-            ? 'border-indigo bg-indigo/10 text-indigo'
-            : 'border-line bg-surface text-ink-soft hover:bg-raised hover:text-ink',
+            ? 'border border-indigo bg-indigo/[0.12] text-indigo-dark'
+            : 'border border-white/90 bg-white/[0.72] text-ink hover:border-indigo',
         )}
       >
         <span className="truncate">{selected?.label}</span>
         <Icon
           name="chevron-down"
-          size={14}
+          size={12}
           className={cn(
-            'shrink-0 transition-transform duration-150 ease-theus',
+            'shrink-0 transition-transform duration-200 ease-theus',
             open && 'rotate-180',
-            engaged ? 'text-indigo' : 'text-ink-mute',
+            engaged ? 'text-indigo-dark' : 'text-ink-mute',
           )}
         />
       </button>

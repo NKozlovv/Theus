@@ -13,7 +13,7 @@ const TONE: Record<Tone, string> = {
 
 /**
  * Numeric span. Inter with `tabular-nums` so columns of figures align.
- * Tight tracking only on display sizes (≥40 px).
+ * Auto -0.02em letter-spacing for sizes ≥24 px.
  */
 export function Num({
   children,
@@ -36,7 +36,7 @@ export function Num({
       style={{
         fontSize: `${size}px`,
         fontWeight: weight,
-        letterSpacing: letterSpacing ?? (size >= 40 ? '-0.02em' : '0'),
+        letterSpacing: letterSpacing ?? (size >= 24 ? '-0.02em' : '0'),
       }}
     >
       {children}

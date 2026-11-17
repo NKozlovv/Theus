@@ -72,21 +72,21 @@ export function BudgetSwitcher({
         type="button"
         onClick={() => setOpen((v) => !v)}
         disabled={pending}
-        className="group flex w-full items-center gap-2 rounded-[10px] border border-line bg-raised px-3 py-2 text-left transition-colors hover:bg-surface focus:outline-none focus:border-indigo"
+        className="group flex w-full items-center gap-2 rounded-[14px] border border-white/70 bg-white/60 px-3 py-2 text-left transition-colors hover:bg-white focus:outline-none focus:border-indigo"
       >
         <div className="min-w-0 flex-1">
-          <div className="text-[12px] font-medium text-ink-mute">
+          <div className="text-[10px] font-bold uppercase tracking-[0.1em] text-ink-mute">
             Budget
           </div>
-          <div className="mt-0.5 truncate text-[13px] font-medium text-ink">{active.name}</div>
+          <div className="mt-0.5 truncate text-[13px] font-semibold text-ink">{active.name}</div>
         </div>
-        <span className="text-[12px] text-ink-mute group-hover:text-ink">
+        <span className="text-[10px] text-ink-mute group-hover:text-ink">
           {open ? '▴' : '▾'}
         </span>
       </button>
 
       {open ? (
-        <div className="glass-popover absolute left-0 right-0 top-full z-30 mt-1.5 overflow-hidden">
+        <div className="glass-popover absolute left-0 right-0 top-full z-30 mt-1.5 !rounded-[16px] overflow-hidden">
           <ul role="listbox" className="flex flex-col p-1">
             {budgets.map((b) => {
               const isActive = b.id === activeId;
@@ -101,11 +101,11 @@ export function BudgetSwitcher({
                       'flex w-full items-center justify-between gap-3 rounded-[10px] px-3 py-2.5 text-left text-[13px] transition-colors ' +
                       (isActive
                         ? 'bg-indigo/[0.12] text-indigo-dark'
-                        : 'text-ink-soft hover:bg-raised hover:text-ink')
+                        : 'text-ink-soft hover:bg-white/70 hover:text-ink')
                     }
                   >
                     <span className="truncate">{b.name}</span>
-                    <span className="text-[12px] text-ink-mute">
+                    <span className="text-[10px] uppercase tracking-[0.06em] text-ink-mute">
                       {b.base_currency}
                     </span>
                   </button>
@@ -113,14 +113,14 @@ export function BudgetSwitcher({
               );
             })}
           </ul>
-          <div className="flex flex-col border-t border-line p-1">
+          <div className="flex flex-col border-t border-white/60 p-1">
             <button
               type="button"
               onClick={() => {
                 setOpen(false);
                 setMode({ kind: 'create' });
               }}
-              className="rounded-[10px] px-3 py-2 text-left text-[12px] font-medium text-indigo hover:bg-raised"
+              className="rounded-[10px] px-3 py-2 text-left text-[12px] font-semibold text-indigo-dark hover:bg-white/70"
             >
               + New budget
             </button>
@@ -130,7 +130,7 @@ export function BudgetSwitcher({
                 setOpen(false);
                 setMode({ kind: 'manage' });
               }}
-              className="rounded-[10px] px-3 py-2 text-left text-[12px] text-ink-soft hover:bg-raised hover:text-ink"
+              className="rounded-[10px] px-3 py-2 text-left text-[12px] text-ink-soft hover:bg-white/70 hover:text-ink"
             >
               Manage budgets…
             </button>
@@ -165,11 +165,11 @@ export function BudgetSwitcher({
           {budgets.map((b) => (
             <div
               key={b.id}
-              className="flex items-center justify-between gap-3 rounded-[10px] border border-line bg-raised px-3 py-2.5"
+              className="flex items-center justify-between gap-3 rounded-[14px] border border-white/70 bg-white/50 px-3 py-2.5"
             >
               <div className="min-w-0">
                 <div className="truncate text-[13px] font-medium text-ink">{b.name}</div>
-                <div className="text-[12px] text-ink-mute">
+                <div className="text-[10px] uppercase tracking-[0.06em] text-ink-mute">
                   {b.base_currency} · {b.id === activeId ? 'active' : 'member'}
                 </div>
               </div>

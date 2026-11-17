@@ -6,111 +6,173 @@
 
 html,
 body {
-  background: var(--bg);
+  background: var(--body-bg);
   color: var(--ink);
 }
 
 body {
-  font-feature-settings: 'tnum' 0;
-}
-
-:focus-visible {
-  outline: 2px solid var(--indigo);
-  outline-offset: 2px;
+  font-feature-settings: 'cv11', 'ss01';
 }
 
 /* ---------------------------------------------------------------------- */
-/* Surfaces. A page is paper, a panel is a white card with a hairline, an  */
-/* inner card or tile is one step down (raised). No glass, no blur, no     */
-/* colored shadows.                                                        */
-/*                                                                         */
-/* The `.glass*` class names are kept so every page that was not part of   */
-/* the 2026-11-17 pass inherits the new surfaces without markup edits.     */
-/* The doubled selectors (`.glass.glass`) out-rank the old `!rounded-[…]`  */
-/* overrides still sitting in those pages, so nesting stays 16 → 12.       */
+/* Liquid glass — three nesting levels, each brighter/less-blurred than    */
+/* its parent (panel -> inner card -> tile). See design_handoff_theus_     */
+/* rehaul/README.md "The glass recipe (v4 liquid glass)".                  */
 /* ---------------------------------------------------------------------- */
 
 .glass {
-  background: var(--surface);
-  border: 1px solid var(--line);
+  background: var(--glass-sheen);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-edge);
   border-radius: var(--r-panel);
-  box-shadow: 0 1px 2px rgba(23, 23, 23, 0.04);
+  box-shadow:
+    0 28px 60px -18px rgba(31, 39, 66, 0.32),
+    0 2px 10px rgba(31, 39, 66, 0.08),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -14px 24px -18px rgba(255, 255, 255, 0.7),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+  transition:
+    transform var(--dur-glass) var(--ease-glass),
+    box-shadow var(--dur-glass) var(--ease-glass),
+    background var(--dur-glass) ease,
+    border-color var(--dur-glass) ease;
 }
 
-.glass-nohover {
-  /* alias of .glass, kept for markup that still names it */
-  background: var(--surface);
+.glass:hover {
+  transform: translateY(-3px);
+  background: var(--glass-sheen-hi);
+  border-color: var(--glass-edge-hi);
+  box-shadow:
+    0 36px 72px -20px rgba(31, 39, 66, 0.38),
+    0 3px 12px rgba(31, 39, 66, 0.1),
+    inset 0 1.5px 0 rgba(255, 255, 255, 1),
+    inset 0 -14px 24px -18px rgba(255, 255, 255, 0.8),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.glass-nohover:hover {
+  transform: none;
+  background: var(--glass-sheen);
+  border-color: var(--glass-edge);
+  box-shadow:
+    0 28px 60px -18px rgba(31, 39, 66, 0.32),
+    0 2px 10px rgba(31, 39, 66, 0.08),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -14px 24px -18px rgba(255, 255, 255, 0.7),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22);
 }
 
 .glass-inner {
-  background: var(--raised);
-  border: 1px solid var(--line);
+  background: var(--glass-sheen-in);
+  backdrop-filter: var(--glass-blur-in);
+  -webkit-backdrop-filter: var(--glass-blur-in);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: var(--r-inner);
+  box-shadow:
+    0 14px 30px -12px rgba(31, 39, 66, 0.22),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.95);
 }
 
 .glass-tile {
-  background: var(--raised);
-  border: 1px solid var(--line);
+  background: var(--glass-sheen-tile);
+  backdrop-filter: var(--glass-blur-tile);
+  -webkit-backdrop-filter: var(--glass-blur-tile);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: var(--r-tile);
+  box-shadow:
+    0 12px 26px -14px rgba(31, 39, 66, 0.2),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.9);
 }
 
-/* Floating menus and option lists */
+/* Floating popovers (dropdown menus, option lists, tooltips) sit on top of
+   arbitrary foreground content — table text, colored tags, chart bars —
+   not the soft ambient ground .glass is tuned for, so they need a near-
+   opaque backing rather than the panel-level translucency or the text
+   underneath shows through and becomes unreadable. */
 .glass-popover {
-  background: var(--surface);
-  border: 1px solid var(--line-strong);
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.91) 45%, rgba(255, 255, 255, 0.96));
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.75);
   border-radius: var(--r-inner);
-  box-shadow: 0 8px 24px rgba(23, 23, 23, 0.1);
+  box-shadow:
+    0 20px 44px -14px rgba(31, 39, 66, 0.34),
+    0 4px 14px rgba(31, 39, 66, 0.12),
+    inset 0 1.5px 0 rgba(255, 255, 255, 1);
 }
 
-.glass.glass {
-  border-radius: var(--r-panel) !important;
-}
-.glass-inner.glass-inner,
-.glass-tile.glass-tile {
-  border-radius: var(--r-inner) !important;
-}
-.glass-popover.glass-popover {
-  border-radius: var(--r-inner) !important;
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass,
+  .glass-inner,
+  .glass-tile {
+    background: rgba(255, 255, 255, 0.9);
+  }
 }
 
 /* ---------------------------------------------------------------------- */
-/* Page background. `.ambient-ground` stays as the shell wrapper name.     */
+/* Ambient ground — the light source layer the glass panels refract.       */
 /* ---------------------------------------------------------------------- */
 
 .ambient-ground {
   position: relative;
   min-height: 100vh;
-  background: var(--bg);
+  background: var(--ground);
 }
 
-/* ---------------------------------------------------------------------- */
-/* Signature: the accountant's double rule under a final total.            */
-/* ---------------------------------------------------------------------- */
-
-.double-rule {
-  position: relative;
-  padding-bottom: 6px;
-}
-
-.double-rule::after {
-  content: '';
+.ambient-layer {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 4px;
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
 }
 
+.ambient-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(28px);
+}
+
+.ambient-blob-coral {
+  width: 520px;
+  height: 520px;
+  top: -140px;
+  left: -80px;
+  background: radial-gradient(circle at 35% 35%, rgba(242, 112, 143, 0.85), rgba(242, 112, 143, 0) 70%);
+}
+
+.ambient-blob-indigo {
+  width: 560px;
+  height: 560px;
+  top: 220px;
+  right: -120px;
+  background: radial-gradient(circle at 35% 35%, rgba(74, 92, 224, 0.72), rgba(74, 92, 224, 0) 70%);
+}
+
+.ambient-blob-teal {
+  width: 600px;
+  height: 600px;
+  bottom: -180px;
+  left: 32%;
+  background: radial-gradient(circle at 35% 35%, rgba(31, 185, 164, 0.62), rgba(31, 185, 164, 0) 70%);
+}
+
+/* The blobs used to drift forever (float1/float2, 18–26s loops). Removed
+   2026-10-05: every glass panel backdrop-filters whatever is under it, so
+   a background that never stops moving forced every panel on the page to
+   re-blur every frame, even with the page idle — unusably laggy on an
+   integrated-GPU laptop. Static blobs cost one paint. Don't re-add a
+   continuous animation under the glass. */
+
 /* ---------------------------------------------------------------------- */
-/* Motion. One curve, short durations, transform + opacity only.           */
+/* Motion — see design_handoff_theus_rehaul/README.md "Motion budget".     */
 /* ---------------------------------------------------------------------- */
 
 @keyframes rise-in {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
@@ -163,7 +225,7 @@ body {
      `position: fixed` descendant forever after, pinning things like
      BulkActionBar to the bottom of the (tall, scrollable) page instead of
      the viewport. Letting the animation end normally avoids that. */
-  animation: rise-in var(--dur-enter) var(--ease);
+  animation: rise-in 380ms ease;
 }
 
 .bar {
@@ -181,11 +243,11 @@ body {
 }
 
 .ring {
-  animation: ring-in 800ms var(--ease) both;
+  animation: ring-in 1100ms var(--ease) both;
 }
 
 .ring-over {
-  animation: overspend-ring-in 800ms var(--ease) 120ms both;
+  animation: overspend-ring-in 1100ms var(--ease) 160ms both;
 }
 
 @media (prefers-reduced-motion: reduce) {

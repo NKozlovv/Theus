@@ -3042,28 +3042,3 @@ Built from the `Theus Investing v2` / `Theus RSU` design prototypes.
   `/investing`, `/rsu`, `/members`, `/import`, `/coach` added to the middleware's protected prefixes.
 - Supabase dashboard: `https://p-budget.vercel.app/**` is already an allowed redirect URL, which covers
   `/auth/callback`. Not yet run against a live project.
-
----
-
-## Unslop pass — 2026-11-17 (branch `claude/project-unslop-47faef`)
-
-Direction: a ledger on paper. Calm, exact, a little warm. Signature: the
-double rule under totals (`.double-rule`).
-
-- **Foundation:** `styles/tokens.css` (flat light graphite ramp, ink-blue
-  accent, RGB-channel colors), `app/globals.css` (`.glass*` are now flat
-  surfaces with a doubled-selector radius guard so legacy `!rounded-[…]`
-  overrides on other pages lose), Geist via `next/font/google`, `tailwind.config.ts`
-  (`paper`, `surface`, `raised`, `line`, `rounded-control`), flat `TopNav`
-  strip, `Button`/`Input`/`Select`/`FilterPill`/`Modal`/`KpiTile`/`Mono`.
-- **Overview:** period title, hero balance with double rule, ring in neutral
-  steps, cash-flow chart widened to two thirds (income in the accent,
-  spending in graphite, projected months dashed), savings-rate bars neutral
-  with the latest month in the accent, card faces in single-hue stocks.
-- **Trends / Trips / Transactions / Categories:** sentence-case labels,
-  two weights, quiet tinted cells that keep ink text readable, counts as
-  text instead of pills, no hover lifts.
-- **Not verified:** no Node in the worktree, so `typecheck`, `lint`, `test`
-  and `build` have not been run, and nothing was viewed in a browser.
-  Run `npm run typecheck && npm run lint && npm run build` and check the
-  five pages (plus one untouched page such as Accounts) before merging.

@@ -17,9 +17,11 @@ interface SearchParams {
 }
 
 /**
- * A single calendar year's elapsed months: category, the elapsed months,
- * average and year total. Past years show all 12 months; the current year
- * shows Jan through the last month with data (activeWorkingMonth).
+ * A single calendar year's elapsed months — design_handoff_theus_rehaul
+ * README "4. Trends": "eleven columns do not fit a ~860px pane, so the
+ * table carries exactly what it needs: category, the elapsed months, and
+ * the year total." Past years show all 12 months; the current year shows
+ * Jan through the last completed month (workingMonth).
  */
 export default async function TrendsPage({
   searchParams,
@@ -83,7 +85,7 @@ export default async function TrendsPage({
         title="Trends"
         meta={
           first && last
-            ? `${first.label} – ${last.label} · each expense category against its own average`
+            ? `${first.label} – ${last.label} · which expense categories are running above or below their own average this year`
             : undefined
         }
         actions={
@@ -96,7 +98,7 @@ export default async function TrendsPage({
 
       <div className="flex flex-wrap items-center gap-4">
         <Legend hue="var(--in)" label="Below average" />
-        <Legend hue="rgb(var(--ink-rgb) / .12)" label="At average" />
+        <Legend hue="rgba(139,149,184,.6)" label="At average" />
         <Legend hue="var(--out)" label="Above average" />
       </div>
 
@@ -107,8 +109,8 @@ export default async function TrendsPage({
 
 function Legend({ hue, label }: { hue: string; label: string }) {
   return (
-    <span className="inline-flex items-center gap-1.5 text-[12px] text-ink-soft">
-      <span className="h-2.5 w-2.5 rounded-[2px]" style={{ background: hue }} />
+    <span className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-ink-soft">
+      <span className="h-[10px] w-[10px] rounded-full" style={{ background: hue }} />
       {label}
     </span>
   );

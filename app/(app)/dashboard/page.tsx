@@ -1,7 +1,6 @@
 import { getOrCreateUserBudget } from '@/lib/data/budgets';
 import { listAccounts } from '@/lib/data/accounts';
 import { listTransactions } from '@/lib/data/transactions';
-import { PageHeader } from '@/components/nav/PageHeader';
 import { BalancePanel } from '@/components/dashboard/BalancePanel';
 import { SavingsRatePanel, type SavingsRateMonth } from '@/components/dashboard/SavingsRatePanel';
 import { CashFlowPanel } from '@/components/dashboard/CashFlowPanel';
@@ -129,12 +128,7 @@ export default async function DashboardPage() {
 
   return (
     <>
-      <PageHeader
-        title={`${monthLabel} ${year}`}
-        meta="The last month with activity. Balances are as of today."
-      />
-
-      <div className="grid grid-cols-[minmax(0,1.5fr)_minmax(0,1.15fr)] items-stretch gap-6 max-[900px]:grid-cols-1">
+      <div className="grid grid-cols-[minmax(0,1.5fr)_minmax(0,1.15fr)] items-stretch gap-5 max-[900px]:grid-cols-1">
         <BalancePanel
           accountCount={accounts.length}
           totalBalance={balanceEUR}
@@ -143,7 +137,7 @@ export default async function DashboardPage() {
           vsMonthLabel={vsMonthLabel}
           spentThisMonth={monthTotals.expense}
           incomeThisMonth={monthTotals.income}
-          monthLabel={monthLabel}
+          monthLabelUpper={monthLabel.toUpperCase()}
           avgSavingsRate={savingsRateAvg}
           projectedEOY={projectedEOY}
           avgNet={ytd.avgNet}
@@ -158,7 +152,7 @@ export default async function DashboardPage() {
         />
       </div>
 
-      <div className="grid grid-cols-[minmax(0,2fr)_minmax(0,1fr)] gap-6 max-[900px]:grid-cols-1">
+      <div className="grid grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] gap-5 max-[900px]:grid-cols-1">
         <CashFlowPanel
           months={yearBuckets}
           ytdIncome={savingsIncome}

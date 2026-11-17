@@ -3,7 +3,6 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { PageHeader } from '@/components/nav/PageHeader';
-import { Button } from '@/components/ui';
 import { Filters, emptyTxFilters, type TxFilterValue } from './Filters';
 import { StatStrip } from './StatStrip';
 import { TransactionsTable } from './TransactionsTable';
@@ -139,9 +138,13 @@ export function TransactionsClient({
 
       {hasMore ? (
         <div className="flex items-center justify-center">
-          <Button variant="secondary" onClick={() => setVisibleCount((c) => c + LOAD_MORE_STEP)}>
+          <button
+            type="button"
+            onClick={() => setVisibleCount((c) => c + LOAD_MORE_STEP)}
+            className="rounded-full border border-white/90 bg-white/[0.72] px-[18px] py-[10px] text-[13px] font-semibold text-ink transition-colors duration-200 hover:bg-white"
+          >
             Load {Math.min(LOAD_MORE_STEP, filtered.length - visible.length)} more
-          </Button>
+          </button>
         </div>
       ) : null}
     </>

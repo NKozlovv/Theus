@@ -9,11 +9,12 @@ import { cn } from '@/lib/utils';
 import type { Account, Transaction } from '@/lib/supabase/types';
 
 /**
- * Day-grouped transaction list. Seven columns: checkbox, category-hue
- * avatar, name+note, category, subcategory (its own column so the
- * hierarchy stays distinct from the category), account, amount. The whole
- * row (not just one cell) opens the edit modal; the checkbox alone toggles
- * selection. Rows share one height; money in is the only colored amount.
+ * Day-grouped transaction list — design_handoff_theus_rehaul README
+ * "Transactions" list panel. Seven columns: checkbox, category-hue
+ * avatar, name+note, category tag, subcategory (dot + text, its own
+ * column so the hierarchy stays visually distinct from the tag), account,
+ * amount. The whole row (not just one cell) opens the edit modal; the
+ * checkbox alone toggles selection.
  */
 export function DayGroupedList({
   transactions,
@@ -36,12 +37,12 @@ export function DayGroupedList({
   const groups = groupTransactionsByDate(transactions, budgetFxRate, now);
 
   return (
-    <div className="glass p-2">
+    <div className="glass !rounded-[26px] p-2">
       {groups.map((group) => (
         <div key={group.date}>
-          <div className="flex items-center justify-between px-4 pb-2 pt-4">
-            <span className="text-[13px] font-medium text-ink-soft">{group.label}</span>
-            <span className="text-[13px] tabular-nums text-ink-mute">
+          <div className="flex items-center justify-between px-[18px] pb-[10px] pt-[14px]">
+            <span className="text-[13px] font-bold text-ink-soft">{group.label}</span>
+            <span className="text-[12.5px] font-bold tabular-nums text-ink-mute">
               {group.totalEUR >= 0 ? '+' : '−'}
               {fmtEUR(Math.abs(group.totalEUR))}
             </span>
@@ -69,9 +70,9 @@ export function DayGroupedList({
                   if (e.key === 'Enter') onEdit(tx);
                 }}
                 className={cn(
-                  'grid cursor-pointer items-center gap-4 rounded-[10px] px-4 py-3 transition-colors duration-150',
-                  'grid-cols-[20px_32px_minmax(130px,1.5fr)_minmax(0,1fr)_minmax(0,.9fr)_minmax(0,.85fr)_auto]',
-                  isSelected ? 'bg-raised' : 'hover:bg-raised',
+                  'grid cursor-pointer items-center gap-3 rounded-[18px] px-[18px] py-[14px] transition-[background,transform] duration-[160ms]',
+                  'grid-cols-[22px_40px_minmax(130px,1.5fr)_minmax(0,1fr)_minmax(0,.9fr)_minmax(0,.85fr)_auto]',
+                  isSelected ? 'bg-white/[0.85]' : 'hover:translate-x-[6px] hover:bg-white/[0.85]',
                 )}
               >
                 <button
@@ -87,10 +88,10 @@ export function DayGroupedList({
                 >
                   <span
                     className={cn(
-                      'flex h-[16px] w-[16px] items-center justify-center rounded-[4px] border-[1.5px] transition-colors',
+                      'flex h-[16px] w-[16px] items-center justify-center rounded-[5px] border-[1.5px] transition-colors',
                       isSelected
                         ? 'border-indigo bg-indigo'
-                        : 'border-[color:var(--line-strong)] bg-surface group-hover/check:border-indigo',
+                        : 'border-[#c2c8d8] group-hover/check:border-indigo group-hover/check:bg-indigo/[0.16]',
                     )}
                   >
                     {isSelected ? (
@@ -102,55 +103,60 @@ export function DayGroupedList({
                 </button>
 
                 <span
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] text-[13px] font-medium text-ink"
-                  style={{ background: `${hue}26` }}
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] text-[14px] font-bold text-white"
+                  style={{ background: hue }}
                 >
                   {initial}
                 </span>
 
                 <span className="flex min-w-0 flex-col items-start">
-                  <span className="w-full truncate text-[14px] font-medium text-ink">
+                  <span className="w-full truncate text-[14.5px] font-semibold text-ink">
                     {tx.comment?.trim() || catName || 'No description'}
                   </span>
-                  <span className="w-full truncate text-[12px] text-ink-mute">
+                  <span className="w-full truncate text-[12px] font-medium text-ink-mute">
                     {tx.comment?.trim() && catName ? catName : ' '}
                   </span>
                 </span>
 
-                <span className="flex min-w-0 flex-col items-start gap-1">
+                <span className="flex min-w-0 flex-col items-start gap-[3px]">
                   {catName ? (
-                    <span className="flex max-w-full items-center gap-2 truncate text-[13px] text-ink">
-                      <span className="h-2 w-2 shrink-0 rounded-[2px]" style={{ background: hue }} />
-                      <span className="truncate">{catName}</span>
+                    <span
+                      className="inline-block max-w-full truncate rounded-full px-[11px] py-[5px] text-[11.5px] font-bold"
+                      style={{ background: `${hue}29`, color: hue }}
+                    >
+                      {catName}
                     </span>
                   ) : (
-                    <span className="text-[13px] text-ink-mute">—</span>
+                    <span className="text-[11.5px] text-ink-mute">—</span>
                   )}
                   {tx.trip ? (
-                    <span className="flex max-w-full items-center gap-1 truncate text-[12px] text-ink-mute">
-                      <Icon name="plane" size={12} className="shrink-0" />
+                    <span className="flex max-w-full items-center gap-[4px] truncate text-[11px] font-semibold text-ink-mute">
+                      <Icon name="plane" size={10} className="shrink-0" />
                       <span className="truncate">{tx.trip}</span>
                     </span>
                   ) : null}
                 </span>
 
-                <span className="flex min-w-0 items-center gap-2">
+                <span className="flex min-w-0 items-center gap-[6px]">
                   {tx.subcategory ? (
-                    <span className="truncate text-[13px] text-ink-soft">{tx.subcategory}</span>
+                    <>
+                      <span className="h-[5px] w-[5px] shrink-0 rounded-full" style={{ background: hue }} />
+                      <span className="truncate text-[12.5px] font-semibold text-ink-soft">{tx.subcategory}</span>
+                    </>
                   ) : (
-                    <span className="text-[13px] text-ink-mute">—</span>
+                    <span className="text-[12.5px] text-ink-mute">—</span>
                   )}
                 </span>
 
-                <span className="truncate text-[13px] text-ink-mute">{acc ? acc.name : '—'}</span>
+                <span className="truncate text-[12.5px] font-semibold text-ink-mute">{acc ? acc.name : '—'}</span>
 
                 <span className="flex min-w-[110px] flex-col items-end">
-                  <span className="text-[15px] font-medium tabular-nums" style={{ color: amountColor }}>
+                  <span className="text-[15.5px] font-extrabold tabular-nums" style={{ color: amountColor }}>
                     {isInflow ? '+' : '−'}
                     {fmtCurrency(Math.abs(tx.amount), tx.currency)}
                   </span>
                   {showEurLine ? (
-                    <span className="text-[12px] tabular-nums text-ink-mute">
+                    <span className="text-[11px] font-semibold tabular-nums text-ink-mute">
                       ≈ {fmtEUR(signedEur)}
                     </span>
                   ) : null}

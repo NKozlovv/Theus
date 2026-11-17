@@ -12,17 +12,13 @@ const TONE: Record<Tone, string> = {
   neg: 'text-out',
 };
 
-// Both sizes land on 12px: nothing smaller reads comfortably, and a second
-// near-identical size is just noise.
 const SIZE: Record<Size, string> = {
-  xs: 'text-[12px]',
-  sm: 'text-[12px]',
+  xs: 'text-[10px]',
+  sm: 'text-[11px]',
 };
 
 /**
- * Small label / meta text. Sentence case, normal tracking, muted by
- * default. (The name is historical — it used to be an uppercase tracked
- * mono label.)
+ * Small uppercase tracked label rendered in JetBrains Mono.
  */
 export function Mono({
   children,
@@ -35,5 +31,16 @@ export function Mono({
   size?: Size;
   className?: string;
 }) {
-  return <span className={cn('font-sans font-normal leading-4', SIZE[size], TONE[tone], className)}>{children}</span>;
+  return (
+    <span
+      className={cn(
+        'font-mono font-medium uppercase tracking-[0.18em]',
+        SIZE[size],
+        TONE[tone],
+        className,
+      )}
+    >
+      {children}
+    </span>
+  );
 }

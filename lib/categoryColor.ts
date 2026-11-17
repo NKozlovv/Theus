@@ -1,7 +1,6 @@
 /**
- * Stable category color assignment — seven inks toned to sit on paper
- * (unslop pass 2026-11-17; the hues keep the order of the v4 map so a
- * category keeps its place in the rotation). Categories are
+ * Stable category color assignment — v4 "liquid glass" six-hue map
+ * (design_handoff_theus_rehaul README "Category hue map"). Categories are
  * user-defined free text, so exact names can't be hardcoded; instead each
  * name hashes deterministically onto this fixed seven-hue set (replacing
  * the old ten-hue hash), with "Income" special-cased to --in and an
@@ -13,17 +12,17 @@
  */
 
 const CATEGORY_HUES = [
-  '#2a8f86', // teal
-  '#2a3350', // navy
-  '#c8596b', // coral
-  '#c98a2b', // amber
-  '#7a63c4', // violet
-  '#3f8fc4', // sky
-  '#2f45b8', // indigo
+  '#1fb9a4', // teal
+  '#1f2742', // navy
+  '#f2708f', // coral
+  '#f4a545', // amber
+  '#8b5cf6', // violet
+  '#3da3ef', // sky
+  '#4a5ce0', // indigo
 ];
 
-const CATEGORY_FALLBACK = '#8a90a3'; // slate — uncategorised only
-const INCOME_HUE = '#1f7a52'; // --in
+const CATEGORY_FALLBACK = '#8b95b8'; // slate — uncategorised only
+const INCOME_HUE = '#12a08c'; // --in
 
 const cache = new Map<string, string>();
 

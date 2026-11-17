@@ -213,20 +213,6 @@ confirmation a deploy is live.
 
 ## 6. Design direction (current)
 
-> **⚠ Superseded again 2026-11-17 (branch `claude/project-unslop-47faef`,
-> not yet on `master`).** An "unslop" pass replaced the v4 liquid-glass look
-> with a flat light ledger style: graphite surfaces (`--bg/--surface/--raised`
-> + hairline `--line`), one ink-blue accent (`--indigo`), Geist (one family —
-> still no monospace), weights 400/500, sentence-case labels, 10px controls
-> and 16/12 card nesting, an accountant's double rule (`.double-rule`) under
-> totals. `styles/tokens.css` colors are RGB channels so Tailwind opacity
-> modifiers work. The `.glass*` class names survive in `app/globals.css` as
-> flat surfaces so pages outside the pass (Accounts, Forecast, Coach,
-> Investing, RSU, Members, Import, auth) inherit the look; their own
-> markup still has leftover uppercase labels, gradients and off-grid
-> spacing. Pages fully reworked: Overview, Trends, Trips, Transactions,
-> Categories. The v4 notes below are history.
-
 > **⚠ Superseded 2026-09-17.** Everything below this note describes the
 > Sterling navy dark theme, which the v4 "liquid glass" rehaul has now
 > replaced app-wide: light ambient ground, frosted-glass panels, one

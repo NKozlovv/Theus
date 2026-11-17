@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
-import { Geist } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 
-const geist = Geist({
+const plusJakartaSans = Plus_Jakarta_Sans({
+  weight: ['400', '500', '600', '700', '800'],
+  style: ['normal', 'italic'],
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
@@ -10,13 +12,13 @@ const geist = Geist({
 
 export const metadata: Metadata = {
   title: 'Theus — Personal Budget',
-  description: 'A shared household budget: balances, trends and trips in one ledger.',
+  description: 'Money understood.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={geist.variable}>
-      <body className="font-sans text-ink antialiased">{children}</body>
+    <html lang="en" className={plusJakartaSans.variable}>
+      <body className="text-ink antialiased">{children}</body>
     </html>
   );
 }

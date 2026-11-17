@@ -56,14 +56,14 @@ export function Modal({
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-ink/40" />
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-[#151a2d]/40 backdrop-blur-sm" />
         <Dialog.Content
-          className={cn('glass fixed left-1/2 top-1/2 z-50 w-full max-w-md p-6 outline-none', className)}
+          className={cn('glass glass-nohover fixed left-1/2 top-1/2 z-50 w-full max-w-md !rounded-[30px] p-6 outline-none', className)}
           style={{ transform: 'translate(-50%, -50%)' }}
         >
-          <Dialog.Title className="text-[20px] font-medium leading-6 text-ink">{title}</Dialog.Title>
+          <Dialog.Title className="text-[19px] font-bold -tracking-[0.02em] text-ink">{title}</Dialog.Title>
           {description ? (
-            <Dialog.Description className="mt-1 text-[14px] leading-5 text-ink-soft">
+            <Dialog.Description className="mt-1 text-[13px] text-ink-soft">
               {description}
             </Dialog.Description>
           ) : null}

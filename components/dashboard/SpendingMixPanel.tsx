@@ -14,10 +14,10 @@ export interface SpendingMixSlice {
 const VISIBLE_COUNT = 4;
 
 /**
- * Spending mix panel — right cell of the Overview's second row. One
- * segmented bar plus a legend list, both driven by the fixed category
- * color map. A list is the right shape for a share, and it stays a
- * different kind of block from the cash-flow chart beside it. The legend collapses to
+ * Spending mix panel — right cell of the Overview's second row. A
+ * segmented capsule bar (not a donut — design_handoff_theus_rehaul
+ * README dropped the donut for this screen) plus a legend list, both
+ * driven by the fixed six-hue category map. The legend collapses to
  * the top categories with a "show more" toggle — a budget with a dozen-
  * plus categories otherwise runs the list on for a long, low-value tail.
  *
@@ -52,26 +52,26 @@ export function SpendingMixPanel({ slices, total }: { slices: SpendingMixSlice[]
       tabIndex={0}
       onClick={goToTrends}
       onKeyDown={onKeyDown}
-      className="glass flex cursor-pointer flex-col p-6 transition-colors duration-150 hover:bg-raised"
+      className="glass flex cursor-pointer flex-col !rounded-[28px] p-[24px] px-[26px]"
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h2 className="text-[16px] font-medium text-ink">Spending mix</h2>
-          <div className="mt-1 text-[13px] text-ink-mute">
+          <div className="text-[19px] font-bold -tracking-[0.02em] text-ink">Spending mix</div>
+          <div className="mt-1 text-[12.5px] font-medium text-ink-mute">
             YTD average · {sorted.length} categor{sorted.length === 1 ? 'y' : 'ies'}
           </div>
         </div>
-        <Icon name="arrow-right" size={16} className="mt-1 shrink-0 text-ink-mute" />
+        <Icon name="arrow-right" size={15} strokeWidth={2} className="mt-1 shrink-0 text-ink-mute" />
       </div>
 
-      <div className="mt-5 flex h-2 gap-[2px]">
+      <div className="mt-4 flex h-[14px] gap-[3px]">
         {sorted.map((s) => {
           const hue = categoryColor(s.name);
           const share = total > 0 ? (s.value / total) * 100 : 0;
           return (
             <div
               key={s.name}
-              className="meter h-full rounded-[2px]"
+              className="meter h-full rounded-full"
               style={{ width: `${share}%`, background: hue }}
               title={`${s.name}: ${fmtEUR(s.value, { decimals: 0 })} (${Math.round(share)}%)`}
             />
@@ -79,21 +79,21 @@ export function SpendingMixPanel({ slices, total }: { slices: SpendingMixSlice[]
         })}
       </div>
 
-      <div className="mt-4 flex flex-col">
+      <div className="mt-2 flex flex-col">
         {visible.map((s) => {
           const hue = categoryColor(s.name);
           const share = total > 0 ? Math.round((s.value / total) * 100) : 0;
           return (
             <div
               key={s.name}
-              className="flex items-center gap-3 border-b border-line py-2 last:border-b-0"
+              className="flex items-center gap-2.5 rounded-[14px] px-3 py-[7px] transition-colors duration-[160ms] hover:bg-white/[0.72]"
             >
-              <span className="h-2 w-2 shrink-0 rounded-[2px]" style={{ background: hue }} />
-              <span className="min-w-0 flex-1 truncate text-[14px] text-ink">{s.name}</span>
-              <span className="shrink-0 text-[14px] font-medium tabular-nums text-ink">
+              <span className="h-[10px] w-[10px] shrink-0 rounded-full" style={{ background: hue }} />
+              <span className="min-w-0 flex-1 truncate text-[14px] font-semibold text-ink">{s.name}</span>
+              <span className="shrink-0 text-[14px] font-bold tabular-nums text-ink">
                 {fmtEUR(s.value, { decimals: 0 })}
               </span>
-              <span className="w-10 shrink-0 text-right text-[12px] tabular-nums text-ink-mute">
+              <span className="w-[38px] shrink-0 text-right text-[12px] font-semibold text-ink-mute">
                 {share}%
               </span>
             </div>
@@ -108,7 +108,7 @@ export function SpendingMixPanel({ slices, total }: { slices: SpendingMixSlice[]
             e.stopPropagation();
             setExpanded((v) => !v);
           }}
-          className="mt-2 w-full rounded-control py-2 text-left text-[13px] font-medium text-indigo transition-colors duration-150 hover:text-indigo-dark"
+          className="mt-0.5 w-full rounded-[14px] px-3 py-[7px] text-left text-[12.5px] font-semibold text-indigo-dark transition-colors duration-[160ms] hover:bg-white/[0.72]"
         >
           {expanded ? 'Show less' : `Show ${hiddenCount} more`}
         </button>

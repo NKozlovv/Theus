@@ -40,20 +40,22 @@ function initialsFromEmail(email: string): string {
 
 const tabClass = (active: boolean) =>
   cn(
-    'whitespace-nowrap rounded-control border px-3 py-1.5 text-[14px] font-medium',
-    'transition-colors duration-150 ease-theus',
+    'whitespace-nowrap rounded-full px-[18px] py-[9px] text-[14px] font-semibold',
+    'transition-[background,color,transform,box-shadow] duration-200 ease-theus',
     active
-      ? 'border-line bg-surface text-ink'
-      : 'border-transparent text-ink-soft hover:bg-raised hover:text-ink',
+      ? 'bg-indigo text-white [box-shadow:0_8px_20px_rgba(74,92,224,.35)]'
+      : 'text-ink-mute hover:-translate-y-px hover:bg-white/[0.85]',
   );
 
 /**
- * Top bar — a flat strip on the page, pinned to the top with a hairline
- * underneath. Chrome, not content: no card, no blur, no shadow.
+ * Floating glass top nav — replaces the sidebar (design_handoff_theus_
+ * rehaul README "App shell"). Chrome, not content: `.glass-nohover`, it
+ * never takes the level-1 panel hover.
  *
- * Accounts and Forecast get full tabs; Coach/Members/Import — lower-
- * frequency routes — live behind "More" so the bar stays one row at every
- * width.
+ * The mockup only designs tabs for Overview/Transactions/Categories/
+ * Trends. Accounts and Forecast get full tabs too (same weight as the
+ * designed screens); Coach/Members/Import — lower-frequency routes —
+ * live behind "More" so the bar stays one row at every width.
  */
 export function TopNav({
   email,
@@ -75,10 +77,12 @@ export function TopNav({
   const initials = initialsFromEmail(email);
 
   return (
-    <nav className="sticky top-0 z-20 -mx-8 flex h-14 items-center gap-6 border-b border-line bg-paper px-8">
-      <Link href="/dashboard" className="flex shrink-0 items-center gap-2">
-        <TheusMark size={22} />
-        <span className="text-[17px] font-semibold text-ink">Theus</span>
+    <nav className="glass glass-nohover sticky top-[14px] z-20 flex items-center gap-5 !rounded-full py-3 pl-5 pr-4">
+      <Link href="/dashboard" className="flex shrink-0 items-center gap-2.5">
+        <span className="flex h-8 w-8 items-center justify-center rounded-[11px] bg-[linear-gradient(135deg,#f2708f,#4a5ce0)]">
+          <TheusMark size={18} tone="white" />
+        </span>
+        <span className="text-[17px] font-extrabold -tracking-[0.02em] text-ink">Theus</span>
       </Link>
 
       <div className="flex min-w-0 flex-1 flex-nowrap items-center gap-1">
@@ -97,23 +101,25 @@ export function TopNav({
             More
             <Icon
               name="chevron-down"
-              size={14}
-              className={cn('transition-transform duration-150 ease-theus', moreOpen && 'rotate-180')}
+              size={13}
+              className={cn('transition-transform duration-200 ease-theus', moreOpen && 'rotate-180')}
             />
           </button>
           {moreOpen ? (
-            <div className="glass-popover absolute left-0 top-full z-30 mt-2 min-w-[192px] p-1">
+            <div className="glass-popover absolute left-0 top-full z-30 mt-2 min-w-[190px] !rounded-[16px] p-1">
               {MORE.map((m) => (
                 <Link
                   key={m.href}
                   href={m.href}
                   onClick={() => setMoreOpen(false)}
                   className={cn(
-                    'flex items-center gap-2 rounded-[8px] px-3 py-2 text-[14px] font-medium transition-colors',
-                    isActive(m.href) ? 'bg-raised text-ink' : 'text-ink-soft hover:bg-raised hover:text-ink',
+                    'flex items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-[13.5px] font-semibold transition-colors',
+                    isActive(m.href)
+                      ? 'bg-indigo/[0.12] text-indigo-dark'
+                      : 'text-ink-soft hover:bg-white/70 hover:text-ink',
                   )}
                 >
-                  <Icon name={m.icon} size={16} />
+                  <Icon name={m.icon} size={15} />
                   {m.label}
                 </Link>
               ))}
@@ -122,25 +128,25 @@ export function TopNav({
         </div>
       </div>
 
-      <div className="flex shrink-0 items-center gap-2">
+      <div className="flex shrink-0 items-center gap-2.5">
         <div ref={accountRef} className="relative">
           <button
             type="button"
             onClick={() => setAccountOpen((v) => !v)}
-            className="flex items-center gap-2 rounded-control border border-line bg-surface py-1 pl-1 pr-3 transition-colors duration-150 hover:bg-raised"
+            className="flex items-center gap-2 rounded-full bg-white/70 py-[5px] pl-[5px] pr-[14px] transition-colors duration-200 hover:bg-white"
           >
-            <span className="flex h-6 w-6 items-center justify-center rounded-[6px] bg-raised text-[12px] font-medium text-ink-soft">
+            <span className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-[linear-gradient(135deg,#4a5ce0,#1fb9a4)] text-[12px] font-bold text-white">
               {initials}
             </span>
-            <span className="max-w-[140px] truncate text-[13px] text-ink">{email}</span>
+            <span className="max-w-[140px] truncate text-[13px] font-semibold text-ink">{email}</span>
           </button>
 
           {accountOpen ? (
-            <div className="glass-popover absolute right-0 top-full z-30 mt-2 w-[264px] p-3">
+            <div className="glass-popover absolute right-0 top-full z-30 mt-2 w-[260px] !rounded-[20px] p-3">
               <div className="flex flex-col gap-3">
                 <BudgetSwitcher budgets={budgets} activeId={activeBudgetId} />
-                <div className="flex items-center justify-between border-t border-line pt-3">
-                  <span className="text-[12px] text-ink-mute">{email}</span>
+                <div className="flex items-center justify-between border-t border-white/60 pt-3">
+                  <span className="text-[11px] font-semibold text-ink-mute">{email}</span>
                   <SignOutButton />
                 </div>
               </div>
