@@ -40,7 +40,6 @@ body {
 }
 
 .glass:hover {
-  transform: translateY(-3px);
   background: var(--glass-sheen-hi);
   border-color: var(--glass-edge-hi);
   box-shadow:

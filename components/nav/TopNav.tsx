@@ -40,11 +40,11 @@ function initialsFromEmail(email: string): string {
 
 const tabClass = (active: boolean) =>
   cn(
-    'whitespace-nowrap rounded-full px-[18px] py-[9px] text-[14px] font-semibold',
+    'whitespace-nowrap rounded-full px-[18px] py-[9px] text-[14px] font-medium',
     'transition-[background,color,transform,box-shadow] duration-200 ease-theus',
     active
-      ? 'bg-indigo text-white [box-shadow:0_8px_20px_rgba(74,92,224,.35)]'
-      : 'text-ink-mute hover:-translate-y-px hover:bg-white/[0.85]',
+      ? 'bg-indigo text-white '
+      : 'text-ink-mute hover:bg-white/[0.85]',
   );
 
 /**
@@ -79,10 +79,10 @@ export function TopNav({
   return (
     <nav className="glass glass-nohover sticky top-[14px] z-20 flex items-center gap-5 !rounded-full py-3 pl-5 pr-4">
       <Link href="/dashboard" className="flex shrink-0 items-center gap-2.5">
-        <span className="flex h-8 w-8 items-center justify-center rounded-[11px] bg-[linear-gradient(135deg,#f2708f,#4a5ce0)]">
+        <span className="flex h-8 w-8 items-center justify-center rounded-[11px] bg-indigo">
           <TheusMark size={18} tone="white" />
         </span>
-        <span className="text-[17px] font-extrabold -tracking-[0.02em] text-ink">Theus</span>
+        <span className="text-[17px] font-semibold text-ink">Theus</span>
       </Link>
 
       <div className="flex min-w-0 flex-1 flex-nowrap items-center gap-1">
@@ -113,7 +113,7 @@ export function TopNav({
                   href={m.href}
                   onClick={() => setMoreOpen(false)}
                   className={cn(
-                    'flex items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-[13.5px] font-semibold transition-colors',
+                    'flex items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-[14px] font-medium transition-colors',
                     isActive(m.href)
                       ? 'bg-indigo/[0.12] text-indigo-dark'
                       : 'text-ink-soft hover:bg-white/70 hover:text-ink',
@@ -135,10 +135,10 @@ export function TopNav({
             onClick={() => setAccountOpen((v) => !v)}
             className="flex items-center gap-2 rounded-full bg-white/70 py-[5px] pl-[5px] pr-[14px] transition-colors duration-200 hover:bg-white"
           >
-            <span className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-[linear-gradient(135deg,#4a5ce0,#1fb9a4)] text-[12px] font-bold text-white">
+            <span className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-indigo text-[12px] font-semibold text-white">
               {initials}
             </span>
-            <span className="max-w-[140px] truncate text-[13px] font-semibold text-ink">{email}</span>
+            <span className="max-w-[140px] truncate text-[13px] font-medium text-ink">{email}</span>
           </button>
 
           {accountOpen ? (
@@ -146,7 +146,7 @@ export function TopNav({
               <div className="flex flex-col gap-3">
                 <BudgetSwitcher budgets={budgets} activeId={activeBudgetId} />
                 <div className="flex items-center justify-between border-t border-white/60 pt-3">
-                  <span className="text-[11px] font-semibold text-ink-mute">{email}</span>
+                  <span className="text-[12px] font-medium text-ink-mute">{email}</span>
                   <SignOutButton />
                 </div>
               </div>

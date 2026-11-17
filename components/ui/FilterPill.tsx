@@ -25,11 +25,11 @@ export const FilterPill = forwardRef<HTMLButtonElement, FilterPillProps>(functio
       ref={ref}
       type={type}
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-full px-[18px] py-[10px] text-[13.5px] font-semibold',
+        'inline-flex items-center gap-1.5 rounded-full px-[18px] py-[10px] text-[14px] font-medium',
         'transition-[transform,background,color,box-shadow] duration-200 ease-theus',
         active
-          ? 'bg-indigo text-white [box-shadow:0_8px_20px_rgba(74,92,224,.32)]'
-          : 'border border-white/90 bg-white/70 text-ink-soft hover:-translate-y-px hover:bg-white',
+          ? 'bg-indigo text-white '
+          : 'border border-white/90 bg-white/70 text-ink-soft hover:bg-white',
         'disabled:cursor-not-allowed disabled:opacity-50',
         className,
       )}

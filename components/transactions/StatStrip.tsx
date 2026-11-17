@@ -34,10 +34,10 @@ export function StatStrip({
         <div key={tile.label} className="glass !rounded-[22px] p-5 px-[22px]">
           <div className="flex items-center gap-2">
             <span className="h-[9px] w-[9px] shrink-0 rounded-[2px]" style={{ background: tile.hue }} />
-            <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-ink-mute">{tile.label}</span>
+            <span className="text-[12px] font-semibold text-ink-mute">{tile.label}</span>
           </div>
           <div
-            className="mt-2 text-[27px] font-extrabold -tracking-[0.03em] tabular-nums"
+            className="mt-2 text-[27px] font-semibold tabular-nums"
             style={{ color: tile.color }}
           >
             {tile.value}

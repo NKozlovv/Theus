@@ -49,11 +49,11 @@ export function SavingsRatePanel({ months, avgRatePct, savingsThisYear }: {
     <div className="glass flex h-full flex-col !rounded-[28px] p-[24px] px-[26px]">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <div className="text-[15px] font-bold text-ink">Savings rate</div>
+          <div className="text-[15px] font-semibold text-ink">Savings rate</div>
         </div>
         <div className="flex shrink-0 items-center gap-2 rounded-full bg-indigo/[0.12] px-3 py-1.5">
           <span className="block h-0 w-[14px] border-t-2 border-dashed border-indigo" />
-          <span className="text-[11.5px] font-bold text-indigo-dark">Avg {Math.round(avgRatePct)}%</span>
+          <span className="text-[12px] font-semibold text-indigo-dark">Avg {Math.round(avgRatePct)}%</span>
         </div>
       </div>
 
@@ -82,12 +82,12 @@ export function SavingsRatePanel({ months, avgRatePct, savingsThisYear }: {
                     height,
                     borderRadius: positive ? '7px 7px 2px 2px' : '2px 2px 7px 7px',
                     background: positive
-                      ? 'linear-gradient(180deg,#1fb9a4,#12a08c)'
-                      : 'linear-gradient(180deg,#f2708f,#d94a6f)',
+                      ? '#1fb9a4'
+                      : '#f2708f',
                   }}
                 />
                 <div
-                  className="absolute inline-block whitespace-nowrap rounded-[6px] bg-white/70 px-1 text-[10.5px] font-bold tabular-nums"
+                  className="absolute inline-block whitespace-nowrap rounded-[6px] bg-white/70 px-1 text-[11px] font-semibold tabular-nums"
                   style={{ top: labelTop, left: '50%', transform: 'translateX(-50%)', color: tone }}
                 >
                   {m.pct > 0 ? '+' : m.pct < 0 ? '−' : ''}
@@ -103,7 +103,7 @@ export function SavingsRatePanel({ months, avgRatePct, savingsThisYear }: {
         {months.map((m) => (
           <div
             key={m.label}
-            className="flex-1 text-center text-[10.5px] font-bold uppercase tracking-[0.08em] text-ink-mute"
+            className="flex-1 text-center text-[11px] font-semibold text-ink-mute"
           >
             {m.label}
           </div>
@@ -118,20 +118,20 @@ export function SavingsRatePanel({ months, avgRatePct, savingsThisYear }: {
           >
             <div className="flex items-center gap-2">
               <span className="h-2 w-2 shrink-0 rounded-[2px]" style={{ background: row.hue }} />
-              <span className="flex-1 truncate text-[10px] font-bold uppercase tracking-[0.08em] text-ink-mute">
+              <span className="flex-1 truncate text-[11px] font-semibold text-ink-mute">
                 {row.label}
               </span>
             </div>
             <div className="flex items-center gap-2 pl-[15px]">
               <span
-                className="flex-1 text-[17px] font-extrabold -tracking-[0.02em] tabular-nums"
+                className="flex-1 text-[17px] font-semibold tabular-nums"
                 style={{ color: row.pct >= 0 ? 'var(--in)' : 'var(--out)' }}
               >
                 {row.pct >= 0 ? '+' : '−'}
                 {Math.abs(row.pct)}%
               </span>
               <span
-                className="shrink-0 pb-[5px] text-[20px] font-extrabold leading-none tabular-nums"
+                className="shrink-0 pb-[5px] text-[20px] font-semibold leading-none tabular-nums"
                 style={{ color: row.amount >= 0 ? 'var(--in)' : 'var(--out)' }}
               >
                 {row.amount >= 0 ? '+' : ''}

@@ -54,7 +54,7 @@ export function CategoriesClient({
           <div className="px-5 py-12 text-center text-[13px] text-ink-mute">No expense categories yet.</div>
         ) : (
           <>
-            <div className="grid grid-cols-[minmax(150px,1.1fr)_minmax(0,1.6fr)_110px_100px_34px] gap-4 px-[18px] pb-1.5 pt-1 text-[10.5px] font-bold uppercase tracking-[0.08em] text-ink-mute">
+            <div className="grid grid-cols-[minmax(150px,1.1fr)_minmax(0,1.6fr)_110px_100px_34px] gap-4 px-[18px] pb-1.5 pt-1 text-[11px] font-semibold text-ink-mute">
               <span>Category</span>
               <span>Pace vs avg</span>
               <span>This month</span>

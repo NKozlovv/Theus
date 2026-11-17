@@ -60,12 +60,12 @@ export function BalancePanel({
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-[240px] flex-1">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-ink-mute">
+            <span className="text-[12px] font-semibold text-ink-mute">
               Total balance · {accountCount} account{accountCount === 1 ? '' : 's'}
             </span>
             <span
               className={
-                'inline-flex items-center rounded-full px-[11px] py-1 text-[11.5px] font-bold tabular-nums ' +
+                'inline-flex items-center rounded-full px-[11px] py-1 text-[12px] font-semibold tabular-nums ' +
                 (down ? 'bg-coral/[0.16] text-out' : 'bg-teal/[0.16] text-in')
               }
             >
@@ -74,13 +74,13 @@ export function BalancePanel({
             </span>
           </div>
           <div className="mt-2 flex flex-nowrap items-baseline gap-1 whitespace-nowrap">
-            <span className="text-[clamp(24px,2.2vw,32px)] font-bold text-ink-mute">
+            <span className="text-[clamp(24px,2.2vw,32px)] font-semibold text-ink-mute">
               {figure.sign}€
             </span>
-            <span className="text-[clamp(44px,5.4vw,78px)] font-extrabold -tracking-[0.042em] tabular-nums text-ink">
+            <span className="text-[clamp(44px,5.4vw,78px)] font-semibold -tracking-[0.03em] tabular-nums text-ink">
               {figure.whole}
             </span>
-            <span className="text-[clamp(26px,2.4vw,36px)] font-bold tabular-nums text-ink-mute">
+            <span className="text-[clamp(26px,2.4vw,36px)] font-semibold tabular-nums text-ink-mute">
               .{figure.cents}
             </span>
           </div>
@@ -90,7 +90,7 @@ export function BalancePanel({
           <button
             type="button"
             onClick={() => window.dispatchEvent(new CustomEvent(GLOBAL_ADD_TRANSACTION_EVENT))}
-            className="inline-flex items-center gap-[7px] rounded-full bg-[linear-gradient(180deg,#5a6be8,#4152d6)] py-2 pl-4 pr-2 text-[13.5px] font-bold text-white [box-shadow:0_8px_20px_rgba(74,92,224,.34),inset_0_1px_0_rgba(255,255,255,.35)] transition-[transform,box-shadow,background] duration-200 ease-theus hover:-translate-y-0.5 hover:bg-indigo-dark hover:bg-none hover:[box-shadow:0_12px_26px_rgba(74,92,224,.42)]"
+            className="inline-flex items-center gap-[7px] rounded-full bg-indigo py-2 pl-4 pr-2 text-[14px] font-semibold text-white transition-[transform,box-shadow,background] duration-200 ease-theus hover:bg-indigo-dark"
           >
             Add transaction
             <span className="flex h-[22px] w-[22px] items-center justify-center rounded-full bg-white/[0.22]">
@@ -111,13 +111,13 @@ export function BalancePanel({
 
         <div className="grid grid-cols-[repeat(auto-fit,minmax(170px,1fr))] items-stretch gap-3">
           <div className="glass-tile flex min-h-[80px] flex-col justify-between gap-2 !rounded-[20px] p-4 px-[18px] transition-colors duration-[160ms] hover:!bg-white/[0.85]">
-            <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">
+            <div className="text-[11px] font-semibold text-ink-mute">
               Projected 31 Dec
             </div>
-            <div className="text-[clamp(23px,2.2vw,30px)] font-extrabold -tracking-[0.035em] tabular-nums text-in">
+            <div className="text-[clamp(23px,2.2vw,30px)] font-semibold tabular-nums text-in">
               {fmtEUR(projectedEOY, { decimals: 0 })}
             </div>
-            <div className="text-[12px] font-semibold text-ink-mute">
+            <div className="text-[12px] font-medium text-ink-mute">
               <span className="whitespace-nowrap">at {avgRatePct}% rate</span>{' '}
               ·{' '}
               <span className="whitespace-nowrap">
@@ -127,19 +127,19 @@ export function BalancePanel({
             </div>
           </div>
           <div className="glass-tile flex min-h-[80px] flex-col justify-between gap-2 !rounded-[20px] p-4 px-[18px] transition-colors duration-[160ms] hover:!bg-white/[0.85]">
-            <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">
+            <div className="text-[11px] font-semibold text-ink-mute">
               Net this year
             </div>
             <div
               className={
-                'text-[clamp(23px,2.2vw,30px)] font-extrabold -tracking-[0.035em] tabular-nums ' +
+                'text-[clamp(23px,2.2vw,30px)] font-semibold tabular-nums ' +
                 (savingsThisYear >= 0 ? 'text-in' : 'text-out')
               }
             >
               {savingsThisYear >= 0 ? '+' : ''}
               {fmtEUR(savingsThisYear, { decimals: 0 })}
             </div>
-            <div className="text-[12px] font-semibold text-ink-mute">
+            <div className="text-[12px] font-medium text-ink-mute">
               <span className="whitespace-nowrap">in {fmtEUR(savingsIncome, { decimals: 0 })}</span>{' '}
               ·{' '}
               <span className="whitespace-nowrap">out {fmtEUR(savingsExpense, { decimals: 0 })}</span>

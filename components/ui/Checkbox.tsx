@@ -51,7 +51,7 @@ export function Checkbox({
           </svg>
         ) : null}
       </span>
-      <span className="text-[13.5px] font-semibold text-ink">{label}</span>
+      <span className="text-[14px] font-medium text-ink">{label}</span>
     </button>
   );
 }

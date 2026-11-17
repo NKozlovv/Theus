@@ -66,50 +66,50 @@ export function TripsHero({ trips, metric }: { trips: TripSummary[]; metric: Tri
       <div className="flex flex-wrap items-start gap-5">
         <div className="min-w-0 flex-1 basis-[300px]">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-ink-mute">
+            <span className="text-[12px] font-semibold text-ink-mute">
               Travel · tagged by trip
             </span>
-            <span className="whitespace-nowrap rounded-full bg-indigo/[0.14] px-[11px] py-1 text-[11.5px] font-bold text-indigo-dark">
+            <span className="whitespace-nowrap rounded-full bg-indigo/[0.14] px-[11px] py-1 text-[12px] font-semibold text-indigo-dark">
               {trips.length} {trips.length === 1 ? 'trip' : 'trips'}
             </span>
           </div>
           <div className="mt-2 flex flex-nowrap items-baseline gap-1 whitespace-nowrap">
-            <span className="text-[clamp(24px,2.2vw,32px)] font-bold text-ink-mute">€</span>
-            <span className="text-[clamp(42px,5vw,72px)] font-extrabold -tracking-[0.042em] tabular-nums text-ink">
+            <span className="text-[clamp(24px,2.2vw,32px)] font-semibold text-ink-mute">€</span>
+            <span className="text-[clamp(42px,5vw,72px)] font-semibold -tracking-[0.03em] tabular-nums text-ink">
               {figure.whole}
             </span>
-            <span className="text-[clamp(24px,2.2vw,34px)] font-bold tabular-nums text-ink-mute">
+            <span className="text-[clamp(24px,2.2vw,34px)] font-semibold tabular-nums text-ink-mute">
               .{figure.cents}
             </span>
           </div>
-          {insight ? <p className="mt-2 max-w-[62ch] text-[13.5px] font-semibold text-ink-soft">{insight}</p> : null}
+          {insight ? <p className="mt-2 max-w-[62ch] text-[14px] font-medium text-ink-soft">{insight}</p> : null}
         </div>
       </div>
 
       <div className="grid grid-cols-[repeat(auto-fit,minmax(170px,1fr))] gap-3">
         {kpis.map((k) => (
           <div key={k.label} className="glass-tile !rounded-[20px] p-4 px-[16px]">
-            <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">{k.label}</div>
-            <div className="mt-1.5 text-[23px] font-extrabold -tracking-[0.03em] tabular-nums text-ink">
+            <div className="text-[11px] font-semibold text-ink-mute">{k.label}</div>
+            <div className="mt-1.5 text-[23px] font-semibold tabular-nums text-ink">
               {k.value}
             </div>
           </div>
         ))}
         <div className="glass-tile !rounded-[20px] p-4 px-[16px]">
-          <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">Most efficient</div>
-          <div className="mt-1.5 truncate text-[23px] font-extrabold -tracking-[0.03em] text-in">
+          <div className="text-[11px] font-semibold text-ink-mute">Most efficient</div>
+          <div className="mt-1.5 truncate text-[23px] font-semibold text-in">
             {cheapest.trip}
           </div>
-          <div className="mt-0.5 text-[12.5px] font-semibold text-ink-soft">
+          <div className="mt-0.5 text-[13px] font-medium text-ink-soft">
             {formatMetric(cheapestVal, metric)}
           </div>
         </div>
         <div className="glass-tile !rounded-[20px] p-4 px-[16px]">
-          <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">Least efficient</div>
-          <div className="mt-1.5 truncate text-[23px] font-extrabold -tracking-[0.03em] text-out">
+          <div className="text-[11px] font-semibold text-ink-mute">Least efficient</div>
+          <div className="mt-1.5 truncate text-[23px] font-semibold text-out">
             {priciest.trip}
           </div>
-          <div className="mt-0.5 text-[12.5px] font-semibold text-ink-soft">
+          <div className="mt-0.5 text-[13px] font-medium text-ink-soft">
             {formatMetric(priciestVal, metric)}
           </div>
         </div>

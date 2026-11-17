@@ -33,7 +33,7 @@ export function CompareByBar({
   return (
     <div className="sticky top-[92px] z-10 flex justify-center">
       <div className="glass-popover flex items-center gap-3 !rounded-full py-1.5 pl-4 pr-1.5">
-        <span className="whitespace-nowrap text-[11px] font-bold uppercase tracking-[0.1em] text-ink-mute">
+        <span className="whitespace-nowrap text-[12px] font-semibold text-ink-mute">
           Compare by
         </span>
         <div className="flex gap-1 rounded-full bg-white/60 p-1">
@@ -43,9 +43,9 @@ export function CompareByBar({
               type="button"
               onClick={() => onMetricChange(m.key)}
               className={cn(
-                'whitespace-nowrap rounded-full px-[15px] py-[7px] text-[13px] font-bold transition-[background,color,box-shadow] duration-200 ease-theus',
+                'whitespace-nowrap rounded-full px-[15px] py-[7px] text-[13px] font-semibold transition-[background,color,box-shadow] duration-200 ease-theus',
                 m.key === metric
-                  ? 'bg-indigo text-white [box-shadow:0_8px_20px_rgba(74,92,224,.32)]'
+                  ? 'bg-indigo text-white '
                   : 'text-ink-soft hover:bg-white',
               )}
             >

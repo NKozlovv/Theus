@@ -231,7 +231,7 @@ export function TransactionsTable({
           <div className="flex flex-col gap-4">
             <div className="glass-tile !rounded-[14px] p-3 text-[13px]">
               <Mono size="xs" className="block">
-                {dateDisplay(mode.tx.date).toUpperCase()}
+                {dateDisplay(mode.tx.date)}
               </Mono>
               <div className="mt-1 text-ink">{mode.tx.comment || '(no description)'}</div>
               <div className="mt-1 text-ink-soft">

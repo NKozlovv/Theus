@@ -81,19 +81,19 @@ export function TrendTable({
   return (
     <div className="glass !rounded-[26px] p-2">
       <div style={{ gridTemplateColumns }} className="grid gap-1 px-2">
-        <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-ink-mute">Category</span>
+        <span className="text-[12px] font-semibold text-ink-mute">Category</span>
         {visibleMonths.map((m) => (
           <span
             key={`${m.year}-${m.month}`}
-            className="whitespace-nowrap text-right text-[11px] font-bold uppercase tracking-[0.1em] text-ink-mute"
+            className="whitespace-nowrap text-right text-[12px] font-semibold text-ink-mute"
           >
             {m.label}
           </span>
         ))}
-        <span className="whitespace-nowrap text-right text-[11px] font-bold uppercase tracking-[0.1em] text-ink-mute">
+        <span className="whitespace-nowrap text-right text-[12px] font-semibold text-ink-mute">
           Avg
         </span>
-        <span className="whitespace-nowrap text-right text-[11px] font-bold uppercase tracking-[0.1em] text-ink-mute">
+        <span className="whitespace-nowrap text-right text-[12px] font-semibold text-ink-mute">
           Year
         </span>
       </div>
@@ -126,7 +126,7 @@ export function TrendTable({
                 <span className="flex min-w-0 items-center justify-between gap-2">
                   <span className="flex min-w-0 items-center gap-2">
                     <span className="h-[10px] w-[10px] shrink-0 rounded-full" style={{ background: hue }} />
-                    <span className="truncate font-semibold text-ink">{row.category.name}</span>
+                    <span className="truncate font-medium text-ink">{row.category.name}</span>
                   </span>
                   {hasSubs ? (
                     <Icon
@@ -143,10 +143,10 @@ export function TrendTable({
                   const prev = row.values[idx - 1] ?? 0;
                   return <ValueCell key={j} value={curr} prev={prev} avg={avg} />;
                 })}
-                <span className="whitespace-nowrap text-right font-semibold tabular-nums text-ink-soft">
+                <span className="whitespace-nowrap text-right font-medium tabular-nums text-ink-soft">
                   {fmtEUR(avg, { decimals: 0 })}
                 </span>
-                <span className="whitespace-nowrap text-right font-extrabold tabular-nums text-ink">
+                <span className="whitespace-nowrap text-right font-semibold tabular-nums text-ink">
                   {fmtEUR(visibleTotal, { decimals: 0 })}
                 </span>
               </div>
@@ -162,16 +162,16 @@ export function TrendTable({
       </div>
 
       <div style={{ gridTemplateColumns }} className="mt-2 grid items-center gap-1 border-t border-white/60 px-2 pt-3">
-        <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-mute">All categories</span>
+        <span className="text-[12px] font-semibold text-ink-mute">All categories</span>
         {footer.map((v, j) => (
-          <span key={j} className="whitespace-nowrap text-right font-extrabold tabular-nums text-ink">
+          <span key={j} className="whitespace-nowrap text-right font-semibold tabular-nums text-ink">
             {fmtEUR(v, { decimals: 0 })}
           </span>
         ))}
-        <span className="whitespace-nowrap text-right font-extrabold tabular-nums text-ink-soft">
+        <span className="whitespace-nowrap text-right font-semibold tabular-nums text-ink-soft">
           {fmtEUR(footerAvg, { decimals: 0 })}
         </span>
-        <span className="whitespace-nowrap text-right font-extrabold tabular-nums text-ink">
+        <span className="whitespace-nowrap text-right font-semibold tabular-nums text-ink">
           {fmtEUR(footerTotal, { decimals: 0 })}
         </span>
       </div>
@@ -195,17 +195,17 @@ function SubRow({
   const { visibleTotal, avg } = sums(sub.values);
   return (
     <div style={{ gridTemplateColumns }} className="grid items-center gap-1 rounded-[12px] px-2 py-1">
-      <span className="truncate pl-[22px] text-[12.5px] font-medium text-ink-soft">{sub.name}</span>
+      <span className="truncate pl-[22px] text-[13px] font-medium text-ink-soft">{sub.name}</span>
       {Array.from({ length: visibleCount }, (_, j) => {
         const idx = offset + j;
         const curr = sub.values[idx] ?? 0;
         const prev = sub.values[idx - 1] ?? 0;
         return <ValueCell key={j} value={curr} prev={prev} avg={avg} compact />;
       })}
-      <span className="whitespace-nowrap text-right text-[12px] font-semibold tabular-nums text-ink-mute">
+      <span className="whitespace-nowrap text-right text-[12px] font-medium tabular-nums text-ink-mute">
         {fmtEUR(avg, { decimals: 0 })}
       </span>
-      <span className="whitespace-nowrap text-right text-[12px] font-bold tabular-nums text-ink-soft">
+      <span className="whitespace-nowrap text-right text-[12px] font-semibold tabular-nums text-ink-soft">
         {fmtEUR(visibleTotal, { decimals: 0 })}
       </span>
     </div>
@@ -237,7 +237,7 @@ function ValueCell({ value, prev, avg, compact }: { value: number; prev: number;
   return (
     <div
       className={cn(
-        'cursor-default whitespace-nowrap rounded-[10px] px-[8px] text-right font-bold tabular-nums transition-transform duration-200 ease-theus hover:z-10 hover:scale-[1.06] hover:shadow-[0_8px_18px_rgba(31,39,66,.18)]',
+        'cursor-default whitespace-nowrap rounded-[10px] px-[8px] text-right font-semibold tabular-nums transition-transform duration-200 ease-theus hover:z-10 hover:ring-1 hover:ring-[rgba(21,26,45,.25)]',
         compact ? 'py-[7px] text-[12px]' : 'py-[11px]',
         textWhite ? 'text-white' : 'text-ink',
       )}

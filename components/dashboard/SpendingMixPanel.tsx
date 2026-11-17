@@ -56,8 +56,8 @@ export function SpendingMixPanel({ slices, total }: { slices: SpendingMixSlice[]
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <div className="text-[19px] font-bold -tracking-[0.02em] text-ink">Spending mix</div>
-          <div className="mt-1 text-[12.5px] font-medium text-ink-mute">
+          <div className="text-[19px] font-semibold text-ink">Spending mix</div>
+          <div className="mt-1 text-[13px] font-medium text-ink-mute">
             YTD average · {sorted.length} categor{sorted.length === 1 ? 'y' : 'ies'}
           </div>
         </div>
@@ -89,11 +89,11 @@ export function SpendingMixPanel({ slices, total }: { slices: SpendingMixSlice[]
               className="flex items-center gap-2.5 rounded-[14px] px-3 py-[7px] transition-colors duration-[160ms] hover:bg-white/[0.72]"
             >
               <span className="h-[10px] w-[10px] shrink-0 rounded-full" style={{ background: hue }} />
-              <span className="min-w-0 flex-1 truncate text-[14px] font-semibold text-ink">{s.name}</span>
-              <span className="shrink-0 text-[14px] font-bold tabular-nums text-ink">
+              <span className="min-w-0 flex-1 truncate text-[14px] font-medium text-ink">{s.name}</span>
+              <span className="shrink-0 text-[14px] font-semibold tabular-nums text-ink">
                 {fmtEUR(s.value, { decimals: 0 })}
               </span>
-              <span className="w-[38px] shrink-0 text-right text-[12px] font-semibold text-ink-mute">
+              <span className="w-[38px] shrink-0 text-right text-[12px] font-medium text-ink-mute">
                 {share}%
               </span>
             </div>
@@ -108,7 +108,7 @@ export function SpendingMixPanel({ slices, total }: { slices: SpendingMixSlice[]
             e.stopPropagation();
             setExpanded((v) => !v);
           }}
-          className="mt-0.5 w-full rounded-[14px] px-3 py-[7px] text-left text-[12.5px] font-semibold text-indigo-dark transition-colors duration-[160ms] hover:bg-white/[0.72]"
+          className="mt-0.5 w-full rounded-[14px] px-3 py-[7px] text-left text-[13px] font-medium text-indigo-dark transition-colors duration-[160ms] hover:bg-white/[0.72]"
         >
           {expanded ? 'Show less' : `Show ${hiddenCount} more`}
         </button>

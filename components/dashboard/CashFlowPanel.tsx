@@ -49,8 +49,8 @@ export function CashFlowPanel({
     <div className="glass flex h-full max-h-[320px] flex-col !rounded-[28px] p-[24px] px-[26px]">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <div className="text-[19px] font-bold -tracking-[0.02em] text-ink">Cash flow</div>
-          <div className="mt-1 text-[12.5px] font-medium text-ink-mute">
+          <div className="text-[19px] font-semibold text-ink">Cash flow</div>
+          <div className="mt-1 text-[13px] font-medium text-ink-mute">
             YTD in {fmtEUR(ytdIncome, { decimals: 0 })} · out {fmtEUR(ytdExpense, { decimals: 0 })} · net{' '}
             {ytdNet >= 0 ? '+' : ''}
             {fmtEUR(ytdNet, { decimals: 0 })} · {year} projected
@@ -59,7 +59,7 @@ export function CashFlowPanel({
         <div className="flex shrink-0 items-center gap-3.5">
           <LegendSwatch color="var(--teal)">Income</LegendSwatch>
           <LegendSwatch color="var(--coral)">Spending</LegendSwatch>
-          <span className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-ink-soft">
+          <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-ink-soft">
             <span className="h-[10px] w-[10px] rounded-[3px] border border-dashed border-ink-mute" />
             Projected
           </span>
@@ -72,7 +72,7 @@ export function CashFlowPanel({
         style={{ minHeight: 153 + LABEL_H }}
       >
         <div
-          className="flex flex-none flex-col justify-between text-right text-[9.5px] font-bold tabular-nums text-ink-mute"
+          className="flex flex-none flex-col justify-between text-right text-[11px] font-semibold tabular-nums text-ink-mute"
           style={{ paddingBottom: LABEL_H }}
         >
           {ticks.map((t, i) => (
@@ -106,7 +106,7 @@ export function CashFlowPanel({
                     className="bar w-[46%] rounded-[7px_7px_3px_3px] transition-[filter] duration-200 hover:brightness-[1.08]"
                     style={{
                       height: `${incomePct}%`,
-                      background: m.projected ? 'rgba(31,185,164,.14)' : 'linear-gradient(180deg,#1fb9a4,#12a08c)',
+                      background: m.projected ? 'rgba(31,185,164,.14)' : '#1fb9a4',
                       border: m.projected ? '1.5px dashed #1fb9a4' : undefined,
                       boxSizing: 'border-box',
                     }}
@@ -115,14 +115,14 @@ export function CashFlowPanel({
                     className="bar w-[46%] rounded-[7px_7px_3px_3px] transition-[filter] duration-200 hover:brightness-[1.08]"
                     style={{
                       height: `${expensePct}%`,
-                      background: m.projected ? 'rgba(242,112,143,.14)' : 'linear-gradient(180deg,#f2708f,#d94a6f)',
+                      background: m.projected ? 'rgba(242,112,143,.14)' : '#f2708f',
                       border: m.projected ? '1.5px dashed #f2708f' : undefined,
                       boxSizing: 'border-box',
                     }}
                   />
                 </div>
                 <div
-                  className="text-[10px] font-bold tracking-[0.04em]"
+                  className="text-[11px] font-semibold"
                   style={{ color: m.projected ? 'rgba(91,98,120,.55)' : 'var(--ink-mute)' }}
                 >
                   {m.label}
@@ -134,7 +134,7 @@ export function CashFlowPanel({
 
         {hover ? (
           <ChartTooltip x={hover.x} y={hover.y} containerWidth={hover.containerWidth}>
-            <span className="font-bold text-ink">{hover.data.label}</span>
+            <span className="font-semibold text-ink">{hover.data.label}</span>
             {hover.data.projected ? <span className="ml-1 text-ink-mute">(projected)</span> : null}
             <br />
             <span style={{ color: 'var(--in)' }}>in {fmtEUR(hover.data.income, { decimals: 0 })}</span>
@@ -151,7 +151,7 @@ export function CashFlowPanel({
 
 function LegendSwatch({ color, children }: { color: string; children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-ink-soft">
+    <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-ink-soft">
       <span className="h-[10px] w-[10px] rounded-[3px]" style={{ background: color }} />
       {children}
     </span>

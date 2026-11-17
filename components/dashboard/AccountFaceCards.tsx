@@ -55,14 +55,14 @@ export function AccountFaceCards({ accounts }: { accounts: AccountFaceData[] }) 
               />
               <div className="relative flex h-full flex-col justify-between">
                 <div
-                  className="text-[11px] font-bold uppercase tracking-[0.1em]"
+                  className="text-[12px] font-semibold"
                   style={{ color: face.inkMute }}
                 >
                   {a.currency}
                 </div>
                 <div className="flex items-center gap-0">
                   <span
-                    className="min-w-0 flex-1 truncate text-[15px] font-bold"
+                    className="min-w-0 flex-1 truncate text-[15px] font-semibold"
                     style={{ color: face.ink }}
                   >
                     {a.name}
@@ -82,14 +82,14 @@ export function AccountFaceCards({ accounts }: { accounts: AccountFaceData[] }) 
             </div>
 
             <div className="pt-4 px-[6px]">
-              <div className="text-[10.5px] font-bold uppercase tracking-[0.12em] text-ink-mute">
+              <div className="text-[11px] font-semibold text-ink-mute">
                 Balance
               </div>
               <div className="mt-0.5 flex items-baseline gap-1.5">
-                <span className="text-[26px] font-extrabold -tracking-[0.03em] tabular-nums text-ink">
+                <span className="text-[26px] font-semibold -tracking-[0.03em] tabular-nums text-ink">
                   {fmtCurrency(a.native, a.currency, { noSymbol: true, decimals: 0 })}
                 </span>
-                <span className="text-[14px] font-bold text-ink-mute">{a.currency}</span>
+                <span className="text-[14px] font-semibold text-ink-mute">{a.currency}</span>
               </div>
             </div>
           </Link>

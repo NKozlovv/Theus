@@ -23,7 +23,7 @@ export function YearSelect({ years, selected }: { years: number[]; selected: num
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex items-center gap-1.5 rounded-full border border-white/90 px-[17px] py-[9px] text-[13.5px] font-semibold text-ink [background:var(--glass-sheen-tile)] transition-[transform,background] duration-200 ease-theus hover:-translate-y-0.5 hover:bg-white"
+        className="inline-flex items-center gap-1.5 rounded-full border border-white/90 px-[17px] py-[9px] text-[14px] font-medium text-ink [background:var(--glass-sheen-tile)] transition-[transform,background] duration-200 ease-theus hover:bg-white"
       >
         {selected}
         <Icon name="chevron-down" size={13} className={cn('transition-transform duration-200 ease-theus', open && 'rotate-180')} />
@@ -36,7 +36,7 @@ export function YearSelect({ years, selected }: { years: number[]; selected: num
               type="button"
               onClick={() => select(y)}
               className={cn(
-                'block w-full rounded-[10px] px-3 py-2 text-left text-[13.5px] font-semibold transition-colors',
+                'block w-full rounded-[10px] px-3 py-2 text-left text-[14px] font-medium transition-colors',
                 y === selected ? 'bg-indigo/[0.12] text-indigo-dark' : 'text-ink-soft hover:bg-white/70 hover:text-ink',
               )}
             >

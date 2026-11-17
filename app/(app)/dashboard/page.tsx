@@ -137,7 +137,7 @@ export default async function DashboardPage() {
           vsMonthLabel={vsMonthLabel}
           spentThisMonth={monthTotals.expense}
           incomeThisMonth={monthTotals.income}
-          monthLabelUpper={monthLabel.toUpperCase()}
+          monthLabelUpper={monthLabel}
           avgSavingsRate={savingsRateAvg}
           projectedEOY={projectedEOY}
           avgNet={ytd.avgNet}

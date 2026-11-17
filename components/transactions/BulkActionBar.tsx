@@ -23,9 +23,9 @@ export function BulkActionBar({
     <div className="fixed bottom-6 left-1/2 z-30" style={{ transform: 'translateX(-50%)' }}>
       <div className="glass glass-nohover flex items-center gap-5 !rounded-full py-3 pl-5 pr-3">
         <div className="flex items-baseline gap-3">
-          <span className="text-[13px] font-bold text-indigo-dark">{count} selected</span>
+          <span className="text-[13px] font-semibold text-indigo-dark">{count} selected</span>
           <span className="text-[13px] text-ink-soft">·</span>
-          <span className="text-[13px] font-semibold tabular-nums text-ink-soft">
+          <span className="text-[13px] font-medium tabular-nums text-ink-soft">
             net {fmtEUR(totalEUR)}
           </span>
         </div>
