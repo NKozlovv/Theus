@@ -12,7 +12,7 @@ import { usePathname } from 'next/navigation';
 export function ScreenTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   return (
-    <main key={pathname} className="rise mt-[22px] flex flex-col gap-5">
+    <main key={pathname} className="rise mt-6 flex flex-col gap-6">
       {children}
     </main>
   );

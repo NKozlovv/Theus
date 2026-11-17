@@ -63,7 +63,7 @@ export function TripsClient({ budgetId, trips }: { budgetId: string; trips: Trip
 
   return (
     <>
-      <div className="grid grid-cols-[1fr_auto_1fr] items-end gap-x-6 gap-y-5">
+      <div className="grid grid-cols-[1fr_auto_1fr] items-end gap-x-6 gap-y-6">
         <PageHeader title="Trips" meta={`${trips.length} ${trips.length === 1 ? 'trip' : 'trips'}`} />
         <CompareByBar metric={metric} onMetricChange={setMetric} />
         <div aria-hidden />{/* balances the 1fr on the left so the middle column is truly centered, not just "whatever's left after the title" */}
@@ -72,7 +72,7 @@ export function TripsClient({ budgetId, trips }: { budgetId: string; trips: Trip
           <TripsHero trips={trips} metric={metric} />
         </div>
 
-        <div className="col-span-full grid grid-cols-[repeat(auto-fit,minmax(420px,1fr))] items-stretch gap-5">
+        <div className="col-span-full grid grid-cols-[repeat(auto-fit,minmax(420px,1fr))] items-stretch gap-6">
           <TripsRanked trips={trips} metric={metric} />
           <TripsMix trips={chronological} colors={colors} />
         </div>

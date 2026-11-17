@@ -59,15 +59,15 @@ export function Select({
         disabled={disabled}
         onClick={() => setOpen((o) => !o)}
         className={cn(
-          'flex w-full items-center justify-between gap-2 rounded-full border border-white/90 bg-white/[0.72] px-[16px] py-[10px] text-left text-[13.5px] font-semibold text-ink',
-          'transition-colors duration-200 hover:border-indigo hover:bg-white',
-          'focus:outline-none focus:border-indigo focus:[box-shadow:0_0_0_3px_rgba(74,92,224,.25)]',
+          'flex h-9 w-full items-center justify-between gap-2 rounded-control border border-line bg-surface px-3 text-left text-[14px] text-ink',
+          'transition-colors duration-150 hover:bg-raised',
+          'focus:outline-none focus:border-indigo',
           'disabled:cursor-not-allowed disabled:opacity-50',
           className,
         )}
       >
         <span className="truncate">{selected?.label ?? '—'}</span>
-        <Icon name="chevron-down" size={12} className="shrink-0 text-ink-mute" />
+        <Icon name="chevron-down" size={14} className="shrink-0 text-ink-mute" />
       </button>
       {open ? <OptionsList options={options} value={String(value ?? '')} onSelect={selectValue} /> : null}
     </div>

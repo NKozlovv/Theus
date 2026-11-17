@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@/components/ui';
 import type { CategoryTrendRow, TrendMonth } from '@/lib/categories/monthlyTrend';
 
 /**
@@ -61,12 +62,8 @@ export function ExportButton({
   }
 
   return (
-    <button
-      type="button"
-      onClick={download}
-      className="rounded-full border border-white/90 px-[17px] py-[9px] text-[13.5px] font-semibold text-ink [background:var(--glass-sheen-tile)] transition-[transform,background] duration-200 ease-theus hover:-translate-y-0.5 hover:bg-white"
-    >
-      Export
-    </button>
+    <Button variant="secondary" onClick={download}>
+      Export CSV
+    </Button>
   );
 }

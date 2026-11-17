@@ -33,12 +33,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   return (
     <div className="ambient-ground">
-      <div className="ambient-layer">
-        <div className="ambient-blob ambient-blob-coral" />
-        <div className="ambient-blob ambient-blob-indigo" />
-        <div className="ambient-blob ambient-blob-teal" />
-      </div>
-      <div className="relative z-[1] mx-auto max-w-[1520px] px-[26px] pb-12 pt-5">
+      <div className="relative mx-auto max-w-[1520px] px-8 pb-12 pt-4">
         <TopNav email={user.email ?? '—'} budgets={budgets} activeBudgetId={budget.id} />
         <ScreenTransition>{children}</ScreenTransition>
       </div>

@@ -49,12 +49,12 @@ export function CategoriesClient({
     <>
       <CategoriesSummaryCard summaries={expense} monthLabel={monthLabel} />
 
-      <div className="glass !rounded-[26px] p-[10px]">
+      <div className="glass p-2">
         {expense.length === 0 ? (
-          <div className="px-5 py-12 text-center text-[13px] text-ink-mute">No expense categories yet.</div>
+          <div className="px-5 py-12 text-center text-[14px] text-ink-mute">No expense categories yet</div>
         ) : (
           <>
-            <div className="grid grid-cols-[minmax(150px,1.1fr)_minmax(0,1.6fr)_110px_100px_34px] gap-4 px-[18px] pb-1.5 pt-1 text-[10.5px] font-bold uppercase tracking-[0.08em] text-ink-mute">
+            <div className="grid grid-cols-[minmax(150px,1.1fr)_minmax(0,1.6fr)_110px_100px_32px] gap-4 px-4 pb-2 pt-2 text-[12px] font-medium text-ink-mute">
               <span>Category</span>
               <span>Pace vs avg</span>
               <span>This month</span>
@@ -119,9 +119,9 @@ export function CategoriesClient({
         />
       </Modal>
 
-      {/* Rename/delete category, add/rename/delete subcategory — the
-          mockup's row has no room for this, so it's reached via the
-          row's hue tile (CategoryRow) or the income recap row instead. */}
+      {/* Rename/delete category, add/rename/delete subcategory — the row
+          has no room for this, so it's reached via the row's hue tile
+          (CategoryRow) or the income recap row instead. */}
       {editingSummary ? (
         <CategoryDetailModal
           open={true}

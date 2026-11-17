@@ -7,21 +7,20 @@ import { cn } from '@/lib/utils';
 import type { CategorySummary, SubcategorySummary } from '@/lib/categories/summary';
 
 function paceColor(pctOfAvg: number): string {
-  if (pctOfAvg > 115) return '#d94a6f';
-  if (pctOfAvg > 102) return '#d98b1f';
-  return '#12a08c';
+  if (pctOfAvg > 115) return '#bf4040';
+  if (pctOfAvg > 102) return '#a8650f';
+  return '#1f7a52';
 }
 
 /**
- * Category row + its accordion panel — design_handoff_theus_rehaul README
- * "Categories". The whole row is the disclosure trigger (opens the
- * subcategory breakdown in place); the hue tile is a separate click
- * target that opens the rename/delete/subcategory-CRUD modal (a pencil
- * icon fades in on hover so that's discoverable), since the mockup's
- * 5-column row has no room for a dedicated edit affordance and that
- * management flow can't just disappear. The accordion also repeats that
- * entry point as an explicit "+ Add or remove subcategories" link, since
- * it's the one place users look for subcategory management.
+ * Category row + its accordion panel. The whole row is the disclosure
+ * trigger (opens the subcategory breakdown in place); the hue tile is a
+ * separate click target that opens the rename/delete/subcategory-CRUD
+ * modal (a pencil icon fades in on hover so that's discoverable), since a
+ * 5-column row has no room for a dedicated edit affordance. The accordion
+ * also repeats that entry point as an explicit "Add or remove
+ * subcategories" link, since it's the one place users look for
+ * subcategory management.
  */
 export function CategoryRow({
   summary,
@@ -51,7 +50,7 @@ export function CategoryRow({
         onKeyDown={(e) => {
           if (e.key === 'Enter') onToggle();
         }}
-        className="grid cursor-pointer grid-cols-[minmax(150px,1.1fr)_minmax(0,1.6fr)_110px_100px_34px] items-center gap-4 rounded-[18px] px-[18px] py-[14px] transition-colors duration-[160ms] hover:bg-white/[0.85]"
+        className="grid cursor-pointer grid-cols-[minmax(150px,1.1fr)_minmax(0,1.6fr)_110px_100px_32px] items-center gap-4 rounded-[10px] px-4 py-3 transition-colors duration-150 hover:bg-raised"
       >
         <div className="flex min-w-0 items-center gap-3">
           <button
@@ -62,39 +61,39 @@ export function CategoryRow({
             }}
             aria-label={`Edit ${category.name}`}
             title={`Edit ${category.name}`}
-            className="group/edit relative flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-[12px] text-[13px] font-extrabold text-white transition-transform hover:scale-105"
-            style={{ background: color }}
+            className="group/edit relative flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] text-[13px] font-medium text-ink"
+            style={{ background: `${color}26` }}
           >
             {category.name.charAt(0).toUpperCase()}
-            <span className="absolute inset-0 flex items-center justify-center rounded-[12px] bg-black/40 opacity-0 transition-opacity group-hover/edit:opacity-100">
+            <span className="absolute inset-0 flex items-center justify-center rounded-[8px] bg-ink/70 text-white opacity-0 transition-opacity duration-150 group-hover/edit:opacity-100">
               <Icon name="pencil" size={14} />
             </span>
           </button>
-          <span className="truncate text-[14.5px] font-semibold text-ink">{category.name}</span>
+          <span className="truncate text-[14px] font-medium text-ink">{category.name}</span>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="relative h-[10px] flex-1 rounded-full bg-white/80">
+          <div className="relative h-2 flex-1 rounded-[2px] bg-[color:var(--line)]">
             <div
-              className="meter h-full rounded-full"
+              className="meter h-full rounded-[2px]"
               style={{ width: `${meterPct}%`, background: color }}
             />
             <span
               aria-hidden
-              className="absolute -bottom-[5px] -top-[5px] w-[2px] rounded-full bg-[rgba(21,26,45,.35)]"
+              className="absolute -bottom-1 -top-1 w-px bg-ink/50"
               style={{ left: '66%' }}
             />
           </div>
-          <span className="w-[46px] shrink-0 text-right text-[12px] font-extrabold tabular-nums" style={{ color: tone }}>
+          <span className="w-[48px] shrink-0 text-right text-[13px] font-medium tabular-nums" style={{ color: tone }}>
             {Math.round(pctOfAvg)}%
           </span>
         </div>
 
-        <div className="text-[15.5px] font-extrabold tabular-nums text-ink">
+        <div className="text-[15px] font-medium tabular-nums text-ink">
           {fmtEUR(thisMonth, { decimals: 0 })}
         </div>
 
-        <div className="text-[13.5px] font-semibold text-ink-mute">{fmtEUR(avgMonthly, { decimals: 0 })}</div>
+        <div className="text-[14px] tabular-nums text-ink-mute">{fmtEUR(avgMonthly, { decimals: 0 })}</div>
 
         <button
           type="button"
@@ -104,24 +103,23 @@ export function CategoryRow({
           }}
           aria-label={open ? 'Collapse' : 'Expand'}
           aria-expanded={open}
-          className="flex h-[30px] w-[30px] items-center justify-center justify-self-end rounded-full bg-white/80 text-ink-soft transition-colors hover:bg-white"
+          className="flex h-8 w-8 items-center justify-center justify-self-end rounded-control text-ink-mute transition-colors hover:bg-surface hover:text-ink"
         >
           <Icon
             name="chevron-down"
-            size={15}
-            strokeWidth={1.8}
-            className={cn('transition-transform duration-200 ease-theus', open && 'rotate-180')}
+            size={16}
+            className={cn('transition-transform duration-150 ease-theus', open && 'rotate-180')}
           />
         </button>
       </div>
 
       {open ? (
-        <div className="rise ml-[62px] mr-[10px] mb-[10px] mt-0.5 rounded-[16px] bg-white/50 px-4 py-2.5" style={{ animationDuration: '240ms' }}>
+        <div className="rise mb-2 ml-[60px] mr-2 mt-0.5 rounded-[10px] bg-raised px-4 py-3" style={{ animationDuration: '240ms' }}>
           {subcategories.length === 0 ? (
-            <div className="py-2 text-[12.5px] text-ink-mute">No subcategories yet.</div>
+            <div className="py-2 text-[13px] text-ink-mute">No subcategories yet</div>
           ) : (
             <>
-              <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_90px_90px] gap-4 pb-1.5 text-[10px] font-bold uppercase tracking-[0.08em] text-ink-mute">
+              <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_90px_90px] gap-4 pb-2 text-[12px] font-medium text-ink-mute">
                 <span />
                 <span>Pace vs avg</span>
                 <span>This month</span>
@@ -134,37 +132,37 @@ export function CategoryRow({
                 return (
                   <div
                     key={s.subcategory.id}
-                    className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_90px_90px] items-center gap-4 py-[7px] text-[13.5px]"
+                    className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_90px_90px] items-center gap-4 py-2 text-[14px]"
                   >
-                    <span className="truncate font-semibold text-ink-soft">{s.subcategory.name}</span>
+                    <span className="truncate text-ink-soft">{s.subcategory.name}</span>
                     <div className="flex items-center gap-2">
-                      <div className="relative h-[6px] flex-1 rounded-full bg-white/80">
+                      <div className="relative h-1 flex-1 rounded-[2px] bg-[color:var(--line)]">
                         <div
-                          className="meter h-full rounded-full"
+                          className="meter h-full rounded-[2px]"
                           style={{ width: `${subMeterPct}%`, background: color }}
                         />
                       </div>
-                      <span className="w-[36px] shrink-0 text-right text-[11px] font-extrabold tabular-nums" style={{ color: subTone }}>
+                      <span className="w-10 shrink-0 text-right text-[12px] font-medium tabular-nums" style={{ color: subTone }}>
                         {Math.round(subPctOfAvg)}%
                       </span>
                     </div>
-                    <span className="font-bold tabular-nums text-ink">{fmtEUR(s.thisMonth, { decimals: 0 })}</span>
-                    <span className="font-semibold text-ink-mute">{fmtEUR(s.avgMonthly, { decimals: 0 })}</span>
+                    <span className="font-medium tabular-nums text-ink">{fmtEUR(s.thisMonth, { decimals: 0 })}</span>
+                    <span className="tabular-nums text-ink-mute">{fmtEUR(s.avgMonthly, { decimals: 0 })}</span>
                   </div>
                 );
               })}
             </>
           )}
-          <div className="mt-1 border-t border-white/60 pt-2">
+          <div className="mt-1 border-t border-line pt-2">
             <button
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 onEdit();
               }}
-              className="text-[12px] font-semibold text-indigo-dark hover:underline"
+              className="text-[13px] font-medium text-indigo transition-colors hover:text-indigo-dark"
             >
-              + Add or remove subcategories
+              Add or remove subcategories
             </button>
           </div>
         </div>

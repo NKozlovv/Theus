@@ -62,54 +62,49 @@ export function TripsHero({ trips, metric }: { trips: TripSummary[]; metric: Tri
   ];
 
   return (
-    <section className="glass flex flex-col gap-[22px] !rounded-[34px] p-[24px] px-[26px]">
+    <section className="glass flex flex-col gap-6 p-6">
       <div className="flex flex-wrap items-start gap-5">
         <div className="min-w-0 flex-1 basis-[300px]">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-ink-mute">
-              Travel · tagged by trip
-            </span>
-            <span className="whitespace-nowrap rounded-full bg-indigo/[0.14] px-[11px] py-1 text-[11.5px] font-bold text-indigo-dark">
-              {trips.length} {trips.length === 1 ? 'trip' : 'trips'}
-            </span>
+          <div className="text-[13px] text-ink-soft">
+            Travel, tagged by trip · {trips.length} {trips.length === 1 ? 'trip' : 'trips'}
           </div>
-          <div className="mt-2 flex flex-nowrap items-baseline gap-1 whitespace-nowrap">
-            <span className="text-[clamp(24px,2.2vw,32px)] font-bold text-ink-mute">€</span>
-            <span className="text-[clamp(42px,5vw,72px)] font-extrabold -tracking-[0.042em] tabular-nums text-ink">
+          <div className="double-rule mt-3 inline-flex flex-nowrap items-baseline gap-1 whitespace-nowrap">
+            <span className="text-[clamp(24px,2.2vw,32px)] font-normal text-ink-mute">€</span>
+            <span className="text-[clamp(44px,5vw,72px)] font-medium leading-none tracking-[-0.03em] tabular-nums text-ink">
               {figure.whole}
             </span>
-            <span className="text-[clamp(24px,2.2vw,34px)] font-bold tabular-nums text-ink-mute">
+            <span className="text-[clamp(24px,2.2vw,32px)] font-normal tabular-nums text-ink-mute">
               .{figure.cents}
             </span>
           </div>
-          {insight ? <p className="mt-2 max-w-[62ch] text-[13.5px] font-semibold text-ink-soft">{insight}</p> : null}
+          {insight ? <p className="mt-4 max-w-[62ch] text-[14px] leading-5 text-ink-soft">{insight}</p> : null}
         </div>
       </div>
 
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(170px,1fr))] gap-3">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(172px,1fr))] gap-4">
         {kpis.map((k) => (
-          <div key={k.label} className="glass-tile !rounded-[20px] p-4 px-[16px]">
-            <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">{k.label}</div>
-            <div className="mt-1.5 text-[23px] font-extrabold -tracking-[0.03em] tabular-nums text-ink">
+          <div key={k.label} className="glass-tile p-4">
+            <div className="text-[12px] font-medium text-ink-mute">{k.label}</div>
+            <div className="mt-2 text-[24px] font-medium leading-none tabular-nums text-ink">
               {k.value}
             </div>
           </div>
         ))}
-        <div className="glass-tile !rounded-[20px] p-4 px-[16px]">
-          <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">Most efficient</div>
-          <div className="mt-1.5 truncate text-[23px] font-extrabold -tracking-[0.03em] text-in">
+        <div className="glass-tile p-4">
+          <div className="text-[12px] font-medium text-ink-mute">Most efficient</div>
+          <div className="mt-2 truncate text-[24px] font-medium leading-none text-ink">
             {cheapest.trip}
           </div>
-          <div className="mt-0.5 text-[12.5px] font-semibold text-ink-soft">
+          <div className="mt-1 text-[12px] tabular-nums text-ink-mute">
             {formatMetric(cheapestVal, metric)}
           </div>
         </div>
-        <div className="glass-tile !rounded-[20px] p-4 px-[16px]">
-          <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">Least efficient</div>
-          <div className="mt-1.5 truncate text-[23px] font-extrabold -tracking-[0.03em] text-out">
+        <div className="glass-tile p-4">
+          <div className="text-[12px] font-medium text-ink-mute">Least efficient</div>
+          <div className="mt-2 truncate text-[24px] font-medium leading-none text-ink">
             {priciest.trip}
           </div>
-          <div className="mt-0.5 text-[12.5px] font-semibold text-ink-soft">
+          <div className="mt-1 text-[12px] tabular-nums text-ink-mute">
             {formatMetric(priciestVal, metric)}
           </div>
         </div>

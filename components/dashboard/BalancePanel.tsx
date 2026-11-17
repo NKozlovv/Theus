@@ -1,6 +1,6 @@
 'use client';
 
-import { Icon } from '@/components/ui';
+import { Button, Icon } from '@/components/ui';
 import { fmtEUR } from '@/lib/money';
 import { BudgetRing } from './BudgetRing';
 import { GLOBAL_ADD_TRANSACTION_EVENT } from '@/components/transactions/GlobalAddTransactionModal';
@@ -15,9 +15,10 @@ function splitFigure(n: number): { sign: string; whole: string; cents: string } 
 }
 
 /**
- * The Balance panel — left cell of the Overview hero row (design_handoff_
- * theus_rehaul README "Block 1 — hero row"). Headline (label, delta chip,
- * huge balance figure, page actions) over a ring + two projection tiles.
+ * The Balance panel — left cell of the Overview's first row. The one
+ * bright element of the screen: the total balance set large, with the
+ * accountant's double rule under it. Below, the month's spend ring and
+ * two projection tiles stay quiet.
  */
 export function BalancePanel({
   accountCount,
@@ -27,7 +28,7 @@ export function BalancePanel({
   vsMonthLabel,
   spentThisMonth,
   incomeThisMonth,
-  monthLabelUpper,
+  monthLabel,
   avgSavingsRate,
   projectedEOY,
   avgNet,
@@ -42,7 +43,7 @@ export function BalancePanel({
   vsMonthLabel: string;
   spentThisMonth: number;
   incomeThisMonth: number;
-  monthLabelUpper: string;
+  monthLabel: string;
   avgSavingsRate: number;
   projectedEOY: number;
   avgNet: number;
@@ -55,48 +56,35 @@ export function BalancePanel({
   const avgRatePct = Math.round(avgSavingsRate * 100);
 
   return (
-    <div className="glass flex flex-col gap-[18px] !rounded-[34px] p-[22px]">
+    <div className="glass flex flex-col gap-6 p-6">
       {/* Row 1 — headline */}
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-[240px] flex-1">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-ink-mute">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-ink-soft">
+            <span>
               Total balance · {accountCount} account{accountCount === 1 ? '' : 's'}
             </span>
-            <span
-              className={
-                'inline-flex items-center rounded-full px-[11px] py-1 text-[11.5px] font-bold tabular-nums ' +
-                (down ? 'bg-coral/[0.16] text-out' : 'bg-teal/[0.16] text-in')
-              }
-            >
-              {down ? '↓' : '↑'} {Math.abs(monthPct).toFixed(1)}% · {fmtEUR(monthDelta, { decimals: 0 })} vs{' '}
-              {vsMonthLabel}
+            <span className={'inline-flex items-center gap-1 tabular-nums ' + (down ? 'text-out' : 'text-in')}>
+              <Icon name={down ? 'arrow-down' : 'arrow-up'} size={14} />
+              {Math.abs(monthPct).toFixed(1)}% · {fmtEUR(monthDelta, { decimals: 0 })} vs {vsMonthLabel}
             </span>
           </div>
-          <div className="mt-2 flex flex-nowrap items-baseline gap-1 whitespace-nowrap">
-            <span className="text-[clamp(24px,2.2vw,32px)] font-bold text-ink-mute">
-              {figure.sign}€
-            </span>
-            <span className="text-[clamp(44px,5.4vw,78px)] font-extrabold -tracking-[0.042em] tabular-nums text-ink">
+          <div className="double-rule mt-3 inline-flex flex-nowrap items-baseline gap-1 whitespace-nowrap">
+            <span className="text-[clamp(24px,2.2vw,32px)] font-normal text-ink-mute">{figure.sign}€</span>
+            <span className="text-[clamp(44px,5.4vw,72px)] font-medium leading-none tracking-[-0.03em] tabular-nums text-ink">
               {figure.whole}
             </span>
-            <span className="text-[clamp(26px,2.4vw,36px)] font-bold tabular-nums text-ink-mute">
+            <span className="text-[clamp(24px,2.4vw,32px)] font-normal tabular-nums text-ink-mute">
               .{figure.cents}
             </span>
           </div>
         </div>
 
-        <div className="ml-auto flex shrink-0 flex-nowrap items-center gap-[9px]">
-          <button
-            type="button"
-            onClick={() => window.dispatchEvent(new CustomEvent(GLOBAL_ADD_TRANSACTION_EVENT))}
-            className="inline-flex items-center gap-[7px] rounded-full bg-[linear-gradient(180deg,#5a6be8,#4152d6)] py-2 pl-4 pr-2 text-[13.5px] font-bold text-white [box-shadow:0_8px_20px_rgba(74,92,224,.34),inset_0_1px_0_rgba(255,255,255,.35)] transition-[transform,box-shadow,background] duration-200 ease-theus hover:-translate-y-0.5 hover:bg-indigo-dark hover:bg-none hover:[box-shadow:0_12px_26px_rgba(74,92,224,.42)]"
-          >
+        <div className="ml-auto flex shrink-0 flex-nowrap items-center gap-2">
+          <Button onClick={() => window.dispatchEvent(new CustomEvent(GLOBAL_ADD_TRANSACTION_EVENT))}>
             Add transaction
-            <span className="flex h-[22px] w-[22px] items-center justify-center rounded-full bg-white/[0.22]">
-              <Icon name="arrow-right" size={13} strokeWidth={2.2} />
-            </span>
-          </button>
+            <Icon name="arrow-right" size={14} />
+          </Button>
         </div>
       </div>
 
@@ -106,42 +94,38 @@ export function BalancePanel({
           spent={spentThisMonth}
           income={incomeThisMonth}
           avgSavingsRate={avgSavingsRate}
-          monthLabel={monthLabelUpper}
+          monthLabel={monthLabel}
         />
 
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(170px,1fr))] items-stretch gap-3">
-          <div className="glass-tile flex min-h-[80px] flex-col justify-between gap-2 !rounded-[20px] p-4 px-[18px] transition-colors duration-[160ms] hover:!bg-white/[0.85]">
-            <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">
-              Projected 31 Dec
-            </div>
-            <div className="text-[clamp(23px,2.2vw,30px)] font-extrabold -tracking-[0.035em] tabular-nums text-in">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(168px,1fr))] items-stretch gap-4">
+          <div className="glass-tile flex min-h-[80px] flex-col justify-between gap-2 p-4">
+            <div className="text-[12px] text-ink-mute">Projected 31 Dec</div>
+            <div className="text-[clamp(24px,2.2vw,28px)] font-medium leading-none tabular-nums text-ink">
               {fmtEUR(projectedEOY, { decimals: 0 })}
             </div>
-            <div className="text-[12px] font-semibold text-ink-mute">
-              <span className="whitespace-nowrap">at {avgRatePct}% rate</span>{' '}
-              ·{' '}
+            <div className="text-[12px] text-ink-mute">
+              <span className="whitespace-nowrap">at {avgRatePct}% savings rate</span>
+              {' · '}
               <span className="whitespace-nowrap">
                 {avgNet >= 0 ? '+' : '−'}
                 {fmtEUR(Math.abs(avgNet), { decimals: 0 })}/mo
               </span>
             </div>
           </div>
-          <div className="glass-tile flex min-h-[80px] flex-col justify-between gap-2 !rounded-[20px] p-4 px-[18px] transition-colors duration-[160ms] hover:!bg-white/[0.85]">
-            <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">
-              Net this year
-            </div>
+          <div className="glass-tile flex min-h-[80px] flex-col justify-between gap-2 p-4">
+            <div className="text-[12px] text-ink-mute">Net this year</div>
             <div
               className={
-                'text-[clamp(23px,2.2vw,30px)] font-extrabold -tracking-[0.035em] tabular-nums ' +
+                'text-[clamp(24px,2.2vw,28px)] font-medium leading-none tabular-nums ' +
                 (savingsThisYear >= 0 ? 'text-in' : 'text-out')
               }
             >
               {savingsThisYear >= 0 ? '+' : ''}
               {fmtEUR(savingsThisYear, { decimals: 0 })}
             </div>
-            <div className="text-[12px] font-semibold text-ink-mute">
-              <span className="whitespace-nowrap">in {fmtEUR(savingsIncome, { decimals: 0 })}</span>{' '}
-              ·{' '}
+            <div className="text-[12px] text-ink-mute">
+              <span className="whitespace-nowrap">in {fmtEUR(savingsIncome, { decimals: 0 })}</span>
+              {' · '}
               <span className="whitespace-nowrap">out {fmtEUR(savingsExpense, { decimals: 0 })}</span>
             </div>
           </div>

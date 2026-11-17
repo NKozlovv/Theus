@@ -36,7 +36,7 @@ export default function CoachPage() {
       </div>
 
       <div>
-        <Mono size="sm" className="tracking-[0.14em]">
+        <Mono size="sm" className="">
           This week&rsquo;s insights
         </Mono>
         <div className="glass mt-3 flex items-start gap-3.5 !rounded-[20px] p-5">

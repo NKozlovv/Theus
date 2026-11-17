@@ -17,12 +17,13 @@ export function TripsRanked({ trips, metric }: { trips: TripSummary[]; metric: T
   const max = Math.max(...trips.map((t) => metricValue(t, metric)), 1);
   const avg = averageMetric(trips, metric);
   const avgPct = Math.min(100, (avg / max) * 100);
+  const maxValue = Math.max(...trips.map((t) => metricValue(t, metric)));
 
   return (
-    <section className="glass flex flex-col gap-[18px] !rounded-[34px] p-[24px] px-[26px]">
+    <section className="glass flex flex-col gap-5 p-6">
       <div>
-        <div className="text-[17px] font-bold -tracking-[0.02em] text-ink">Trips ranked</div>
-        <div className="mt-1 text-[13px] font-semibold text-ink-soft">Most recent trip first.</div>
+        <h2 className="text-[16px] font-medium text-ink">Trips ranked</h2>
+        <div className="mt-1 text-[13px] text-ink-mute">Most recent trip first</div>
       </div>
 
       <div className="flex flex-col gap-3">
@@ -34,31 +35,34 @@ export function TripsRanked({ trips, metric }: { trips: TripSummary[]; metric: T
           return (
             <div
               key={t.trip}
-              className="rounded-[18px] p-[11px] px-[13px] transition-[background,transform] duration-150 ease-theus hover:-translate-y-px hover:bg-white/[0.52]"
+              className="rounded-[10px] px-3 py-2.5 transition-colors duration-150 ease-theus hover:bg-raised"
             >
               <div className="flex items-baseline justify-between gap-3">
                 <div className="flex min-w-0 items-baseline gap-2">
-                  <span className="truncate text-[14.5px] font-bold -tracking-[0.01em] text-ink">{t.trip}</span>
-                  <span className="whitespace-nowrap text-[12px] font-semibold text-ink-mute">
+                  <span className="truncate text-[14px] font-medium text-ink">{t.trip}</span>
+                  <span className="whitespace-nowrap text-[12px] text-ink-mute">
                     {t.days}d · {t.travelers} {t.travelers > 1 ? 'people' : 'person'}
                   </span>
                 </div>
-                <span className="whitespace-nowrap text-[15px] font-extrabold tabular-nums text-ink">
+                <span className="whitespace-nowrap text-[15px] font-medium tabular-nums text-ink">
                   {formatMetric(value, metric)}
                 </span>
               </div>
-              <div className="relative mt-[9px] h-[13px] rounded-full bg-white/40 shadow-[inset_0_0_0_1px_rgba(255,255,255,.5)]">
+              <div className="relative mt-2 h-2 rounded-[2px] bg-[color:var(--line)]">
                 <div
-                  className="meter absolute inset-y-0 left-0 origin-left rounded-full bg-[linear-gradient(90deg,#4a5ce0,#1fb9a4)]"
+                  className={
+                    'meter absolute inset-y-0 left-0 origin-left rounded-[2px] ' +
+                    (value === maxValue ? 'bg-indigo' : 'bg-ink/30')
+                  }
                   style={{ width: `${barPct}%` }}
                 />
                 <div
-                  className="absolute -top-1 -bottom-1 w-[2px] rounded-sm bg-ink/[0.42]"
+                  className="absolute -bottom-1 -top-1 w-px bg-ink/50"
                   style={{ left: `${avgPct}%` }}
                   aria-hidden
                 />
               </div>
-              <div className="mt-1.5 text-[12px] font-semibold text-ink-soft">
+              <div className="mt-1.5 text-[12px] tabular-nums text-ink-soft">
                 {fmtEUR(t.total, { decimals: 0 })} total · {fixedPct}% fixed ·{' '}
                 {fmtEUR(Math.round(t.dailyPerDay), { decimals: 0 })}/day
               </div>
@@ -67,8 +71,8 @@ export function TripsRanked({ trips, metric }: { trips: TripSummary[]; metric: T
         })}
       </div>
 
-      <div className="flex items-center gap-2 text-[12px] font-semibold text-ink-soft">
-        <span className="inline-block h-[13px] w-[2px] rounded-sm bg-ink/[0.42]" aria-hidden />
+      <div className="flex items-center gap-2 text-[12px] text-ink-soft">
+        <span className="inline-block h-3 w-px bg-ink/50" aria-hidden />
         Average across all trips · {formatMetric(avg, metric)}
       </div>
     </section>

@@ -8,11 +8,13 @@ export interface AccountFaceData {
   native: number;
 }
 
+// Four card stocks in ledger inks. Each is a single hue with a small tone
+// shift (no hue-to-hue gradient), like printed card stock under light.
 const FACE_PRESETS = [
-  { gradient: 'linear-gradient(135deg,#f9a8bd,#f2708f 55%,#e0517a)', ink: '#ffffff', inkMute: 'rgba(255,255,255,.85)' },
-  { gradient: 'linear-gradient(135deg,#dfe4f2,#b9c2da 55%,#9aa6c6)', ink: '#1f2742', inkMute: 'rgba(31,39,66,.65)' },
-  { gradient: 'linear-gradient(135deg,#2c3757,#1f2742 60%,#151a2d)', ink: '#ffffff', inkMute: 'rgba(255,255,255,.7)' },
-  { gradient: 'linear-gradient(135deg,#7fe3d4,#1fb9a4 55%,#0f8f7d)', ink: '#ffffff', inkMute: 'rgba(255,255,255,.85)' },
+  { face: 'linear-gradient(145deg,#3a50c8,#2a3d9e)', ink: '#ffffff', inkMute: 'rgba(255,255,255,.72)' },
+  { face: 'linear-gradient(145deg,#34343a,#1f1f23)', ink: '#ffffff', inkMute: 'rgba(255,255,255,.68)' },
+  { face: 'linear-gradient(145deg,#2f7a70,#225c54)', ink: '#ffffff', inkMute: 'rgba(255,255,255,.74)' },
+  { face: 'linear-gradient(145deg,#ece8de,#dcd7c9)', ink: '#1f1f23', inkMute: 'rgba(31,31,35,.62)' },
 ] as const;
 
 function faceFor(id: string) {
@@ -22,74 +24,59 @@ function faceFor(id: string) {
 }
 
 /**
- * Account cards — Block 3 of the Overview (design_handoff_theus_rehaul
- * README). Card faces sized to real plastic (ISO/IEC 7810 ID-1 ratio);
- * the mockup's sample last-4-digit numbers are illustrative only — this
- * app has no such field, so the masked line shows the account's real
- * currency instead of a fabricated number. Shows the 4 biggest accounts
- * by EUR balance; no Received/Spent breakdown per user feedback (was
- * reading all-zero for most accounts and added clutter). Each card
- * links through to /accounts.
+ * Account cards — third block of the Overview. Card faces are sized to real
+ * plastic (ISO/IEC 7810 ID-1 ratio) with a chip, a currency and the
+ * account name: the one physical object on the screen, built in code. This
+ * app has no card numbers, so the face shows the account's real currency
+ * instead of a fabricated number. Shows the 4 biggest accounts by EUR
+ * balance. Each card links through to /accounts.
  */
 export function AccountFaceCards({ accounts }: { accounts: AccountFaceData[] }) {
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(188px,1fr))] gap-[18px]">
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(196px,1fr))] gap-4">
       {accounts.map((a) => {
         const face = faceFor(a.id);
         return (
-          <Link href="/accounts" key={a.id} className="glass flex flex-col !rounded-[26px] p-4 px-4 pb-5">
+          <Link
+            href="/accounts"
+            key={a.id}
+            className="glass flex flex-col p-3 transition-colors duration-150 hover:bg-raised"
+          >
             <div
-              className="relative overflow-hidden p-[13px] px-[15px]"
+              className="relative flex flex-col justify-between overflow-hidden p-4"
               style={{
                 boxSizing: 'border-box',
                 aspectRatio: '1.586',
-                borderRadius: 16,
-                background: face.gradient,
-                boxShadow: '0 12px 26px rgba(31,39,66,.20)',
+                borderRadius: 12,
+                background: face.face,
+                boxShadow: '0 6px 14px -6px rgba(23,23,23,.4), inset 0 1px 0 rgba(255,255,255,.18)',
               }}
             >
-              <span
-                aria-hidden
-                className="absolute rounded-full"
-                style={{ width: 160, height: 160, right: -30, top: -20, background: 'rgba(255,255,255,.14)' }}
-              />
-              <div className="relative flex h-full flex-col justify-between">
-                <div
-                  className="text-[11px] font-bold uppercase tracking-[0.1em]"
-                  style={{ color: face.inkMute }}
-                >
+              <div className="flex items-start justify-between">
+                <span
+                  aria-hidden
+                  className="block h-[20px] w-[28px] rounded-[4px]"
+                  style={{
+                    background: 'linear-gradient(135deg,#dcc48f,#b99a5b)',
+                    boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.12)',
+                  }}
+                />
+                <span className="text-[12px] font-medium tabular-nums" style={{ color: face.inkMute }}>
                   {a.currency}
-                </div>
-                <div className="flex items-center gap-0">
-                  <span
-                    className="min-w-0 flex-1 truncate text-[15px] font-bold"
-                    style={{ color: face.ink }}
-                  >
-                    {a.name}
-                  </span>
-                  <span
-                    aria-hidden
-                    className="h-[15px] w-[15px] shrink-0 rounded-full"
-                    style={{ background: 'rgba(255,255,255,.55)' }}
-                  />
-                  <span
-                    aria-hidden
-                    className="h-[15px] w-[15px] shrink-0 rounded-full"
-                    style={{ background: 'rgba(255,255,255,.35)', marginLeft: -6 }}
-                  />
-                </div>
+                </span>
               </div>
+              <span className="min-w-0 truncate text-[15px] font-medium" style={{ color: face.ink }}>
+                {a.name}
+              </span>
             </div>
 
-            <div className="pt-4 px-[6px]">
-              <div className="text-[10.5px] font-bold uppercase tracking-[0.12em] text-ink-mute">
-                Balance
-              </div>
-              <div className="mt-0.5 flex items-baseline gap-1.5">
-                <span className="text-[26px] font-extrabold -tracking-[0.03em] tabular-nums text-ink">
+            <div className="px-1 pb-1 pt-4">
+              <div className="text-[12px] text-ink-mute">Balance</div>
+              <div className="mt-1 flex items-baseline gap-1.5">
+                <span className="text-[24px] font-medium leading-none tabular-nums text-ink">
                   {fmtCurrency(a.native, a.currency, { noSymbol: true, decimals: 0 })}
                 </span>
-                <span className="text-[14px] font-bold text-ink-mute">{a.currency}</span>
+                <span className="text-[13px] text-ink-mute">{a.currency}</span>
               </div>
             </div>
           </Link>

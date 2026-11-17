@@ -113,7 +113,7 @@ export function BulkEditModal({
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-      <div className="flex flex-col gap-2.5 rounded-[16px] border border-white/70 bg-white/40 p-4">
+      <div className="flex flex-col gap-2.5 rounded-[12px] border border-line bg-raised p-4">
         <Checkbox checked={changeCategory} onChange={setChangeCategory} label="Change category" />
         {changeCategory ? (
           <div className="flex flex-col gap-3 pl-[26px]">
@@ -149,7 +149,7 @@ export function BulkEditModal({
         ) : null}
       </div>
 
-      <div className="flex flex-col gap-2.5 rounded-[16px] border border-white/70 bg-white/40 p-4">
+      <div className="flex flex-col gap-2.5 rounded-[12px] border border-line bg-raised p-4">
         <Checkbox
           checked={tripActive}
           onChange={setChangeTrip}
@@ -170,7 +170,7 @@ export function BulkEditModal({
         ) : null}
       </div>
 
-      <div className="flex flex-col gap-2.5 rounded-[16px] border border-white/70 bg-white/40 p-4">
+      <div className="flex flex-col gap-2.5 rounded-[12px] border border-line bg-raised p-4">
         <Checkbox checked={changeAccount} onChange={setChangeAccount} label="Change account" />
         {changeAccount ? (
           <div className="pl-[26px]">
