@@ -11,10 +11,10 @@ export default function CoachPage() {
   return (
     <div className="flex flex-col gap-[18px]">
       <div>
-        <div className="inline-flex items-center gap-2 rounded-full bg-indigo/[0.12] px-3 py-[5px] text-[12px] font-medium text-indigo-dark mb-3">
+        <div className="inline-flex items-center gap-2 rounded-full bg-indigo/[0.12] px-3 py-[5px] text-[11px] font-semibold uppercase tracking-[0.08em] text-indigo-dark mb-3">
           <Icon name="sparkle" size={12} /> Beta
         </div>
-        <h1 className="max-w-[620px] text-[34px] font-semibold leading-[1.15] -tracking-[0.03em] text-ink">
+        <h1 className="max-w-[620px] text-[34px] font-extrabold leading-[1.15] -tracking-[0.03em] text-ink">
           Your money has patterns.{' '}
           <span className="text-ink-mute">
             Theus reads them, and tells you what to do next.
@@ -25,10 +25,10 @@ export default function CoachPage() {
       <div className="glass grid grid-cols-1 gap-6 !rounded-[26px] p-[22px] sm:grid-cols-2 lg:grid-cols-4">
         {STREAK_TILES.map((tile) => (
           <div key={tile.label}>
-            <div className="flex items-center gap-1.5 mb-2 text-[12px] text-ink-mute">
+            <div className="flex items-center gap-1.5 mb-2 text-[11px] uppercase tracking-[0.12em] text-ink-mute">
               <Icon name={tile.icon} size={12} /> {tile.label}
             </div>
-            <div className="font-mono font-medium text-[22px] tracking-[-0.02em] text-ink-mute">
+            <div className="font-mono font-semibold text-[22px] tracking-[-0.02em] text-ink-mute">
               {tile.value}
             </div>
           </div>
@@ -36,7 +36,7 @@ export default function CoachPage() {
       </div>
 
       <div>
-        <Mono size="sm" className="">
+        <Mono size="sm" className="tracking-[0.14em]">
           This week&rsquo;s insights
         </Mono>
         <div className="glass mt-3 flex items-start gap-3.5 !rounded-[20px] p-5">
@@ -44,7 +44,7 @@ export default function CoachPage() {
             <Icon name="sparkle" size={18} className="text-indigo" />
           </div>
           <div className="flex-1">
-            <div className="text-[15px] font-medium text-ink mb-1">
+            <div className="text-[15px] font-semibold text-ink mb-1">
               Coach is learning your patterns.
             </div>
             <div className="text-[13px] leading-[1.5] text-ink-soft">

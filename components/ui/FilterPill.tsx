@@ -25,7 +25,7 @@ export const FilterPill = forwardRef<HTMLButtonElement, FilterPillProps>(functio
       ref={ref}
       type={type}
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-full px-[18px] py-[10px] text-[14px] font-medium',
+        'inline-flex items-center gap-1.5 rounded-full px-[18px] py-[10px] text-[13.5px] font-semibold',
         'transition-[transform,background,color,box-shadow] duration-200 ease-theus',
         active
           ? 'bg-indigo text-white '

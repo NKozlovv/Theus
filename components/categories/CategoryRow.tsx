@@ -62,7 +62,7 @@ export function CategoryRow({
             }}
             aria-label={`Edit ${category.name}`}
             title={`Edit ${category.name}`}
-            className="group/edit relative flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-[12px] text-[13px] font-semibold text-white transition-transform hover:scale-105"
+            className="group/edit relative flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-[12px] text-[13px] font-extrabold text-white transition-transform hover:scale-105"
             style={{ background: color }}
           >
             {category.name.charAt(0).toUpperCase()}
@@ -70,7 +70,7 @@ export function CategoryRow({
               <Icon name="pencil" size={14} />
             </span>
           </button>
-          <span className="truncate text-[14px] font-medium text-ink">{category.name}</span>
+          <span className="truncate text-[14.5px] font-semibold text-ink">{category.name}</span>
         </div>
 
         <div className="flex items-center gap-3">
@@ -85,16 +85,16 @@ export function CategoryRow({
               style={{ left: '66%' }}
             />
           </div>
-          <span className="w-[46px] shrink-0 text-right text-[12px] font-semibold tabular-nums" style={{ color: tone }}>
+          <span className="w-[46px] shrink-0 text-right text-[12px] font-extrabold tabular-nums" style={{ color: tone }}>
             {Math.round(pctOfAvg)}%
           </span>
         </div>
 
-        <div className="text-[15.5px] font-semibold tabular-nums text-ink">
+        <div className="text-[15.5px] font-extrabold tabular-nums text-ink">
           {fmtEUR(thisMonth, { decimals: 0 })}
         </div>
 
-        <div className="text-[14px] font-medium text-ink-mute">{fmtEUR(avgMonthly, { decimals: 0 })}</div>
+        <div className="text-[13.5px] font-semibold text-ink-mute">{fmtEUR(avgMonthly, { decimals: 0 })}</div>
 
         <button
           type="button"
@@ -118,10 +118,10 @@ export function CategoryRow({
       {open ? (
         <div className="rise ml-[62px] mr-[10px] mb-[10px] mt-0.5 rounded-[16px] bg-white/50 px-4 py-2.5" style={{ animationDuration: '240ms' }}>
           {subcategories.length === 0 ? (
-            <div className="py-2 text-[13px] text-ink-mute">No subcategories yet</div>
+            <div className="py-2 text-[12.5px] text-ink-mute">No subcategories yet.</div>
           ) : (
             <>
-              <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_90px_90px] gap-4 pb-1.5 text-[11px] font-semibold text-ink-mute">
+              <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_90px_90px] gap-4 pb-1.5 text-[10px] font-bold uppercase tracking-[0.08em] text-ink-mute">
                 <span />
                 <span>Pace vs avg</span>
                 <span>This month</span>
@@ -134,9 +134,9 @@ export function CategoryRow({
                 return (
                   <div
                     key={s.subcategory.id}
-                    className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_90px_90px] items-center gap-4 py-[7px] text-[14px]"
+                    className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_90px_90px] items-center gap-4 py-[7px] text-[13.5px]"
                   >
-                    <span className="truncate font-medium text-ink-soft">{s.subcategory.name}</span>
+                    <span className="truncate font-semibold text-ink-soft">{s.subcategory.name}</span>
                     <div className="flex items-center gap-2">
                       <div className="relative h-[6px] flex-1 rounded-full bg-white/80">
                         <div
@@ -144,12 +144,12 @@ export function CategoryRow({
                           style={{ width: `${subMeterPct}%`, background: color }}
                         />
                       </div>
-                      <span className="w-[36px] shrink-0 text-right text-[12px] font-semibold tabular-nums" style={{ color: subTone }}>
+                      <span className="w-[36px] shrink-0 text-right text-[11px] font-extrabold tabular-nums" style={{ color: subTone }}>
                         {Math.round(subPctOfAvg)}%
                       </span>
                     </div>
-                    <span className="font-semibold tabular-nums text-ink">{fmtEUR(s.thisMonth, { decimals: 0 })}</span>
-                    <span className="font-medium text-ink-mute">{fmtEUR(s.avgMonthly, { decimals: 0 })}</span>
+                    <span className="font-bold tabular-nums text-ink">{fmtEUR(s.thisMonth, { decimals: 0 })}</span>
+                    <span className="font-semibold text-ink-mute">{fmtEUR(s.avgMonthly, { decimals: 0 })}</span>
                   </div>
                 );
               })}
@@ -162,7 +162,7 @@ export function CategoryRow({
                 e.stopPropagation();
                 onEdit();
               }}
-              className="text-[12px] font-medium text-indigo-dark hover:underline"
+              className="text-[12px] font-semibold text-indigo-dark hover:underline"
             >
               + Add or remove subcategories
             </button>

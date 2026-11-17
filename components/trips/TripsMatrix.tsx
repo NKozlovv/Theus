@@ -61,16 +61,16 @@ export function TripsMatrix({
     <section className="glass flex flex-col gap-[18px] !rounded-[34px] p-[24px] px-[26px]">
       <div className="flex flex-wrap items-start justify-between gap-3.5">
         <div>
-          <div className="text-[17px] font-semibold text-ink">Subcategory by trip</div>
-          <div className="mt-1 text-[13px] font-medium text-ink-soft">
+          <div className="text-[17px] font-bold -tracking-[0.02em] text-ink">Subcategory by trip</div>
+          <div className="mt-1 text-[13px] font-semibold text-ink-soft">
             {metric === 'total'
-              ? 'Absolute spend per subcategory'
+              ? 'Absolute spend per subcategory.'
               : metric === 'perDay'
-                ? 'Spend per subcategory, per day away'
-                : 'Spend per subcategory, per person-day'}
+                ? 'Spend per subcategory, per day away.'
+                : 'Spend per subcategory, per person-day.'}
           </div>
         </div>
-        <div className="flex items-center gap-2 text-[12px] font-medium text-ink-soft">
+        <div className="flex items-center gap-2 text-[12px] font-semibold text-ink-soft">
           Lighter
           <span className="inline-block h-[11px] w-[88px] rounded-full bg-[linear-gradient(90deg,rgba(74,92,224,.08),rgba(74,92,224,.9))]" />
           heavier, read across each row
@@ -81,25 +81,25 @@ export function TripsMatrix({
         <table className="w-full min-w-[820px] border-separate border-spacing-1">
           <thead>
             <tr>
-              <th className="px-2 py-1.5 text-left text-[11px] font-semibold text-ink-mute">
+              <th className="px-2 py-1.5 text-left text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">
                 Subcategory
               </th>
               {trips.map((t) => (
-                <th key={t.trip} className="whitespace-nowrap px-2 py-1.5 text-right text-[12px] font-semibold text-ink">
+                <th key={t.trip} className="whitespace-nowrap px-2 py-1.5 text-right text-[12px] font-bold text-ink">
                   {t.trip}
-                  <div className="text-[12px] font-medium text-[#7b8296]">
+                  <div className="text-[11px] font-semibold text-[#7b8296]">
                     {t.days}d · {t.travelers}p
                   </div>
                 </th>
               ))}
               <th
-                className="whitespace-nowrap px-2 py-1.5 text-right text-[12px] font-semibold text-ink"
+                className="whitespace-nowrap px-2 py-1.5 text-right text-[12px] font-bold text-ink"
                 title="Day-weighted average across trips that actually spent on this subcategory (Σ spend ÷ Σ days) — changes with the metric above."
               >
                 {`Avg${avgSuffix}`}
               </th>
               <th
-                className="whitespace-nowrap px-2 py-1.5 text-right text-[12px] font-semibold text-ink"
+                className="whitespace-nowrap px-2 py-1.5 text-right text-[12px] font-bold text-ink"
                 title="Absolute total across every trip — always the raw sum, regardless of which metric is selected."
               >
                 Sum (€)
@@ -119,7 +119,7 @@ export function TripsMatrix({
                       className="mr-2 inline-block h-[9px] w-[9px] rounded-[3px]"
                       style={{ background: subcategoryColor(colors, sub) }}
                     />
-                    <span className="text-[13px] font-semibold text-ink">{sub}</span>
+                    <span className="text-[13px] font-bold text-ink">{sub}</span>
                   </td>
                   {trips.map((t, i) => {
                     const v = values[i]!;
@@ -127,7 +127,7 @@ export function TripsMatrix({
                     return (
                       <td
                         key={t.trip}
-                        className="rounded-[12px] px-2.5 py-2 text-right text-[13px] font-semibold tabular-nums"
+                        className="rounded-[12px] px-2.5 py-2 text-right text-[13px] font-bold tabular-nums"
                         style={{
                           background: v === 0 ? 'rgba(255,255,255,.22)' : `rgba(74, 92, 224, ${(0.07 + r * 0.72).toFixed(3)})`,
                           color: v === 0 ? '#9aa0b4' : r > 0.55 ? '#ffffff' : '#1d2340',
@@ -137,28 +137,28 @@ export function TripsMatrix({
                       </td>
                     );
                   })}
-                  <td className="whitespace-nowrap rounded-[12px] bg-white/[0.34] px-2.5 py-2 text-right text-[13px] font-semibold tabular-nums text-ink">
+                  <td className="whitespace-nowrap rounded-[12px] bg-white/[0.34] px-2.5 py-2 text-right text-[13px] font-bold tabular-nums text-ink">
                     {avg === null ? '—' : fmtEUR(metric === 'total' ? avg : Math.round(avg), { decimals: 0 })}
                   </td>
-                  <td className="whitespace-nowrap rounded-[12px] bg-white/[0.34] px-2.5 py-2 text-right text-[13px] font-semibold tabular-nums text-ink">
+                  <td className="whitespace-nowrap rounded-[12px] bg-white/[0.34] px-2.5 py-2 text-right text-[13px] font-extrabold tabular-nums text-ink">
                     {fmtEUR(sum, { decimals: 0 })}
                   </td>
                 </tr>
               );
             })}
             <tr>
-              <td className="px-2.5 py-2 text-[12px] font-semibold text-ink-mute">
+              <td className="px-2.5 py-2 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-mute">
                 Trip total
               </td>
               {trips.map((t) => (
-                <td key={t.trip} className="px-2.5 py-2 text-right text-[14px] font-semibold tabular-nums text-ink">
+                <td key={t.trip} className="px-2.5 py-2 text-right text-[13.5px] font-extrabold tabular-nums text-ink">
                   {formatMetric(metricValue(t, metric), metric)}
                 </td>
               ))}
-              <td className="px-2.5 py-2 text-right text-[14px] font-semibold tabular-nums text-ink">
+              <td className="px-2.5 py-2 text-right text-[13.5px] font-extrabold tabular-nums text-ink">
                 {formatMetric(averageMetric(trips, metric), metric)}
               </td>
-              <td className="px-2.5 py-2 text-right text-[14px] font-semibold tabular-nums text-ink">
+              <td className="px-2.5 py-2 text-right text-[13.5px] font-extrabold tabular-nums text-ink">
                 {fmtEUR(
                   trips.reduce((s, t) => s + t.total, 0),
                   { decimals: 0 },

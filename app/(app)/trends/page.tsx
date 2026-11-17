@@ -109,7 +109,7 @@ export default async function TrendsPage({
 
 function Legend({ hue, label }: { hue: string; label: string }) {
   return (
-    <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-ink-soft">
+    <span className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-ink-soft">
       <span className="h-[10px] w-[10px] rounded-full" style={{ background: hue }} />
       {label}
     </span>

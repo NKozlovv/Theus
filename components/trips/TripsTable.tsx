@@ -37,8 +37,8 @@ export function TripsTable({
   return (
     <section className="glass flex flex-col gap-4 !rounded-[34px] p-[24px] px-[26px]">
       <div>
-        <div className="text-[17px] font-semibold text-ink">Every trip, side by side</div>
-        <div className="mt-1 text-[13px] font-medium text-ink-soft">
+        <div className="text-[17px] font-bold -tracking-[0.02em] text-ink">Every trip, side by side</div>
+        <div className="mt-1 text-[13px] font-semibold text-ink-soft">
           Fixed cost is getting there and sleeping; daily cost is everything you spend once you&rsquo;re there.
         </div>
       </div>
@@ -52,7 +52,7 @@ export function TripsTable({
                   key={h.label}
                   title={h.hint}
                   className={cn(
-                    'whitespace-nowrap border-b border-white/60 px-3 py-[9px] text-[11px] font-semibold text-ink-mute',
+                    'whitespace-nowrap border-b border-white/60 px-3 py-[9px] text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute',
                     h.align === 'right' ? 'text-right' : 'text-left',
                   )}
                 >
@@ -71,12 +71,12 @@ export function TripsTable({
               return (
                 <tr key={t.trip} className="transition-colors duration-150 hover:bg-white/[0.44]">
                   <td className="border-b border-white/45 px-3 py-3">
-                    <div className="whitespace-nowrap text-[14px] font-semibold text-ink">{t.trip}</div>
-                    <div className="whitespace-nowrap text-[12px] font-medium text-[#7b8296]">
+                    <div className="whitespace-nowrap text-[14px] font-bold text-ink">{t.trip}</div>
+                    <div className="whitespace-nowrap text-[11.5px] font-semibold text-[#7b8296]">
                       {t.txCount} {t.txCount === 1 ? 'transaction' : 'transactions'}
                     </div>
                   </td>
-                  <td className="whitespace-nowrap border-b border-white/45 px-3 py-3 text-right text-[13px] font-medium text-[#3f465c]">
+                  <td className="whitespace-nowrap border-b border-white/45 px-3 py-3 text-right text-[13px] font-semibold text-[#3f465c]">
                     {dateRangeDisplay(t.fromDate, t.toDate)}
                     {!t.datesAreExplicit ? (
                       <span
@@ -87,44 +87,44 @@ export function TripsTable({
                       </span>
                     ) : null}
                   </td>
-                  <td className="border-b border-white/45 px-3 py-3 text-right text-[13px] font-medium tabular-nums text-[#3f465c]">
+                  <td className="border-b border-white/45 px-3 py-3 text-right text-[13px] font-semibold tabular-nums text-[#3f465c]">
                     {t.days}
                   </td>
-                  <td className="border-b border-white/45 px-3 py-3 text-right text-[13px] font-medium tabular-nums text-[#3f465c]">
+                  <td className="border-b border-white/45 px-3 py-3 text-right text-[13px] font-semibold tabular-nums text-[#3f465c]">
                     {t.travelers}
                   </td>
-                  <td className="border-b border-white/45 px-3 py-3 text-right text-[14px] font-semibold tabular-nums text-ink">
+                  <td className="border-b border-white/45 px-3 py-3 text-right text-[13.5px] font-extrabold tabular-nums text-ink">
                     {fmtEUR(t.total, { decimals: 0 })}
                   </td>
-                  <td className="border-b border-white/45 px-3 py-3 text-right text-[13px] font-semibold tabular-nums text-[#3f465c]">
+                  <td className="border-b border-white/45 px-3 py-3 text-right text-[13px] font-bold tabular-nums text-[#3f465c]">
                     {fixedPct}%
                   </td>
                   <td
                     className={cn(
-                      'border-b border-white/45 px-3 py-3 text-right text-[13px] font-semibold tabular-nums',
+                      'border-b border-white/45 px-3 py-3 text-right text-[13px] font-bold tabular-nums',
                       t.perDay > avgPerDay ? 'text-out' : 'text-in',
                     )}
                   >
                     {fmtEUR(Math.round(t.perDay), { decimals: 0 })}
                   </td>
-                  <td className="border-b border-white/45 px-3 py-3 text-right text-[13px] font-semibold tabular-nums text-[#3f465c]">
+                  <td className="border-b border-white/45 px-3 py-3 text-right text-[13px] font-bold tabular-nums text-[#3f465c]">
                     {fmtEUR(Math.round(t.dailyPerDay), { decimals: 0 })}
                   </td>
                   <td
                     className={cn(
-                      'border-b border-white/45 px-3 py-3 text-right text-[13px] font-semibold tabular-nums',
+                      'border-b border-white/45 px-3 py-3 text-right text-[13px] font-bold tabular-nums',
                       bad ? 'text-out' : good ? 'text-in' : 'text-[#3f465c]',
                     )}
                   >
                     {fmtEUR(Math.round(t.perPersonDay), { decimals: 0 })}
                   </td>
-                  <td className="border-b border-white/45 px-3 py-3 text-right text-[13px] font-semibold tabular-nums text-[#3f465c]">
+                  <td className="border-b border-white/45 px-3 py-3 text-right text-[13px] font-bold tabular-nums text-[#3f465c]">
                     {fmtEUR(Math.round(t.dailyPerPersonDay), { decimals: 0 })}
                   </td>
                   <td className="whitespace-nowrap border-b border-white/45 px-3 py-3 text-right">
                     <span
                       className={cn(
-                        'rounded-full px-2.5 py-1 text-[12px] font-semibold',
+                        'rounded-full px-2.5 py-1 text-[11.5px] font-bold',
                         good && 'bg-in/[0.16] text-in',
                         bad && 'bg-out/[0.16] text-out',
                         !good && !bad && 'bg-indigo/[0.14] text-indigo-dark',
@@ -150,7 +150,7 @@ export function TripsTable({
         </table>
       </div>
 
-      <p className="text-[13px] font-medium text-ink-soft">
+      <p className="text-[12.5px] font-semibold text-ink-soft">
         {`Fixed = flights, lodging and fees, the part you commit to before leaving. Daily = food, local transport, activities and shopping, divided by days away. "Per day"/"Per person-day" include fixed costs; "Daily/day" and "Daily/p-day" strip those out, so they show what a normal day there actually cost.`}{' '}
         <span className="text-ink-mute">
           {`Verdict always compares per-person-day cost against the average across every trip (${fmtEUR(basePpd, { decimals: 0 })}/p·day here) — ±10% is "on average", regardless of which metric is selected above. A ~ next to a date range means it's estimated from that trip's own transactions — click the pencil to set exact dates or rename the trip.`}

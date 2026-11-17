@@ -75,12 +75,12 @@ export function BudgetSwitcher({
         className="group flex w-full items-center gap-2 rounded-[14px] border border-white/70 bg-white/60 px-3 py-2 text-left transition-colors hover:bg-white focus:outline-none focus:border-indigo"
       >
         <div className="min-w-0 flex-1">
-          <div className="text-[11px] font-semibold text-ink-mute">
+          <div className="text-[10px] font-bold uppercase tracking-[0.1em] text-ink-mute">
             Budget
           </div>
-          <div className="mt-0.5 truncate text-[13px] font-medium text-ink">{active.name}</div>
+          <div className="mt-0.5 truncate text-[13px] font-semibold text-ink">{active.name}</div>
         </div>
-        <span className="text-[11px] text-ink-mute group-hover:text-ink">
+        <span className="text-[10px] text-ink-mute group-hover:text-ink">
           {open ? '▴' : '▾'}
         </span>
       </button>
@@ -105,7 +105,7 @@ export function BudgetSwitcher({
                     }
                   >
                     <span className="truncate">{b.name}</span>
-                    <span className="text-[11px] text-ink-mute">
+                    <span className="text-[10px] uppercase tracking-[0.06em] text-ink-mute">
                       {b.base_currency}
                     </span>
                   </button>
@@ -120,7 +120,7 @@ export function BudgetSwitcher({
                 setOpen(false);
                 setMode({ kind: 'create' });
               }}
-              className="rounded-[10px] px-3 py-2 text-left text-[12px] font-medium text-indigo-dark hover:bg-white/70"
+              className="rounded-[10px] px-3 py-2 text-left text-[12px] font-semibold text-indigo-dark hover:bg-white/70"
             >
               + New budget
             </button>
@@ -143,7 +143,7 @@ export function BudgetSwitcher({
         open={mode.kind === 'create'}
         onOpenChange={(o) => !o && setMode({ kind: 'idle' })}
         title="New budget"
-        description="A separate workspace with its own accounts, categories, and transactions"
+        description="A separate workspace with its own accounts, categories, and transactions."
       >
         <CreateBudgetForm
           onDone={() => {
@@ -169,7 +169,7 @@ export function BudgetSwitcher({
             >
               <div className="min-w-0">
                 <div className="truncate text-[13px] font-medium text-ink">{b.name}</div>
-                <div className="text-[11px] text-ink-mute">
+                <div className="text-[10px] uppercase tracking-[0.06em] text-ink-mute">
                   {b.base_currency} · {b.id === activeId ? 'active' : 'member'}
                 </div>
               </div>

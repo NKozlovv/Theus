@@ -61,7 +61,7 @@ export function Modal({
           className={cn('glass glass-nohover fixed left-1/2 top-1/2 z-50 w-full max-w-md !rounded-[30px] p-6 outline-none', className)}
           style={{ transform: 'translate(-50%, -50%)' }}
         >
-          <Dialog.Title className="text-[19px] font-semibold text-ink">{title}</Dialog.Title>
+          <Dialog.Title className="text-[19px] font-bold -tracking-[0.02em] text-ink">{title}</Dialog.Title>
           {description ? (
             <Dialog.Description className="mt-1 text-[13px] text-ink-soft">
               {description}

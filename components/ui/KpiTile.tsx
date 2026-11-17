@@ -4,7 +4,7 @@ import { Num } from './Num';
 import { Icon, type IconName } from './Icon';
 
 /**
- * KpiTile — glass-tile card, mono label, 32px tabular numeral,
+ * KpiTile — glass-tile card, mono uppercase label, 32px tabular numeral,
  * optional radial gradient overlay (hero variant) and optional
  * icon-prefixed delta indicator.
  */
@@ -16,6 +16,7 @@ export function KpiTile({
   deltaTone = 'pos',
   deltaIcon,
   sub,
+  hero = false,
   className,
   children,
 }: {
@@ -32,6 +33,15 @@ export function KpiTile({
 }) {
   return (
     <div className={cn('glass-tile relative overflow-hidden !rounded-[20px] p-6', className)}>
+      {hero ? (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: 'radial-gradient(circle at 90% 0%, rgba(74,92,224,.14), transparent 55%)',
+          }}
+        />
+      ) : null}
       <div className="relative">
         <Mono size="sm" tone="mute">
           {label}
@@ -51,7 +61,7 @@ export function KpiTile({
             {delta && (
               <span
                 className={cn(
-                  'inline-flex items-center gap-1 font-mono text-[12px] font-medium',
+                  'inline-flex items-center gap-1 font-mono text-[12px] font-semibold',
                   deltaTone === 'pos' && 'text-in',
                   deltaTone === 'neg' && 'text-out',
                   deltaTone === 'mute' && 'text-ink-mute',

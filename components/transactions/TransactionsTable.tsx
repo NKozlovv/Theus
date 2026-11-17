@@ -161,7 +161,7 @@ export function TransactionsTable({
         open={mode.kind === 'add'}
         onOpenChange={(o) => !o && setMode({ kind: 'idle' })}
         title="Add transaction"
-        description="A new entry on this budget"
+        description="A new entry on this budget."
       >
         <TransactionForm
           budgetId={budgetId}
@@ -226,12 +226,12 @@ export function TransactionsTable({
           open={true}
           onOpenChange={(o) => !o && setMode({ kind: 'idle' })}
           title="Delete transaction?"
-          description="This can't be undone"
+          description="This can't be undone."
         >
           <div className="flex flex-col gap-4">
             <div className="glass-tile !rounded-[14px] p-3 text-[13px]">
               <Mono size="xs" className="block">
-                {dateDisplay(mode.tx.date)}
+                {dateDisplay(mode.tx.date).toUpperCase()}
               </Mono>
               <div className="mt-1 text-ink">{mode.tx.comment || '(no description)'}</div>
               <div className="mt-1 text-ink-soft">
@@ -252,7 +252,7 @@ export function TransactionsTable({
         open={mode.kind === 'bulkEdit'}
         onOpenChange={(o) => !o && setMode({ kind: 'idle' })}
         title={`Edit ${selectedIds.size} transaction${selectedIds.size === 1 ? '' : 's'}`}
-        description="Only the fields you turn on below will be changed"
+        description="Only the fields you turn on below will be changed."
       >
         <BulkEditModal
           count={selectedIds.size}
@@ -271,7 +271,7 @@ export function TransactionsTable({
         open={mode.kind === 'bulkDelete'}
         onOpenChange={(o) => !o && setMode({ kind: 'idle' })}
         title={`Delete ${selectedIds.size} transaction${selectedIds.size === 1 ? '' : 's'}?`}
-        description="This can't be undone"
+        description="This can't be undone."
       >
         <div className="flex flex-col gap-4">
           <p className="text-[13px] text-ink-soft">Selected net: {fmtEUR(selectedNetEUR)}.</p>

@@ -24,6 +24,7 @@
   --glass-sheen: linear-gradient(140deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.16) 42%, rgba(255, 255, 255, 0.34));
   --glass-sheen-hi: linear-gradient(140deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.26) 42%, rgba(255, 255, 255, 0.46));
   --glass-sheen-in: linear-gradient(140deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.26) 45%, rgba(255, 255, 255, 0.46));
+  --glass-sheen-hero: linear-gradient(140deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3) 42%, rgba(255, 255, 255, 0.52));
   --glass-sheen-tile: linear-gradient(140deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.18) 45%, rgba(255, 255, 255, 0.38));
   --glass-blur: blur(28px) saturate(2); /* panels — was 44px; blur cost grows steeply with radius, and over the already-soft ambient ground the difference is barely visible */
   --glass-blur-in: blur(12px) saturate(1.8); /* inner cards — usually sit on a frosted panel already */
@@ -53,9 +54,10 @@
   --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
 
   /* shape */
-  --r-panel: 34px;
-  --r-inner: 22px;
-  --r-tile: 20px;
+  --r-panel: 32px; /* nests: 32 panel -> 16 padding -> 16 inner object */
+  --r-inner: 20px;
+  --r-tile: 16px;
+  --r-row: 12px;
 
   /* motion */
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);

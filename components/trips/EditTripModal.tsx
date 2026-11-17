@@ -76,10 +76,10 @@ export function EditTripModal({
       open={true}
       onOpenChange={(o) => !o && onClose()}
       title={`Edit ${trip}`}
-      description="Name, dates and headcount for this trip — used for the day count and per-person-day comparison"
+      description="Name, dates and headcount for this trip — used for the day count and per-person-day comparison."
     >
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <Field label="Trip name" hint="Renaming moves every transaction tagged with the old name">
+        <Field label="Trip name" hint="Renaming moves every transaction tagged with the old name.">
           {({ id }) => <Input id={id} type="text" required value={name} onChange={(e) => setName(e.target.value)} />}
         </Field>
         <div className="grid grid-cols-2 gap-3">

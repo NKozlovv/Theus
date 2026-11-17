@@ -21,8 +21,8 @@ export function TripsRanked({ trips, metric }: { trips: TripSummary[]; metric: T
   return (
     <section className="glass flex flex-col gap-[18px] !rounded-[34px] p-[24px] px-[26px]">
       <div>
-        <div className="text-[17px] font-semibold text-ink">Trips ranked</div>
-        <div className="mt-1 text-[13px] font-medium text-ink-soft">Most recent trip first</div>
+        <div className="text-[17px] font-bold -tracking-[0.02em] text-ink">Trips ranked</div>
+        <div className="mt-1 text-[13px] font-semibold text-ink-soft">Most recent trip first.</div>
       </div>
 
       <div className="flex flex-col gap-3">
@@ -38,18 +38,18 @@ export function TripsRanked({ trips, metric }: { trips: TripSummary[]; metric: T
             >
               <div className="flex items-baseline justify-between gap-3">
                 <div className="flex min-w-0 items-baseline gap-2">
-                  <span className="truncate text-[14px] font-semibold text-ink">{t.trip}</span>
-                  <span className="whitespace-nowrap text-[12px] font-medium text-ink-mute">
+                  <span className="truncate text-[14.5px] font-bold -tracking-[0.01em] text-ink">{t.trip}</span>
+                  <span className="whitespace-nowrap text-[12px] font-semibold text-ink-mute">
                     {t.days}d · {t.travelers} {t.travelers > 1 ? 'people' : 'person'}
                   </span>
                 </div>
-                <span className="whitespace-nowrap text-[15px] font-semibold tabular-nums text-ink">
+                <span className="whitespace-nowrap text-[15px] font-extrabold tabular-nums text-ink">
                   {formatMetric(value, metric)}
                 </span>
               </div>
               <div className="relative mt-[9px] h-[13px] rounded-full bg-white/40 shadow-[inset_0_0_0_1px_rgba(255,255,255,.5)]">
                 <div
-                  className="meter absolute inset-y-0 left-0 origin-left rounded-full bg-indigo"
+                  className="meter absolute inset-y-0 left-0 origin-left rounded-full bg-[linear-gradient(90deg,#4a5ce0,#1fb9a4)]"
                   style={{ width: `${barPct}%` }}
                 />
                 <div
@@ -58,7 +58,7 @@ export function TripsRanked({ trips, metric }: { trips: TripSummary[]; metric: T
                   aria-hidden
                 />
               </div>
-              <div className="mt-1.5 text-[12px] font-medium text-ink-soft">
+              <div className="mt-1.5 text-[12px] font-semibold text-ink-soft">
                 {fmtEUR(t.total, { decimals: 0 })} total · {fixedPct}% fixed ·{' '}
                 {fmtEUR(Math.round(t.dailyPerDay), { decimals: 0 })}/day
               </div>
@@ -67,7 +67,7 @@ export function TripsRanked({ trips, metric }: { trips: TripSummary[]; metric: T
         })}
       </div>
 
-      <div className="flex items-center gap-2 text-[12px] font-medium text-ink-soft">
+      <div className="flex items-center gap-2 text-[12px] font-semibold text-ink-soft">
         <span className="inline-block h-[13px] w-[2px] rounded-sm bg-ink/[0.42]" aria-hidden />
         Average across all trips · {formatMetric(avg, metric)}
       </div>

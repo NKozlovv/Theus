@@ -13,7 +13,7 @@ export function AuthBanner({
   children: React.ReactNode;
 }) {
   return (
-    <div className={`mb-5 flex items-start gap-[10px] rounded-[16px] px-[15px] py-[13px] text-[14px] font-medium leading-relaxed ${TONE_CLASS[tone]}`}>
+    <div className={`mb-5 flex items-start gap-[10px] rounded-[16px] px-[15px] py-[13px] text-[13.5px] font-semibold leading-relaxed ${TONE_CLASS[tone]}`}>
       <span className="mt-0.5 shrink-0" aria-hidden>
         {tone === 'err' ? '!' : '✓'}
       </span>

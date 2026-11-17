@@ -23,7 +23,7 @@ export default async function AccountsPage() {
   if (accounts.length === 0) {
     return (
       <section className="glass flex flex-col items-center gap-3 !rounded-[34px] px-8 py-16 text-center">
-        <h1 className="text-[22px] font-semibold text-ink">Nothing to track yet</h1>
+        <h1 className="text-[22px] font-extrabold -tracking-[0.02em] text-ink">Nothing to track yet</h1>
         <p className="max-w-[46ch] text-[14px] font-medium text-ink-soft">
           Add your first account and Theus will start building net worth from it. You can add the
           rest later.
@@ -138,7 +138,7 @@ export default async function AccountsPage() {
 
       <section className="glass flex flex-col gap-[14px] !rounded-[34px] p-[24px] px-[26px]">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-[22px] font-semibold text-ink">All accounts</h2>
+          <h2 className="text-[22px] font-extrabold -tracking-[0.025em] text-ink">All accounts</h2>
           <AddAccountButton />
         </div>
         <AccountsGrid

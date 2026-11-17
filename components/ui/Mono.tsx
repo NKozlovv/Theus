@@ -13,12 +13,12 @@ const TONE: Record<Tone, string> = {
 };
 
 const SIZE: Record<Size, string> = {
-  xs: 'text-[11px]',
-  sm: 'text-[12px]',
+  xs: 'text-[10px]',
+  sm: 'text-[11px]',
 };
 
 /**
- * Small tracked label rendered in JetBrains Mono.
+ * Small uppercase tracked label rendered in JetBrains Mono.
  */
 export function Mono({
   children,
@@ -34,7 +34,7 @@ export function Mono({
   return (
     <span
       className={cn(
-        'font-mono font-medium',
+        'font-mono font-medium uppercase tracking-[0.18em]',
         SIZE[size],
         TONE[tone],
         className,

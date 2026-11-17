@@ -64,7 +64,7 @@ export function ExportButton({
     <button
       type="button"
       onClick={download}
-      className="rounded-full border border-white/90 px-[17px] py-[9px] text-[14px] font-medium text-ink [background:var(--glass-sheen-tile)] transition-[transform,background] duration-200 ease-theus hover:bg-white"
+      className="rounded-full border border-white/90 px-[17px] py-[9px] text-[13.5px] font-semibold text-ink [background:var(--glass-sheen-tile)] transition-[transform,background] duration-200 ease-theus hover:bg-white"
     >
       Export
     </button>

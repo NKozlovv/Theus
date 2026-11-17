@@ -110,9 +110,9 @@ export function LotModal({
         onModeChange(k);
       }}
       className={cn(
-        'whitespace-nowrap rounded-full px-3 py-[7px] text-[13px] font-semibold transition-colors',
+        'whitespace-nowrap rounded-full px-3 py-[7px] text-[12.5px] font-bold transition-colors',
         mode === k
-          ? 'bg-indigo text-white '
+          ? 'bg-[linear-gradient(180deg,#5a6be8,#4152d6)] text-white [box-shadow:0_8px_18px_-8px_rgba(74,92,224,.6)]'
           : 'text-ink-soft hover:bg-white/60',
       )}
     >
@@ -131,7 +131,7 @@ export function LotModal({
 
         {mode !== 'history' ? (
           <>
-            <div className="text-[13px] font-medium text-ink-soft">
+            <div className="text-[13px] font-semibold text-ink-soft">
               {editingId
                 ? 'Editing this transaction — change anything and save.'
                 : mode === 'open'
@@ -161,11 +161,11 @@ export function LotModal({
               </Field>
             </div>
             <div className="flex items-center justify-between rounded-[16px] bg-white/60 px-3.5 py-3">
-              <span className="text-[13px] font-medium text-ink-soft">Total cost</span>
-              <span className="text-[16px] font-semibold tabular-nums">{eur(total)}</span>
+              <span className="text-[12.5px] font-semibold text-ink-soft">Total cost</span>
+              <span className="text-[16px] font-extrabold tabular-nums">{eur(total)}</span>
             </div>
-            {error ? <p className="rounded-[14px] bg-[rgba(242,112,143,.15)] px-3 py-2.5 text-[13px] font-semibold text-out" role="alert">{error}</p> : null}
-            {flash ? <p className="rounded-[14px] bg-[rgba(31,185,164,.15)] px-3 py-2.5 text-[13px] font-semibold text-in">{flash}</p> : null}
+            {error ? <p className="rounded-[14px] bg-[rgba(242,112,143,.15)] px-3 py-2.5 text-[13px] font-bold text-out" role="alert">{error}</p> : null}
+            {flash ? <p className="rounded-[14px] bg-[rgba(31,185,164,.15)] px-3 py-2.5 text-[13px] font-bold text-in">{flash}</p> : null}
             <Button onClick={submit} disabled={pending} className="!py-[13px]">
               {pending ? 'Saving…' : editingId ? 'Save changes' : mode === 'open' ? 'Save opening position' : 'Log buy'}
             </Button>
@@ -187,17 +187,17 @@ export function LotModal({
                 >
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="whitespace-nowrap text-[14px] font-semibold">{niceDate(l.date)}</span>
+                      <span className="whitespace-nowrap text-[13.5px] font-bold">{niceDate(l.date)}</span>
                       <span
                         className={cn(
-                          'rounded-full px-2 py-0.5 text-[11px] font-semibold',
+                          'rounded-full px-2 py-0.5 text-[10.5px] font-bold',
                           l.type === 'open' ? 'bg-[rgba(74,92,224,.15)] text-indigo-dark' : 'bg-white/80 text-ink-soft',
                         )}
                       >
                         {l.type === 'open' ? 'Opening' : 'Buy'}
                       </span>
                     </div>
-                    <div className="mt-0.5 text-[12px] font-medium tabular-nums text-ink-mute">
+                    <div className="mt-0.5 text-[12px] font-semibold tabular-nums text-ink-mute">
                       {l.shares} × {eur(l.price, 3)} = {eur(l.shares * l.price + l.fee)}
                     </div>
                   </div>
@@ -205,7 +205,7 @@ export function LotModal({
                     <button
                       type="button"
                       onClick={() => startEdit(l)}
-                      className="whitespace-nowrap rounded-full bg-white/70 px-2.5 py-1.5 text-[12px] font-semibold text-ink-mute hover:bg-white"
+                      className="whitespace-nowrap rounded-full bg-white/70 px-2.5 py-1.5 text-[11.5px] font-bold text-ink-mute hover:bg-white"
                     >
                       Edit
                     </button>
@@ -213,7 +213,7 @@ export function LotModal({
                       type="button"
                       onClick={() => remove(l.id)}
                       className={cn(
-                        'whitespace-nowrap rounded-full px-2.5 py-1.5 text-[12px] font-semibold',
+                        'whitespace-nowrap rounded-full px-2.5 py-1.5 text-[11.5px] font-bold',
                         conf ? 'bg-[#e0568a] text-white' : 'bg-white/70 text-ink-mute hover:bg-white',
                       )}
                     >
@@ -223,7 +223,7 @@ export function LotModal({
                 </div>
               );
             })}
-            {error ? <p className="mt-2 text-[13px] font-semibold text-out" role="alert">{error}</p> : null}
+            {error ? <p className="mt-2 text-[13px] font-bold text-out" role="alert">{error}</p> : null}
           </div>
         )}
       </div>

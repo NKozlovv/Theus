@@ -60,7 +60,7 @@ export function NetWorthPie({ shares }: { shares: AccountShare[] }) {
       </svg>
       {hover ? (
         <ChartTooltip x={hover.x} y={hover.y} containerWidth={hover.containerWidth}>
-          <span className="font-medium text-ink">{hover.data.name}</span>
+          <span className="font-semibold text-ink">{hover.data.name}</span>
           <br />
           <span style={{ color: hover.data.color }}>{fmtEUR(hover.data.eur, { decimals: 0 })}</span>
           <span className="mx-1 text-ink-mute">·</span>

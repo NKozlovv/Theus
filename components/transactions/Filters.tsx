@@ -133,14 +133,14 @@ export function Filters({
         <button
           type="button"
           onClick={() => onChange(emptyTxFilters())}
-          className="text-[13px] font-medium text-ink-mute hover:text-ink hover:underline"
+          className="text-[12.5px] font-semibold text-ink-mute hover:text-ink hover:underline"
         >
           Clear
         </button>
       ) : null}
 
       <div className="ml-auto flex items-center gap-3">
-        <span className="whitespace-nowrap text-[13px] font-medium text-ink-mute">
+        <span className="whitespace-nowrap text-[12.5px] font-semibold text-ink-mute">
           Showing {shown} of {total}
         </span>
         <div className="flex w-[210px] items-center gap-2 rounded-full border border-white/90 bg-white/[0.72] px-[18px] py-[11px] transition-colors duration-200 focus-within:bg-white focus-within:[box-shadow:0_0_0_3px_rgba(74,92,224,.25)] hover:bg-white">
@@ -150,7 +150,7 @@ export function Filters({
             placeholder="Search merchant or note"
             value={value.search}
             onChange={(e) => patch({ search: e.target.value })}
-            className="w-full bg-transparent text-[14px] text-ink placeholder:text-ink-mute focus:outline-none"
+            className="w-full bg-transparent text-[13.5px] text-ink placeholder:text-ink-mute focus:outline-none"
           />
         </div>
       </div>
@@ -183,7 +183,7 @@ function CapsuleSelect({
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
         className={cn(
-          'flex max-w-[190px] items-center gap-1.5 rounded-full py-[10px] pl-4 pr-3 text-[14px] font-medium transition-colors duration-200 focus:outline-none focus-visible:[box-shadow:0_0_0_3px_rgba(74,92,224,.25)] disabled:cursor-not-allowed disabled:opacity-50',
+          'flex max-w-[190px] items-center gap-1.5 rounded-full py-[10px] pl-4 pr-3 text-[13.5px] font-semibold transition-colors duration-200 focus:outline-none focus-visible:[box-shadow:0_0_0_3px_rgba(74,92,224,.25)] disabled:cursor-not-allowed disabled:opacity-50',
           engaged
             ? 'border border-indigo bg-indigo/[0.12] text-indigo-dark'
             : 'border border-white/90 bg-white/[0.72] text-ink hover:border-indigo',
