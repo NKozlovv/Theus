@@ -116,7 +116,7 @@ export function BulkEditModal({
       <div className="flex flex-col gap-2.5 rounded-[16px] border border-white/70 bg-white/40 p-4">
         <Checkbox checked={changeCategory} onChange={setChangeCategory} label="Change category" />
         {changeCategory ? (
-          <div className="flex flex-col gap-3 pl-[26px]">
+          <div className="flex flex-col gap-3 pl-6">
             <div className="grid grid-cols-2 gap-3">
               <Field label="Category" className={subcatOptions.length > 0 ? undefined : 'col-span-2'}>
                 {({ id }) => (
@@ -157,12 +157,12 @@ export function BulkEditModal({
           label="Tag with a trip"
         />
         {!willBeTravel ? (
-          <p className="pl-[26px] text-[12px] text-ink-mute">
+          <p className="pl-6 text-[12px] text-ink-mute">
             Only available when every selected transaction is Travel — set category to Travel above,
             or select only Travel transactions.
           </p>
         ) : tripActive ? (
-          <div className="pl-[26px]">
+          <div className="pl-6">
             <Field label="Trip" hint="Pick a previous trip or type a new one.">
               {({ id }) => <TripField id={id} value={trip} onChange={setTrip} suggestions={existingTrips} />}
             </Field>
@@ -173,7 +173,7 @@ export function BulkEditModal({
       <div className="flex flex-col gap-2.5 rounded-[16px] border border-white/70 bg-white/40 p-4">
         <Checkbox checked={changeAccount} onChange={setChangeAccount} label="Change account" />
         {changeAccount ? (
-          <div className="pl-[26px]">
+          <div className="pl-6">
             <Field label="Account">
               {({ id }) => (
                 <Select id={id} value={accountId} onChange={(e) => setAccountId(e.target.value)} required>

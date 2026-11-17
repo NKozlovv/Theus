@@ -13,8 +13,8 @@ const TONE: Record<Tone, string> = {
 };
 
 const SIZE: Record<Size, string> = {
-  xs: 'text-[10px]',
-  sm: 'text-[11px]',
+  xs: 'text-[12px]',
+  sm: 'text-[12px]',
 };
 
 /**
@@ -34,7 +34,7 @@ export function Mono({
   return (
     <span
       className={cn(
-        'font-mono font-medium uppercase tracking-[0.18em]',
+        'font-mono font-medium',
         SIZE[size],
         TONE[tone],
         className,

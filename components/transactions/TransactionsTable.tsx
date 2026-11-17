@@ -142,7 +142,7 @@ export function TransactionsTable({
   return (
     <>
       {transactions.length === 0 ? (
-        <div className="glass !rounded-[26px] px-6 py-16 text-center text-sm text-ink-mute">
+        <div className="glass px-6 py-16 text-center text-sm text-ink-mute">
           No transactions match the current filters.
         </div>
       ) : (
@@ -229,7 +229,7 @@ export function TransactionsTable({
           description="This can't be undone."
         >
           <div className="flex flex-col gap-4">
-            <div className="glass-tile !rounded-[14px] p-3 text-[13px]">
+            <div className="glass-tile p-3 text-[13px]">
               <Mono size="xs" className="block">
                 {dateDisplay(mode.tx.date).toUpperCase()}
               </Mono>

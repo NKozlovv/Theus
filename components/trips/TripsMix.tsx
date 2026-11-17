@@ -31,10 +31,10 @@ export function TripsMix({ trips, colors }: { trips: TripSummary[]; colors: Map<
   })).sort((a, b) => b.total - a.total);
 
   return (
-    <section className="glass flex h-full flex-col gap-[18px] !rounded-[34px] p-[24px] px-[26px]">
+    <section className="glass flex h-full flex-col gap-4 p-6 px-6">
       <div className="flex flex-wrap items-start justify-between gap-3.5">
         <div>
-          <div className="text-[17px] font-bold -tracking-[0.02em] text-ink">What the money went on</div>
+          <div className="text-[17px] font-bold text-ink">What the money went on</div>
           <div className="mt-1 text-[13px] font-semibold text-ink-soft">
             Click a trip to see its full breakdown.
           </div>
@@ -51,7 +51,7 @@ export function TripsMix({ trips, colors }: { trips: TripSummary[]; colors: Map<
               type="button"
               onClick={() => setMode(m.key)}
               className={cn(
-                'whitespace-nowrap rounded-full px-[13px] py-[7px] text-[12.5px] font-bold transition-[background,color] duration-200 ease-theus',
+                'whitespace-nowrap rounded-full px-3 py-[7px] text-[13px] font-bold transition-[background,color] duration-200 ease-theus',
                 m.key === mode
                   ? 'bg-indigo text-white '
                   : 'text-ink-soft hover:bg-white/70',
@@ -91,8 +91,8 @@ export function TripsMix({ trips, colors }: { trips: TripSummary[]; colors: Map<
                 </span>
                 <span className="flex-1">
                   <span className="flex items-baseline justify-between gap-2.5">
-                    <span className="text-[13.5px] font-bold text-ink">{t.trip}</span>
-                    <span className="whitespace-nowrap text-[12.5px] font-bold tabular-nums text-ink-soft">
+                    <span className="text-[14px] font-bold text-ink">{t.trip}</span>
+                    <span className="whitespace-nowrap text-[13px] font-bold tabular-nums text-ink-soft">
                       {rightLabel}
                     </span>
                   </span>
@@ -108,7 +108,7 @@ export function TripsMix({ trips, colors }: { trips: TripSummary[]; colors: Map<
                             background: subcategoryColor(colors, s.name),
                           }}
                         >
-                          <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 whitespace-nowrap rounded-[10px] bg-ink px-3 py-1.5 text-[11.5px] font-semibold text-white opacity-0 shadow-[0_10px_24px_rgba(21,26,45,.35)] transition-opacity duration-150 group-hover/seg:opacity-100">
+                          <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 whitespace-nowrap rounded-[10px] bg-ink px-3 py-1.5 text-[12px] font-semibold text-white opacity-0 shadow-[0_10px_24px_rgba(21,26,45,.35)] transition-opacity duration-150 group-hover/seg:opacity-100">
                             {s.name} · {fmtEUR(s.amount, { decimals: 0 })} · {pct}%
                             <span className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-ink" />
                           </span>
@@ -128,7 +128,7 @@ export function TripsMix({ trips, colors }: { trips: TripSummary[]; colors: Map<
                         style={{ background: subcategoryColor(colors, s.name) }}
                       />
                       <span className="min-w-0 flex-1 truncate text-[13px] font-semibold text-ink">{s.name}</span>
-                      <span className="whitespace-nowrap text-[11.5px] font-semibold text-ink-mute">
+                      <span className="whitespace-nowrap text-[12px] font-semibold text-ink-mute">
                         {s.count} {s.count === 1 ? 'tx' : 'txs'}
                       </span>
                       <span className="whitespace-nowrap text-[12px] font-bold tabular-nums text-ink-soft">

@@ -12,28 +12,28 @@ const SAMPLE_TREND = [58200, 59450, 63900, 65210, 66980, 68150, 69420, 68990, 71
  */
 export function BrandPanel() {
   return (
-    <aside className="glass hidden min-h-[600px] flex-col justify-between gap-[26px] !rounded-[34px] p-[34px] md:flex">
-      <div className="flex items-center gap-[11px]">
-        <span className="flex h-[38px] w-[38px] items-center justify-center rounded-[13px] bg-[linear-gradient(135deg,#f2708f,#4a5ce0)]">
+    <aside className="glass hidden min-h-[600px] flex-col justify-between gap-6 p-[34px] md:flex">
+      <div className="flex items-center gap-3">
+        <span className="flex h-[38px] w-[38px] items-center justify-center rounded-[12px] bg-[linear-gradient(135deg,#f2708f,#4a5ce0)]">
           <TheusMark size={20} tone="white" />
         </span>
-        <span className="text-[20px] font-extrabold -tracking-[0.02em] text-ink">Theus</span>
+        <span className="text-[20px] font-bold text-ink">Theus</span>
       </div>
 
       <div className="max-w-[20ch]">
         <h1 className="text-[clamp(40px,4.6vw,68px)] font-extrabold -tracking-[0.045em] leading-[1.02] text-ink">
           Money, understood.
         </h1>
-        <p className="mt-[18px] max-w-[34ch] text-[17px] font-medium leading-relaxed text-ink-soft">
+        <p className="mt-4 max-w-[34ch] text-[17px] font-medium leading-relaxed text-ink-soft">
           Every euro and every dollar in one place, converted as you go, so the number at the top
           is the number you can trust.
         </p>
       </div>
 
-      <div className="glass-inner flex max-w-[420px] flex-col gap-[14px] !rounded-[22px] p-5 px-[22px]">
+      <div className="glass-inner flex max-w-[420px] flex-col gap-4 p-5 px-6">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <div>
-            <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">
+            <div className="text-ink-mute t-label">
               Net worth · sample
             </div>
             <div className="mt-1.5 flex items-baseline gap-[3px]">
@@ -43,7 +43,7 @@ export function BrandPanel() {
               </span>
             </div>
           </div>
-          <span className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full bg-teal/[0.18] px-3 py-[5px] text-[11.5px] font-bold text-in">
+          <span className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full bg-teal/[0.18] px-3 py-[5px] text-[12px] font-bold text-in">
             <Icon name="arrow-up" size={11} /> 6 months up
           </span>
         </div>

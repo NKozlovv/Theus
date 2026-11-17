@@ -87,7 +87,7 @@ export default async function ForecastPage() {
       />
 
       <div className="grid gap-5 lg:grid-cols-[1fr_1.05fr]">
-        <section className="glass flex flex-col gap-5 !rounded-[34px] p-[24px] px-[26px]">
+        <section className="glass flex flex-col gap-5 p-6 px-6">
           <CoachInsightCard
             balanceNow={balanceNow}
             avgNet={ytd.avgNet}
@@ -97,7 +97,7 @@ export default async function ForecastPage() {
           <PerCategoryOutlook rows={expenseBurn} limit={5} />
         </section>
 
-        <section className="glass flex flex-col gap-6 !rounded-[34px] p-[24px] px-[26px]">
+        <section className="glass flex flex-col gap-6 p-6 px-6">
           <BurnRateTable
             title="Expense burn rate"
             subtitle={`Every expense category, ${year} to date.`}

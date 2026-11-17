@@ -43,14 +43,14 @@ export interface MonthBucket {
   year: number;
   /** 0-indexed month. */
   month: number;
-  /** Short-month label, e.g. "MAY". */
+  /** Short-month label, e.g. "May". */
   label: string;
   income: number;
   expense: number;
   net: number;
 }
 
-const MONTH_SHORT = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+const MONTH_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 /**
  * Native-currency balance of an account up to and including `date`.

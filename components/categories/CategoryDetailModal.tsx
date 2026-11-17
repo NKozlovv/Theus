@@ -100,7 +100,7 @@ export function CategoryDetailModal({
     >
       <div className="flex flex-col gap-5">
         {/* Header strip */}
-        <div className="glass-tile flex items-center gap-4 !rounded-[16px] p-4">
+        <div className="glass-tile flex items-center gap-4 p-4">
           <span
             className="flex h-12 w-12 items-center justify-center rounded-[12px]"
             style={{ background: `${color}1F` }}
@@ -122,7 +122,7 @@ export function CategoryDetailModal({
         </div>
 
         {/* Subcategories */}
-        <div className="glass-tile !rounded-[16px]">
+        <div className="glass-tile">
           <div className="flex items-center justify-between border-b border-white/60 px-4 py-3">
             <Mono size="xs">Subcategories</Mono>
             <button
@@ -156,7 +156,7 @@ export function CategoryDetailModal({
                   <span className="font-mono text-[12px] tabular-nums text-ink">
                     {fmtEUR(s.thisMonth, { decimals: 0 })}
                   </span>
-                  <span className="font-mono text-[11px] tabular-nums text-ink-mute">
+                  <span className="font-mono text-[12px] tabular-nums text-ink-mute">
                     YTD {fmtEUR(s.ytd, { decimals: 0 })}
                   </span>
                   {isTravel ? (
@@ -165,7 +165,7 @@ export function CategoryDetailModal({
                       onClick={() => toggleFixedCost(s.subcategory.id, !s.subcategory.is_fixed_cost)}
                       title="Whether the Trips page counts this as a fixed (booked-ahead) or daily (on-the-ground) cost"
                       className={cn(
-                        'shrink-0 rounded-full px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-[0.04em] transition-colors',
+                        'shrink-0 rounded-full px-2.5 py-1 transition-colors t-label',
                         s.subcategory.is_fixed_cost
                           ? 'bg-indigo/[0.14] text-indigo-dark'
                           : 'bg-white/60 text-ink-mute hover:bg-white',
@@ -178,7 +178,7 @@ export function CategoryDetailModal({
                     <button
                       type="button"
                       onClick={() => setSubMode({ kind: 'rename', sub: s.subcategory })}
-                      className="text-[11px] text-ink-mute hover:text-indigo hover:underline"
+                      className="text-[12px] text-ink-mute hover:text-indigo hover:underline"
                     >
                       Rename
                     </button>
@@ -186,7 +186,7 @@ export function CategoryDetailModal({
                     <button
                       type="button"
                       onClick={() => setSubMode({ kind: 'delete', sub: s.subcategory })}
-                      className="text-[11px] text-ink-mute hover:text-out hover:underline"
+                      className="text-[12px] text-ink-mute hover:text-out hover:underline"
                     >
                       Delete
                     </button>

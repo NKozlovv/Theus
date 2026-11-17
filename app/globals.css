@@ -85,6 +85,20 @@ body {
     inset 0 1.5px 0 rgba(255, 255, 255, 0.9);
 }
 
+/* A soft light placed behind the Overview hero, so its brighter glass has
+   something to refract. Local to that page: elsewhere the ground keeps its
+   master lighting. */
+.hero-light {
+  position: absolute;
+  z-index: -1;
+  width: 560px;
+  height: 560px;
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(28px);
+  background: radial-gradient(circle at 35% 35%, rgba(74, 92, 224, 0.62), rgba(74, 92, 224, 0) 70%);
+}
+
 /* The one panel that sits closest to the viewer (Overview balance): a
    brighter, denser sheen and a longer shadow, so the page has a depth
    order instead of seven identical frosted boxes. */
@@ -169,12 +183,10 @@ body {
 }
 
 .ambient-blob-indigo {
-  /* The strongest light sits behind the hero panel, so its brighter glass
-     has something to refract; the rest of the page recedes. */
   width: 560px;
   height: 560px;
-  top: 40px;
-  left: 18%;
+  top: 220px;
+  right: -120px;
   background: radial-gradient(circle at 35% 35%, rgba(74, 92, 224, 0.72), rgba(74, 92, 224, 0) 70%);
 }
 

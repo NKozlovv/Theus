@@ -85,7 +85,7 @@ export function AccountsGrid({
 
   return (
     <>
-      <div className="flex flex-col gap-[11px]">
+      <div className="flex flex-col gap-3">
         {summaries.map((s) => (
           <AccountCard
             key={s.account.id}
@@ -188,7 +188,7 @@ export function AccountsGrid({
           title={`Cannot delete ${mode.account.name}`}
         >
           <div className="flex flex-col gap-4">
-            <div className="rounded-[15px] bg-coral/[0.18] px-[14px] py-[11px] text-[13px] font-bold leading-relaxed text-out">
+            <div className="rounded-[16px] bg-coral/[0.18] px-4 py-3 text-[13px] font-bold leading-relaxed text-out">
               {mode.message}
             </div>
             <div className="flex justify-end gap-2">
@@ -197,7 +197,7 @@ export function AccountsGrid({
               </Button>
               <Link
                 href={`/transactions?account=${mode.account.id}`}
-                className="inline-flex items-center justify-center gap-1.5 rounded-full bg-[linear-gradient(180deg,#5a6be8,#4152d6)] px-[17px] py-[9px] text-[13.5px] font-bold text-white [box-shadow:0_8px_20px_rgba(74,92,224,.34),inset_0_1px_0_rgba(255,255,255,.35)] transition-transform duration-200 ease-theus"
+                className="inline-flex items-center justify-center gap-1.5 rounded-full bg-[linear-gradient(180deg,#5a6be8,#4152d6)] px-4 py-2 text-[14px] font-bold text-white [box-shadow:0_8px_20px_rgba(74,92,224,.34),inset_0_1px_0_rgba(255,255,255,.35)] transition-transform duration-200 ease-theus"
               >
                 Show those transactions
               </Link>

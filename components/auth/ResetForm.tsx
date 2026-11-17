@@ -45,7 +45,7 @@ export function ResetForm() {
         <AuthBanner tone="ok">If an account exists for that address, a reset link is on its way.</AuthBanner>
         <Link
           href="/login"
-          className="flex w-full items-center justify-center rounded-full border border-white/90 bg-white/70 py-[14px] text-[15px] font-bold text-ink transition-colors duration-200 hover:bg-white"
+          className="flex w-full items-center justify-center rounded-full border border-white/90 bg-white/70 py-4 text-[15px] font-bold text-ink transition-colors duration-200 hover:bg-white"
         >
           Back to sign in
         </Link>
@@ -60,7 +60,7 @@ export function ResetForm() {
       {error ? <AuthBanner tone="err">{error}</AuthBanner> : null}
 
       <label className="flex flex-col gap-[7px]">
-        <span className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">Email</span>
+        <span className="text-ink-mute t-label">Email</span>
         <input
           type="email"
           autoComplete="email"
@@ -68,14 +68,14 @@ export function ResetForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
-          className="rounded-[15px] border border-white/80 bg-white/[0.72] px-4 py-[13px] text-[15px] font-semibold text-ink outline-none transition-shadow duration-150 focus:border-indigo focus:[box-shadow:0_0_0_3px_rgba(74,92,224,.18)]"
+          className="rounded-[16px] border border-white/80 bg-white/[0.72] px-4 py-3 text-[15px] font-semibold text-ink outline-none transition-shadow duration-150 focus:border-indigo focus:[box-shadow:0_0_0_3px_rgba(74,92,224,.18)]"
         />
       </label>
 
       <button
         type="submit"
         disabled={pending}
-        className="mt-5 flex w-full items-center justify-center gap-[9px] rounded-full bg-[linear-gradient(180deg,#5a6be8,#4152d6)] py-[14px] text-[15px] font-bold text-white shadow-[0_8px_20px_rgba(74,92,224,.34),inset_0_1px_0_rgba(255,255,255,.35)] transition-transform duration-200 ease-theus disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
+        className="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(180deg,#5a6be8,#4152d6)] py-4 text-[15px] font-bold text-white shadow-[0_8px_20px_rgba(74,92,224,.34),inset_0_1px_0_rgba(255,255,255,.35)] transition-transform duration-200 ease-theus disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
       >
         {pending ? (
           <>
@@ -87,7 +87,7 @@ export function ResetForm() {
         )}
       </button>
 
-      <p className="mt-[22px] text-center text-[13.5px] font-semibold text-ink-mute">
+      <p className="mt-6 text-center text-[14px] font-semibold text-ink-mute">
         Changed your mind?{' '}
         <Link href="/login" className="font-bold text-indigo hover:text-indigo-dark hover:underline">
           Back to sign in

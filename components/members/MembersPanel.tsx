@@ -122,40 +122,40 @@ export function MembersPanel({
   const youInitials = (currentUserEmail.split('@')[0] ?? 'you').slice(0, 2).toUpperCase();
 
   return (
-    <section className="glass flex flex-col gap-5 !rounded-[34px] p-[24px] px-[26px]">
-      <div className="min-w-0 flex-1 basis-[280px]">
+    <section className="glass flex flex-col gap-5 p-6 px-6">
+      <div className="min-w-0">
         <h1 className="text-[26px] font-extrabold -tracking-[0.03em] text-ink">Members</h1>
-        <p className="mt-[7px] max-w-[64ch] text-[14px] font-medium text-ink-soft">
+        <p className="mt-2 max-w-[64ch] text-[14px] font-medium text-ink-soft">
           Everyone here sees the whole budget — every account, every transaction. There are two
           roles and no levels in between.
         </p>
       </div>
 
       {isOwner ? (
-        <div className="glass-inner flex flex-col gap-[11px] !rounded-[22px] p-4 px-[18px]">
+        <div className="glass-inner flex flex-col gap-3 p-4 px-4">
           <div>
-            <div className="text-[16px] font-extrabold -tracking-[0.02em] text-ink">Invite someone</div>
-            <p className="mt-1.5 max-w-[70ch] text-[13.5px] font-medium text-ink-soft">
+            <div className="text-[16px] font-bold text-ink">Invite someone</div>
+            <p className="mt-1.5 max-w-[70ch] text-[14px] font-medium text-ink-soft">
               You get a link to send them yourself (message, WhatsApp, anything).{' '}
               They create an account (or sign in) with this exact address and press Join. The link
               works once and expires after 14 days.
             </p>
           </div>
-          <form onSubmit={handleInvite} className="flex flex-wrap gap-[9px]">
+          <form onSubmit={handleInvite} className="flex flex-wrap gap-2">
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="partner@example.com"
-              className="min-w-[260px] flex-1 rounded-[15px] border border-white/90 bg-white/80 px-4 py-3 text-[15px] font-semibold text-ink outline-none transition-shadow duration-150 focus:border-indigo focus:[box-shadow:0_0_0_3px_rgba(74,92,224,.18)]"
+              className="min-w-[260px] flex-1 rounded-[16px] border border-white/90 bg-white/80 px-4 py-3 text-[15px] font-semibold text-ink outline-none transition-shadow duration-150 focus:border-indigo focus:[box-shadow:0_0_0_3px_rgba(74,92,224,.18)]"
             />
             <Button type="submit" disabled={pending}>
               {pending ? 'Sending…' : 'Send invite'}
             </Button>
           </form>
           {feedback ? (
-            <div className={`rounded-[15px] px-[14px] py-[11px] text-[13px] font-bold leading-relaxed ${TONE_CLASS[feedback.tone]}`}>
+            <div className={`rounded-[16px] px-4 py-3 text-[13px] font-bold leading-relaxed ${TONE_CLASS[feedback.tone]}`}>
               {feedback.msg}
               {feedback.link ? (
                 <div className="mt-2.5 flex flex-col gap-2">
@@ -169,7 +169,7 @@ export function MembersPanel({
                     <button
                       type="button"
                       onClick={() => copyText(feedback.link!, 'Link copied.')}
-                      className="rounded-full border border-white/90 bg-white/80 px-[13px] py-[7px] text-[12.5px] font-semibold text-ink hover:bg-white"
+                      className="rounded-full border border-white/90 bg-white/80 px-3 py-[7px] text-[13px] font-semibold text-ink hover:bg-white"
                     >
                       Copy link
                     </button>
@@ -177,7 +177,7 @@ export function MembersPanel({
                       href={`https://wa.me/?text=${encodeURIComponent(`Join my budget on Theus: ${feedback.link}`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-full border border-white/90 bg-white/80 px-[13px] py-[7px] text-[12.5px] font-semibold text-ink hover:bg-white"
+                      className="rounded-full border border-white/90 bg-white/80 px-3 py-[7px] text-[13px] font-semibold text-ink hover:bg-white"
                     >
                       Share on WhatsApp
                     </a>
@@ -188,19 +188,19 @@ export function MembersPanel({
           ) : null}
         </div>
       ) : (
-        <div className="flex items-start gap-[11px] rounded-[20px] border border-white/60 bg-indigo/[0.12] p-4 px-[18px] text-[13.5px] font-semibold leading-relaxed text-indigo-dark">
-          <span className="shrink-0 whitespace-nowrap rounded-full bg-indigo/20 px-[9px] py-0.5 text-[10px] font-bold uppercase tracking-[0.06em]">
+        <div className="flex items-start gap-3 rounded-[20px] border border-white/60 bg-indigo/[0.12] p-4 px-4 text-[14px] font-semibold leading-relaxed text-indigo-dark">
+          <span className="shrink-0 whitespace-nowrap rounded-full bg-indigo/20 px-2 py-0.5 t-label">
             Read only
           </span>
           <span>You are a member of {budgetName}. Only the owner can invite or remove people.</span>
         </div>
       )}
 
-      <div className="grid items-start gap-[14px]" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
-        <div className="flex flex-col gap-[11px]">
+      <div className="grid items-start gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+        <div className="flex flex-col gap-3">
           <div className="flex items-baseline justify-between gap-3">
-            <h2 className="text-[18px] font-extrabold -tracking-[0.02em] text-ink">Has access</h2>
-            <span className="text-[12.5px] font-semibold text-ink-mute">
+            <h2 className="text-[18px] font-bold text-ink">Has access</h2>
+            <span className="text-[13px] font-semibold text-ink-mute">
               {members.length} {members.length === 1 ? 'person' : 'people'}
             </span>
           </div>
@@ -213,13 +213,13 @@ export function MembersPanel({
               return (
                 <div
                   key={m.user_id}
-                  className="flex flex-wrap items-center gap-[13px] rounded-[20px] border border-white/50 bg-white/[0.5] p-[15px] px-[17px] transition-transform duration-200 ease-theus"
+                  className="flex flex-wrap items-center gap-3 rounded-[20px] border border-white/50 bg-white/[0.5] p-4 px-4 transition-transform duration-200 ease-theus"
                 >
                   <span
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[13px] font-extrabold"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[13px] font-bold"
                     style={
                       isYou
-                        ? { background: 'linear-gradient(135deg,#4a5ce0,#1fb9a4)', color: '#fff' }
+                        ? { background: 'linear-gradient(135deg,#6b7bf0,#4a5ce0)', color: '#fff' }
                         : { background: 'rgba(31,39,66,.06)', color: '#5b6278', border: '1px dashed rgba(31,39,66,.22)' }
                     }
                   >
@@ -227,11 +227,11 @@ export function MembersPanel({
                   </span>
                   <div className="min-w-0 flex-1 basis-[140px]">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-[15px] font-extrabold -tracking-[0.015em] text-ink">
+                      <span className="text-[15px] font-bold text-ink">
                         {isYou ? 'You' : `Member · ${m.user_id.slice(0, 8)}`}
                       </span>
                       <span
-                        className={`whitespace-nowrap rounded-full px-[9px] py-[2px] text-[10.5px] font-bold uppercase tracking-[0.06em] ${
+                        className={`whitespace-nowrap rounded-full px-2 py-[2px] text-[12px] font-bold uppercase tracking-[0.06em] ${
                           isOwnerRow ? 'bg-indigo/[0.16] text-indigo-dark' : 'bg-[rgba(31,39,66,.07)] text-ink-soft'
                         }`}
                       >
@@ -246,7 +246,7 @@ export function MembersPanel({
                     <button
                       type="button"
                       onClick={() => setMode({ kind: 'revoke', member: m })}
-                      className="shrink-0 rounded-full border border-out/45 bg-white/50 px-[15px] py-[9px] text-[13px] font-semibold text-out transition-colors duration-200 hover:bg-coral/[0.14]"
+                      className="shrink-0 rounded-full border border-out/45 bg-white/50 px-4 py-2 text-[13px] font-semibold text-out transition-colors duration-200 hover:bg-coral/[0.14]"
                     >
                       Revoke
                     </button>
@@ -259,10 +259,10 @@ export function MembersPanel({
           )}
         </div>
 
-        <div className="flex flex-col gap-[11px]">
+        <div className="flex flex-col gap-3">
           <div className="flex items-baseline justify-between gap-3">
-            <h2 className="text-[18px] font-extrabold -tracking-[0.02em] text-ink">Waiting to sign up</h2>
-            <span className="text-[12.5px] font-semibold text-ink-mute">
+            <h2 className="text-[18px] font-bold text-ink">Waiting to sign up</h2>
+            <span className="text-[13px] font-semibold text-ink-mute">
               {invites.length} pending
             </span>
           </div>
@@ -273,7 +273,7 @@ export function MembersPanel({
               {invites.map((i) => (
                 <div
                   key={i.id}
-                  className="flex flex-wrap items-center gap-[13px] rounded-[20px] border border-dashed border-[rgba(31,39,66,.18)] bg-white/[0.42] p-[15px] px-[17px] transition-transform duration-200 ease-theus"
+                  className="flex flex-wrap items-center gap-3 rounded-[20px] border border-dashed border-[rgba(31,39,66,.18)] bg-white/[0.42] p-4 px-4 transition-transform duration-200 ease-theus"
                 >
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[rgba(31,39,66,.06)] text-ink-mute">
                     <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
@@ -282,7 +282,7 @@ export function MembersPanel({
                     </svg>
                   </span>
                   <div className="min-w-0 flex-1 basis-[150px]">
-                    <div className="truncate text-[14.5px] font-bold -tracking-[0.01em] text-ink">{i.email}</div>
+                    <div className="truncate text-[14px] font-bold text-ink">{i.email}</div>
                     <div className="mt-1 text-[12px] font-semibold text-ink-mute">
                       Invited {dateSent(i.created_at)}
                       {new Date(i.expires_at) < new Date() ? (
@@ -297,21 +297,21 @@ export function MembersPanel({
                       <button
                         type="button"
                         onClick={() => copyLink(i)}
-                        className="rounded-full border border-white/90 bg-white/[0.66] px-[13px] py-[8px] text-[12.5px] font-semibold text-ink transition-colors duration-200 hover:bg-white"
+                        className="rounded-full border border-white/90 bg-white/[0.66] px-3 py-2 text-[13px] font-semibold text-ink transition-colors duration-200 hover:bg-white"
                       >
                         Copy link
                       </button>
                       <button
                         type="button"
                         onClick={() => renew(i)}
-                        className="rounded-full border border-white/90 bg-white/[0.66] px-[13px] py-[8px] text-[12.5px] font-semibold text-ink transition-colors duration-200 hover:bg-white"
+                        className="rounded-full border border-white/90 bg-white/[0.66] px-3 py-2 text-[13px] font-semibold text-ink transition-colors duration-200 hover:bg-white"
                       >
                         Renew
                       </button>
                       <button
                         type="button"
                         onClick={() => setMode({ kind: 'cancel', invite: i })}
-                        className="rounded-full border border-white/90 bg-white/[0.66] px-[13px] py-[8px] text-[12.5px] font-semibold text-ink transition-colors duration-200 hover:bg-white"
+                        className="rounded-full border border-white/90 bg-white/[0.66] px-3 py-2 text-[13px] font-semibold text-ink transition-colors duration-200 hover:bg-white"
                       >
                         Cancel
                       </button>
@@ -319,7 +319,7 @@ export function MembersPanel({
                   ) : null}
                 </div>
               ))}
-              <div className="rounded-[18px] border border-white/50 bg-white/40 p-[14px] px-4 text-[12.5px] font-semibold leading-relaxed text-ink-soft">
+              <div className="rounded-[16px] border border-white/50 bg-white/40 p-4 px-4 text-[13px] font-semibold leading-relaxed text-ink-soft">
                 “Copy link” gives you the invite link to send. “Renew” extends it by another 14 days and shows the link again.
               </div>
             </>

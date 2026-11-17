@@ -213,6 +213,23 @@ confirmation a deploy is live.
 
 ## 6. Design direction (current)
 
+> **Design system note, 2026-11-17 (branch `claude/project-unslop-47faef`).**
+> The v4 liquid-glass look is kept. An unslop pass fixed what was actually
+> inconsistent without restyling it: radii now nest on one scale
+> (`--r-panel` 32 / `--r-inner` 20 / `--r-tile` 16 / `--r-row` 12, no more
+> `!rounded-[NNpx]` overrides), spacing sits on 24/16, panel titles share one
+> size, the 9–11px uppercase tracked labels became `.t-label` (12px, sentence
+> case), colored button glows and panel hover lifts are gone, hue-to-hue
+> gradients on data fills became single-hue tone shifts, Trends cells deepen
+> toward a dark hue so white text keeps contrast. Additions: a `.glass-hero`
+> depth tier (Overview balance panel), a `.hero-light` behind it, a holdings
+> strip whose account colors are shared with the account cards
+> (`components/dashboard/accountFaces.ts`), a quiet average-pace tick on the
+> budget ring, and a mobile menu in `TopNav` (tabs fold into one button
+> below 1024px). Month labels are "Jan", not "JAN" (`lib/balance.ts`). The
+> favicon is the dark tile with the tilted block. Do not reintroduce
+> `!rounded-[…]` overrides or sub-12px labels.
+
 > **⚠ Superseded 2026-09-17.** Everything below this note describes the
 > Sterling navy dark theme, which the v4 "liquid glass" rehaul has now
 > replaced app-wide: light ambient ground, frosted-glass panels, one

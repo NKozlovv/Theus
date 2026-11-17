@@ -175,7 +175,7 @@ export function SparkasseImport({ context }: { context: ImportContext }) {
 
   if (context.accounts.length === 0) {
     return (
-      <section className="glass glass-nohover !rounded-[34px] px-8 py-14 text-center text-[14px] font-semibold text-ink-soft">
+      <section className="glass glass-nohover px-8 py-14 text-center text-[14px] font-semibold text-ink-soft">
         Add an account first — imported transactions need an account to land in.
       </section>
     );
@@ -184,18 +184,18 @@ export function SparkasseImport({ context }: { context: ImportContext }) {
   return (
     <>
       {done ? (
-        <div className="rounded-[20px] border border-in/40 bg-in/[0.12] px-5 py-4 text-[13.5px] font-semibold text-in" role="status">
+        <div className="rounded-[20px] border border-in/40 bg-in/[0.12] px-5 py-4 text-[14px] font-semibold text-in" role="status">
           {done}
         </div>
       ) : null}
       {error ? (
-        <div className="rounded-[20px] border border-out/40 bg-out/[0.12] px-5 py-4 text-[13.5px] font-semibold text-out" role="alert">
+        <div className="rounded-[20px] border border-out/40 bg-out/[0.12] px-5 py-4 text-[14px] font-semibold text-out" role="alert">
           {error}
         </div>
       ) : null}
 
       {rows.length === 0 ? (
-        <section className="glass glass-nohover grid gap-6 !rounded-[34px] p-[26px] lg:grid-cols-[1.6fr_1fr]">
+        <section className="glass glass-nohover grid gap-6 p-6 lg:grid-cols-[1.6fr_1fr]">
           <div
             onDragOver={(e: DragEvent) => {
               e.preventDefault();
@@ -245,14 +245,14 @@ export function SparkasseImport({ context }: { context: ImportContext }) {
           </div>
         </section>
       ) : (
-        <section className="glass glass-nohover flex flex-col gap-5 !rounded-[34px] p-[24px] px-[26px]">
+        <section className="glass glass-nohover flex flex-col gap-5 p-6 px-6">
           <div className="flex flex-wrap items-end gap-4">
             <div className="min-w-0 flex-1">
-              <div className="text-[17px] font-bold -tracking-[0.02em] text-ink">Review transactions</div>
+              <div className="text-[17px] font-bold text-ink">Review transactions</div>
               <div className="mt-1 truncate text-[13px] font-semibold text-ink-soft">{fileName}</div>
             </div>
             <label className="flex w-[220px] flex-col gap-1.5">
-              <span className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">Into account</span>
+              <span className="text-ink-mute t-label">Into account</span>
               <Select value={accountId} onChange={(e) => setAccountId(e.target.value)} aria-label="Account">
                 {context.accounts.map((a) => (
                   <option key={a.id} value={a.id}>
@@ -262,7 +262,7 @@ export function SparkasseImport({ context }: { context: ImportContext }) {
               </Select>
             </label>
             <label className="flex w-[180px] flex-col gap-1.5">
-              <span className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">Month</span>
+              <span className="text-ink-mute t-label">Month</span>
               <Select value={month} onChange={(e) => setMonth(e.target.value)} aria-label="Month">
                 {months.length > 1 ? <option value={ALL}>Whole file</option> : null}
                 {months.map((m) => (
@@ -278,14 +278,14 @@ export function SparkasseImport({ context }: { context: ImportContext }) {
           </div>
 
           {currency !== 'EUR' ? (
-            <p className="text-[12.5px] font-semibold text-out">
+            <p className="text-[13px] font-semibold text-out">
               {account?.name} is a {currency} account, but Sparkasse amounts are in EUR — they’ll be stored as {currency}{' '}
               as-is.
             </p>
           ) : null}
 
           <div className="flex flex-col">
-            <div className="hidden grid-cols-[24px_128px_minmax(160px,1fr)_110px_130px_minmax(140px,190px)_minmax(140px,190px)] items-center gap-3 border-b border-white/60 px-2 pb-2 text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute lg:grid">
+            <div className="hidden grid-cols-[24px_128px_minmax(160px,1fr)_110px_130px_minmax(140px,190px)_minmax(140px,190px)] items-center gap-3 border-b border-white/60 px-2 pb-2 text-ink-mute lg:grid t-label">
               <RowCheck
                 checked={selected.length === visible.length && visible.length > 0}
                 onChange={(v) => setAll(v)}
@@ -321,9 +321,9 @@ export function SparkasseImport({ context }: { context: ImportContext }) {
             <Figure label="Balance after" value={fmtCurrency((account?.balance ?? 0) + delta, currency)} />
             <div className="ml-auto flex items-center gap-3">
               {missingDate ? (
-                <span className="text-[12.5px] font-semibold text-out">Some selected rows have no date.</span>
+                <span className="text-[13px] font-semibold text-out">Some selected rows have no date.</span>
               ) : uncategorised > 0 ? (
-                <span className="text-[12.5px] font-semibold text-ink-mute">{uncategorised} without a category</span>
+                <span className="text-[13px] font-semibold text-ink-mute">{uncategorised} without a category</span>
               ) : null}
               <Button onClick={submit} disabled={pending || selected.length === 0 || missingDate}>
                 {pending ? 'Importing…' : `Import ${selected.length} transaction${selected.length === 1 ? '' : 's'}`}
@@ -377,7 +377,7 @@ function Row({
         onChange={(e) => onChange({ date: e.target.value })}
         aria-label="Date"
         className={cn(
-          'w-[128px] rounded-full border bg-white/[0.6] px-3 py-[7px] text-[12.5px] font-semibold text-ink',
+          'w-[128px] rounded-full border bg-white/[0.6] px-3 py-[7px] text-[13px] font-semibold text-ink',
           'focus:outline-none focus:border-indigo',
           row.date ? 'border-white/90' : 'border-out/60',
         )}
@@ -387,7 +387,7 @@ function Row({
           value={row.merchant}
           onChange={(e) => onChange({ merchant: e.target.value })}
           aria-label="Merchant / note"
-          className="w-full truncate rounded-full border border-transparent bg-transparent px-3 py-[7px] text-[13.5px] font-semibold text-ink hover:border-white/90 focus:border-indigo focus:bg-white/70 focus:outline-none"
+          className="w-full truncate rounded-full border border-transparent bg-transparent px-3 py-[7px] text-[14px] font-semibold text-ink hover:border-white/90 focus:border-indigo focus:bg-white/70 focus:outline-none"
         />
         {row.pending || duplicate ? (
           <div className="flex gap-1.5 px-3">
@@ -398,7 +398,7 @@ function Row({
       </div>
       <div
         className={cn(
-          'row-start-1 col-start-3 text-right text-[13.5px] font-extrabold tabular-nums lg:row-auto lg:col-auto',
+          'row-start-1 col-start-3 text-right text-[14px] font-bold tabular-nums lg:row-auto lg:col-auto',
           row.amount < 0 ? 'text-out' : 'text-in',
         )}
       >
@@ -465,7 +465,7 @@ function Tag({ children, tone }: { children: React.ReactNode; tone?: 'out' }) {
   return (
     <span
       className={cn(
-        'rounded-full px-2 py-[1px] text-[10.5px] font-bold',
+        'rounded-full px-2 py-[1px] text-[12px] font-bold',
         tone === 'out' ? 'bg-out/[0.14] text-out' : 'bg-indigo/[0.12] text-indigo-dark',
       )}
     >
@@ -477,10 +477,10 @@ function Tag({ children, tone }: { children: React.ReactNode; tone?: 'out' }) {
 function Figure({ label, value, tone }: { label: string; value: string; tone?: 'in' | 'out' }) {
   return (
     <div className="flex flex-col gap-0.5">
-      <span className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">{label}</span>
+      <span className="text-ink-mute t-label">{label}</span>
       <span
         className={cn(
-          'text-[18px] font-extrabold tabular-nums -tracking-[0.02em]',
+          'text-[18px] font-bold tabular-nums',
           tone === 'out' ? 'text-out' : tone === 'in' ? 'text-in' : 'text-ink',
         )}
       >

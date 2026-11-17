@@ -51,7 +51,7 @@ export function CategoryRow({
         onKeyDown={(e) => {
           if (e.key === 'Enter') onToggle();
         }}
-        className="grid cursor-pointer grid-cols-[minmax(150px,1.1fr)_minmax(0,1.6fr)_110px_100px_34px] items-center gap-4 rounded-[18px] px-[18px] py-[14px] transition-colors duration-[160ms] hover:bg-white/[0.85]"
+        className="grid cursor-pointer grid-cols-[minmax(150px,1.1fr)_minmax(0,1.6fr)_110px_100px_34px] items-center gap-4 rounded-[16px] px-4 py-4 transition-colors duration-[160ms] hover:bg-white/[0.85]"
       >
         <div className="flex min-w-0 items-center gap-3">
           <button
@@ -62,7 +62,7 @@ export function CategoryRow({
             }}
             aria-label={`Edit ${category.name}`}
             title={`Edit ${category.name}`}
-            className="group/edit relative flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-[12px] text-[13px] font-extrabold text-white transition-transform hover:scale-105"
+            className="group/edit relative flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-[12px] text-[13px] font-bold text-white transition-transform "
             style={{ background: color }}
           >
             {category.name.charAt(0).toUpperCase()}
@@ -70,7 +70,7 @@ export function CategoryRow({
               <Icon name="pencil" size={14} />
             </span>
           </button>
-          <span className="truncate text-[14.5px] font-semibold text-ink">{category.name}</span>
+          <span className="truncate text-[14px] font-semibold text-ink">{category.name}</span>
         </div>
 
         <div className="flex items-center gap-3">
@@ -85,16 +85,16 @@ export function CategoryRow({
               style={{ left: '66%' }}
             />
           </div>
-          <span className="w-[46px] shrink-0 text-right text-[12px] font-extrabold tabular-nums" style={{ color: tone }}>
+          <span className="w-[46px] shrink-0 text-right text-[12px] font-bold tabular-nums" style={{ color: tone }}>
             {Math.round(pctOfAvg)}%
           </span>
         </div>
 
-        <div className="text-[15.5px] font-extrabold tabular-nums text-ink">
+        <div className="text-[16px] font-bold tabular-nums text-ink">
           {fmtEUR(thisMonth, { decimals: 0 })}
         </div>
 
-        <div className="text-[13.5px] font-semibold text-ink-mute">{fmtEUR(avgMonthly, { decimals: 0 })}</div>
+        <div className="text-[14px] font-semibold text-ink-mute">{fmtEUR(avgMonthly, { decimals: 0 })}</div>
 
         <button
           type="button"
@@ -116,12 +116,12 @@ export function CategoryRow({
       </div>
 
       {open ? (
-        <div className="rise ml-[62px] mr-[10px] mb-[10px] mt-0.5 rounded-[16px] bg-white/50 px-4 py-2.5" style={{ animationDuration: '240ms' }}>
+        <div className="rise ml-[62px] mr-3 mb-3 mt-0.5 rounded-[16px] bg-white/50 px-4 py-2.5" style={{ animationDuration: '240ms' }}>
           {subcategories.length === 0 ? (
-            <div className="py-2 text-[12.5px] text-ink-mute">No subcategories yet.</div>
+            <div className="py-2 text-[13px] text-ink-mute">No subcategories yet.</div>
           ) : (
             <>
-              <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_90px_90px] gap-4 pb-1.5 text-[10px] font-bold uppercase tracking-[0.08em] text-ink-mute">
+              <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_90px_90px] gap-4 pb-1.5 text-ink-mute t-label">
                 <span />
                 <span>Pace vs avg</span>
                 <span>This month</span>
@@ -134,7 +134,7 @@ export function CategoryRow({
                 return (
                   <div
                     key={s.subcategory.id}
-                    className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_90px_90px] items-center gap-4 py-[7px] text-[13.5px]"
+                    className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_90px_90px] items-center gap-4 py-[7px] text-[14px]"
                   >
                     <span className="truncate font-semibold text-ink-soft">{s.subcategory.name}</span>
                     <div className="flex items-center gap-2">
@@ -144,7 +144,7 @@ export function CategoryRow({
                           style={{ width: `${subMeterPct}%`, background: color }}
                         />
                       </div>
-                      <span className="w-[36px] shrink-0 text-right text-[11px] font-extrabold tabular-nums" style={{ color: subTone }}>
+                      <span className="w-[36px] shrink-0 text-right text-[12px] font-bold tabular-nums" style={{ color: subTone }}>
                         {Math.round(subPctOfAvg)}%
                       </span>
                     </div>

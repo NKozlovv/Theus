@@ -47,7 +47,7 @@ export function TrendTable({
 
   if (rows.length === 0) {
     return (
-      <div className="glass !rounded-[26px] px-6 py-16 text-center text-sm text-ink-mute">
+      <div className="glass px-6 py-16 text-center text-sm text-ink-mute">
         No expense activity in this year yet.
       </div>
     );
@@ -79,21 +79,21 @@ export function TrendTable({
   const footerAvg = avgMonths > 0 ? footerTotal / avgMonths : 0;
 
   return (
-    <div className="glass !rounded-[26px] p-2">
+    <div className="glass p-2">
       <div style={{ gridTemplateColumns }} className="grid gap-1 px-2">
-        <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-ink-mute">Category</span>
+        <span className="text-ink-mute t-label">Category</span>
         {visibleMonths.map((m) => (
           <span
             key={`${m.year}-${m.month}`}
-            className="whitespace-nowrap text-right text-[11px] font-bold uppercase tracking-[0.1em] text-ink-mute"
+            className="whitespace-nowrap text-right text-ink-mute t-label"
           >
             {m.label}
           </span>
         ))}
-        <span className="whitespace-nowrap text-right text-[11px] font-bold uppercase tracking-[0.1em] text-ink-mute">
+        <span className="whitespace-nowrap text-right text-ink-mute t-label">
           Avg
         </span>
-        <span className="whitespace-nowrap text-right text-[11px] font-bold uppercase tracking-[0.1em] text-ink-mute">
+        <span className="whitespace-nowrap text-right text-ink-mute t-label">
           Year
         </span>
       </div>
@@ -146,7 +146,7 @@ export function TrendTable({
                 <span className="whitespace-nowrap text-right font-semibold tabular-nums text-ink-soft">
                   {fmtEUR(avg, { decimals: 0 })}
                 </span>
-                <span className="whitespace-nowrap text-right font-extrabold tabular-nums text-ink">
+                <span className="whitespace-nowrap text-right font-bold tabular-nums text-ink">
                   {fmtEUR(visibleTotal, { decimals: 0 })}
                 </span>
               </div>
@@ -162,16 +162,16 @@ export function TrendTable({
       </div>
 
       <div style={{ gridTemplateColumns }} className="mt-2 grid items-center gap-1 border-t border-white/60 px-2 pt-3">
-        <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-mute">All categories</span>
+        <span className="text-ink-mute t-label">All categories</span>
         {footer.map((v, j) => (
-          <span key={j} className="whitespace-nowrap text-right font-extrabold tabular-nums text-ink">
+          <span key={j} className="whitespace-nowrap text-right font-bold tabular-nums text-ink">
             {fmtEUR(v, { decimals: 0 })}
           </span>
         ))}
-        <span className="whitespace-nowrap text-right font-extrabold tabular-nums text-ink-soft">
+        <span className="whitespace-nowrap text-right font-bold tabular-nums text-ink-soft">
           {fmtEUR(footerAvg, { decimals: 0 })}
         </span>
-        <span className="whitespace-nowrap text-right font-extrabold tabular-nums text-ink">
+        <span className="whitespace-nowrap text-right font-bold tabular-nums text-ink">
           {fmtEUR(footerTotal, { decimals: 0 })}
         </span>
       </div>
@@ -195,7 +195,7 @@ function SubRow({
   const { visibleTotal, avg } = sums(sub.values);
   return (
     <div style={{ gridTemplateColumns }} className="grid items-center gap-1 rounded-[12px] px-2 py-1">
-      <span className="truncate pl-[22px] text-[12.5px] font-medium text-ink-soft">{sub.name}</span>
+      <span className="truncate pl-6 text-[13px] font-medium text-ink-soft">{sub.name}</span>
       {Array.from({ length: visibleCount }, (_, j) => {
         const idx = offset + j;
         const curr = sub.values[idx] ?? 0;
@@ -212,21 +212,29 @@ function SubRow({
   );
 }
 
+/** Linear mix of two #rrggbb colors, t in 0..1 (0 = a, 1 = b). */
+function mixHex(a: string, b: string, t: number): string {
+  const p = (h: string, i: number) => parseInt(h.slice(1 + i * 2, 3 + i * 2), 16);
+  const ch = (i: number) => Math.round(p(a, i) + (p(b, i) - p(a, i)) * t);
+  return `rgb(${ch(0)}, ${ch(1)}, ${ch(2)})`;
+}
+
 function ValueCell({ value, prev, avg, compact }: { value: number; prev: number; avg: number; compact?: boolean }) {
   const ratio = avg > 0 ? value / avg : value > 0 ? 2 : 1;
   const isZero = Math.abs(value) < 0.005;
 
   let bg = 'rgba(139,149,184,.07)'; // --slate .07, "on plan"
   let textWhite = false;
-  if (!isZero && avg > 0) {
-    if (ratio > 1.02) {
-      const alpha = Math.min(0.82, Math.max(0.12, Math.abs(ratio - 1) * 1.25));
-      bg = tint('#d94a6f', alpha);
-      textWhite = alpha > 0.5;
-    } else if (ratio < 0.98) {
-      const alpha = Math.min(0.82, Math.max(0.12, Math.abs(ratio - 1) * 1.25));
-      bg = tint('#12a08c', alpha);
-      textWhite = alpha > 0.5;
+  if (!isZero && avg > 0 && (ratio > 1.02 || ratio < 0.98)) {
+    const alpha = Math.min(0.82, Math.max(0.12, Math.abs(ratio - 1) * 1.25));
+    const [hue, deep] = ratio > 1 ? (['#d94a6f', '#bf3459'] as const) : (['#12a08c', '#0e8070'] as const);
+    if (alpha <= 0.5) {
+      bg = tint(hue, alpha);
+    } else {
+      // Past half strength the tint becomes a solid that deepens toward the
+      // dark hue, so white text keeps 4.5:1 instead of sitting on a mid teal.
+      bg = mixHex(hue, deep, 0.5 + ((alpha - 0.5) / 0.32) * 0.5);
+      textWhite = true;
     }
   }
 
@@ -237,8 +245,8 @@ function ValueCell({ value, prev, avg, compact }: { value: number; prev: number;
   return (
     <div
       className={cn(
-        'cursor-default whitespace-nowrap rounded-[10px] px-[8px] text-right font-bold tabular-nums transition-transform duration-200 ease-theus hover:z-10 hover:scale-[1.06] hover:shadow-[0_8px_18px_rgba(31,39,66,.18)]',
-        compact ? 'py-[7px] text-[12px]' : 'py-[11px]',
+        'cursor-default whitespace-nowrap rounded-[10px] px-2 text-right font-bold tabular-nums transition-transform duration-200 ease-theus hover:z-10 hover:ring-2 hover:ring-[rgba(21,26,45,.3)]',
+        compact ? 'py-[7px] text-[12px]' : 'py-3',
         textWhite ? 'text-white' : 'text-ink',
       )}
       style={{ background: bg }}

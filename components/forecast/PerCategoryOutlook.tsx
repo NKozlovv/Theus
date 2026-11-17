@@ -44,8 +44,8 @@ export function PerCategoryOutlook({
   return (
     <div className="flex flex-col gap-4">
       <div>
-        <h2 className="text-[20px] font-extrabold -tracking-[0.025em] text-ink">Categories to watch</h2>
-        <p className="mt-1.5 text-[13.5px] font-medium text-ink-soft">
+        <h2 className="text-[20px] font-bold text-ink">Categories to watch</h2>
+        <p className="mt-1.5 text-[14px] font-medium text-ink-soft">
           Average so far this year against next month&apos;s projection, which leans toward the
           most recent month.
         </p>
@@ -54,7 +54,7 @@ export function PerCategoryOutlook({
       {sorted.length === 0 ? (
         <p className="py-6 text-center text-[13px] text-ink-mute">Not enough data yet.</p>
       ) : (
-        <div className="flex flex-col gap-[10px]">
+        <div className="flex flex-col gap-3">
           {sorted.map((r) => {
             const color = categoryColor(r.name);
             const wAvg = (r.avg / max) * 100;
@@ -64,14 +64,14 @@ export function PerCategoryOutlook({
             return (
               <div
                 key={r.name}
-                className="glass-tile flex flex-col gap-[9px] !rounded-[20px] p-[15px] px-[17px] transition-transform duration-200 ease-theus"
+                className="glass-tile flex flex-col gap-2 p-4 px-4 transition-transform duration-200 ease-theus"
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-3">
-                  <span className="text-[15px] font-extrabold -tracking-[0.015em] text-ink">{r.name}</span>
-                  <span className="inline-flex items-baseline gap-[9px] whitespace-nowrap tabular-nums">
+                  <span className="text-[15px] font-bold text-ink">{r.name}</span>
+                  <span className="inline-flex items-baseline gap-2 whitespace-nowrap tabular-nums">
                     <span className="text-[13px] font-semibold text-ink-mute">{fmtEUR(r.avg, { decimals: 0 })} avg</span>
                     <span
-                      className="text-[16px] font-extrabold"
+                      className="text-[16px] font-bold"
                       style={{ color: over ? 'var(--out)' : under ? 'var(--in)' : 'var(--ink)' }}
                     >
                       {fmtEUR(r.projected, { decimals: 0 })}

@@ -19,9 +19,9 @@ export function TripsRanked({ trips, metric }: { trips: TripSummary[]; metric: T
   const avgPct = Math.min(100, (avg / max) * 100);
 
   return (
-    <section className="glass flex flex-col gap-[18px] !rounded-[34px] p-[24px] px-[26px]">
+    <section className="glass flex flex-col gap-4 p-6 px-6">
       <div>
-        <div className="text-[17px] font-bold -tracking-[0.02em] text-ink">Trips ranked</div>
+        <div className="text-[17px] font-bold text-ink">Trips ranked</div>
         <div className="mt-1 text-[13px] font-semibold text-ink-soft">Most recent trip first.</div>
       </div>
 
@@ -34,22 +34,22 @@ export function TripsRanked({ trips, metric }: { trips: TripSummary[]; metric: T
           return (
             <div
               key={t.trip}
-              className="rounded-[18px] p-[11px] px-[13px] transition-[background,transform] duration-150 ease-theus hover:bg-white/[0.52]"
+              className="rounded-[16px] p-3 px-3 transition-[background,transform] duration-150 ease-theus hover:bg-white/[0.52]"
             >
               <div className="flex items-baseline justify-between gap-3">
                 <div className="flex min-w-0 items-baseline gap-2">
-                  <span className="truncate text-[14.5px] font-bold -tracking-[0.01em] text-ink">{t.trip}</span>
+                  <span className="truncate text-[14px] font-bold text-ink">{t.trip}</span>
                   <span className="whitespace-nowrap text-[12px] font-semibold text-ink-mute">
                     {t.days}d · {t.travelers} {t.travelers > 1 ? 'people' : 'person'}
                   </span>
                 </div>
-                <span className="whitespace-nowrap text-[15px] font-extrabold tabular-nums text-ink">
+                <span className="whitespace-nowrap text-[15px] font-bold tabular-nums text-ink">
                   {formatMetric(value, metric)}
                 </span>
               </div>
-              <div className="relative mt-[9px] h-[13px] rounded-full bg-white/40 shadow-[inset_0_0_0_1px_rgba(255,255,255,.5)]">
+              <div className="relative mt-2 h-[13px] rounded-full bg-white/40 shadow-[inset_0_0_0_1px_rgba(255,255,255,.5)]">
                 <div
-                  className="meter absolute inset-y-0 left-0 origin-left rounded-full bg-[linear-gradient(90deg,#4a5ce0,#1fb9a4)]"
+                  className="meter absolute inset-y-0 left-0 origin-left rounded-full bg-[linear-gradient(90deg,#6b7bf0,#4a5ce0)]"
                   style={{ width: `${barPct}%` }}
                 />
                 <div

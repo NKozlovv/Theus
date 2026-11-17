@@ -31,7 +31,7 @@ export function ForecastHero({
   const forwardMonths = points.filter((p) => p.projected).length;
 
   return (
-    <section className="glass flex flex-col gap-5 !rounded-[34px] p-[24px] px-[26px]">
+    <section className="glass flex flex-col gap-5 p-6 px-6">
       <div>
         <h1 className="text-[26px] font-extrabold -tracking-[0.03em] text-ink">Forecast</h1>
       </div>
@@ -56,9 +56,9 @@ export function ForecastHero({
         />
       </div>
 
-      <div className="glass-inner flex flex-col gap-3 !rounded-[22px] p-4 px-[22px]">
-        <div className="flex flex-wrap items-baseline justify-between gap-[14px]">
-          <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-ink-mute">
+      <div className="glass-inner flex flex-col gap-3 p-4 px-6">
+        <div className="flex flex-wrap items-baseline justify-between gap-4">
+          <span className="text-ink-mute t-label">
             Balance · 12 months back, {forwardMonths} to year-end
           </span>
           <div className="flex flex-wrap gap-4">
@@ -86,15 +86,15 @@ function KpiTile({
   subColor?: string;
 }) {
   return (
-    <div className="glass-tile flex min-h-[104px] flex-col justify-between gap-[9px] !rounded-[22px] p-4 px-5">
-      <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">{label}</div>
+    <div className="glass-tile flex min-h-[104px] flex-col justify-between gap-2 p-4 px-5">
+      <div className="text-ink-mute t-label">{label}</div>
       <div
         className="whitespace-nowrap text-[clamp(28px,2.6vw,36px)] font-extrabold -tracking-[0.038em] tabular-nums leading-none"
         style={{ color: valueColor }}
       >
         {value}
       </div>
-      <div className="text-[12.5px] font-bold tabular-nums" style={{ color: subColor ?? 'var(--ink-mute)' }}>
+      <div className="text-[13px] font-bold tabular-nums" style={{ color: subColor ?? 'var(--ink-mute)' }}>
         {sub}
       </div>
     </div>

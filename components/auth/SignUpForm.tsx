@@ -67,11 +67,11 @@ export function SignUpForm({
         <AuthBanner tone="ok">We sent a link to {email}. Open it and you are in.</AuthBanner>
         <Link
           href="/login"
-          className="flex w-full items-center justify-center rounded-full border border-white/90 bg-white/70 py-[14px] text-[15px] font-bold text-ink transition-colors duration-200 hover:bg-white"
+          className="flex w-full items-center justify-center rounded-full border border-white/90 bg-white/70 py-4 text-[15px] font-bold text-ink transition-colors duration-200 hover:bg-white"
         >
           Back to sign in
         </Link>
-        <p className="mt-[18px] text-center text-[13.5px] font-semibold text-ink-mute">
+        <p className="mt-4 text-center text-[14px] font-semibold text-ink-mute">
           Didn&apos;t get it?{' '}
           <button
             type="button"
@@ -90,7 +90,7 @@ export function SignUpForm({
     return (
       <div>
         <AuthHeader title="You are in" subtitle="Opening your dashboard…" />
-        <div className="flex w-full items-center justify-center gap-[9px] rounded-full bg-[linear-gradient(180deg,#5a6be8,#4152d6)] py-[14px] text-[15px] font-bold text-white">
+        <div className="flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(180deg,#5a6be8,#4152d6)] py-4 text-[15px] font-bold text-white">
           <span className="h-[15px] w-[15px] animate-spin rounded-full border-2 border-white/35 border-t-white" />
           Continue
         </div>
@@ -107,9 +107,9 @@ export function SignUpForm({
 
       {error ? <AuthBanner tone="err">{error}</AuthBanner> : null}
 
-      <div className="flex flex-col gap-[14px]">
+      <div className="flex flex-col gap-4">
         <label className="flex flex-col gap-[7px]">
-          <span className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">Email</span>
+          <span className="text-ink-mute t-label">Email</span>
           <input
             type="email"
             autoComplete="email"
@@ -118,12 +118,12 @@ export function SignUpForm({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
-            className="rounded-[15px] border border-white/80 bg-white/[0.72] px-4 py-[13px] text-[15px] font-semibold text-ink outline-none transition-shadow duration-150 focus:border-indigo focus:[box-shadow:0_0_0_3px_rgba(74,92,224,.18)]"
+            className="rounded-[16px] border border-white/80 bg-white/[0.72] px-4 py-3 text-[15px] font-semibold text-ink outline-none transition-shadow duration-150 focus:border-indigo focus:[box-shadow:0_0_0_3px_rgba(74,92,224,.18)]"
           />
         </label>
 
         <label className="flex flex-col gap-[7px]">
-          <span className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">Password</span>
+          <span className="text-ink-mute t-label">Password</span>
           <input
             type="password"
             autoComplete="new-password"
@@ -132,7 +132,7 @@ export function SignUpForm({
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="••••••••"
-            className="rounded-[15px] border border-white/80 bg-white/[0.72] px-4 py-[13px] text-[15px] font-semibold text-ink outline-none transition-shadow duration-150 focus:border-indigo focus:[box-shadow:0_0_0_3px_rgba(74,92,224,.18)]"
+            className="rounded-[16px] border border-white/80 bg-white/[0.72] px-4 py-3 text-[15px] font-semibold text-ink outline-none transition-shadow duration-150 focus:border-indigo focus:[box-shadow:0_0_0_3px_rgba(74,92,224,.18)]"
           />
           <span className="text-[12px] font-semibold text-ink-mute">Minimum 6 characters</span>
         </label>
@@ -141,7 +141,7 @@ export function SignUpForm({
       <button
         type="submit"
         disabled={pending}
-        className="mt-5 flex w-full items-center justify-center gap-[9px] rounded-full bg-[linear-gradient(180deg,#5a6be8,#4152d6)] py-[14px] text-[15px] font-bold text-white shadow-[0_8px_20px_rgba(74,92,224,.34),inset_0_1px_0_rgba(255,255,255,.35)] transition-transform duration-200 ease-theus disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
+        className="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(180deg,#5a6be8,#4152d6)] py-4 text-[15px] font-bold text-white shadow-[0_8px_20px_rgba(74,92,224,.34),inset_0_1px_0_rgba(255,255,255,.35)] transition-transform duration-200 ease-theus disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
       >
         {pending ? (
           <>
@@ -153,7 +153,7 @@ export function SignUpForm({
         )}
       </button>
 
-      <p className="mt-[22px] text-center text-[13.5px] font-semibold text-ink-mute">
+      <p className="mt-6 text-center text-[14px] font-semibold text-ink-mute">
         Already have an account?{' '}
         <Link
           href={inviteToken ? `/login?next=${encodeURIComponent(landing)}&email=${encodeURIComponent(prefillEmail ?? '')}` : '/login'}

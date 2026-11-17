@@ -32,7 +32,7 @@ export function KpiTile({
   children?: React.ReactNode;
 }) {
   return (
-    <div className={cn('glass-tile relative overflow-hidden !rounded-[20px] p-6', className)}>
+    <div className={cn('glass-tile relative overflow-hidden p-6', className)}>
       {hero ? (
         <div
           aria-hidden

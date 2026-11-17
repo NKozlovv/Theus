@@ -137,6 +137,7 @@ export default async function DashboardPage() {
 
   return (
     <>
+      <div aria-hidden className="hero-light left-[12%] top-[-60px]" />
       <div className="grid grid-cols-[minmax(0,1.5fr)_minmax(0,1.15fr)] items-stretch gap-6 max-[900px]:grid-cols-1">
         <BalancePanel
           accountCount={accounts.length}

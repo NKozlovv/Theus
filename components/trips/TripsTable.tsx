@@ -35,9 +35,9 @@ export function TripsTable({
   const rows = [...trips].sort((a, b) => b.total - a.total);
 
   return (
-    <section className="glass flex flex-col gap-4 !rounded-[34px] p-[24px] px-[26px]">
+    <section className="glass flex flex-col gap-4 p-6 px-6">
       <div>
-        <div className="text-[17px] font-bold -tracking-[0.02em] text-ink">Every trip, side by side</div>
+        <div className="text-[17px] font-bold text-ink">Every trip, side by side</div>
         <div className="mt-1 text-[13px] font-semibold text-ink-soft">
           Fixed cost is getting there and sleeping; daily cost is everything you spend once you&rsquo;re there.
         </div>
@@ -52,14 +52,14 @@ export function TripsTable({
                   key={h.label}
                   title={h.hint}
                   className={cn(
-                    'whitespace-nowrap border-b border-white/60 px-3 py-[9px] text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute',
+                    'whitespace-nowrap border-b border-white/60 px-3 py-2 text-ink-mute t-label',
                     h.align === 'right' ? 'text-right' : 'text-left',
                   )}
                 >
                   {h.label}
                 </th>
               ))}
-              <th className="border-b border-white/60 px-3 py-[9px]" />
+              <th className="border-b border-white/60 px-3 py-2" />
             </tr>
           </thead>
           <tbody>
@@ -72,7 +72,7 @@ export function TripsTable({
                 <tr key={t.trip} className="transition-colors duration-150 hover:bg-white/[0.44]">
                   <td className="border-b border-white/45 px-3 py-3">
                     <div className="whitespace-nowrap text-[14px] font-bold text-ink">{t.trip}</div>
-                    <div className="whitespace-nowrap text-[11.5px] font-semibold text-[#7b8296]">
+                    <div className="whitespace-nowrap text-[12px] font-semibold text-[#7b8296]">
                       {t.txCount} {t.txCount === 1 ? 'transaction' : 'transactions'}
                     </div>
                   </td>
@@ -93,7 +93,7 @@ export function TripsTable({
                   <td className="border-b border-white/45 px-3 py-3 text-right text-[13px] font-semibold tabular-nums text-[#3f465c]">
                     {t.travelers}
                   </td>
-                  <td className="border-b border-white/45 px-3 py-3 text-right text-[13.5px] font-extrabold tabular-nums text-ink">
+                  <td className="border-b border-white/45 px-3 py-3 text-right text-[14px] font-bold tabular-nums text-ink">
                     {fmtEUR(t.total, { decimals: 0 })}
                   </td>
                   <td className="border-b border-white/45 px-3 py-3 text-right text-[13px] font-bold tabular-nums text-[#3f465c]">
@@ -124,7 +124,7 @@ export function TripsTable({
                   <td className="whitespace-nowrap border-b border-white/45 px-3 py-3 text-right">
                     <span
                       className={cn(
-                        'rounded-full px-2.5 py-1 text-[11.5px] font-bold',
+                        'rounded-full px-2.5 py-1 text-[12px] font-bold',
                         good && 'bg-in/[0.16] text-in',
                         bad && 'bg-out/[0.16] text-out',
                         !good && !bad && 'bg-indigo/[0.14] text-indigo-dark',
@@ -150,7 +150,7 @@ export function TripsTable({
         </table>
       </div>
 
-      <p className="text-[12.5px] font-semibold text-ink-soft">
+      <p className="text-[13px] font-semibold text-ink-soft">
         {`Fixed = flights, lodging and fees, the part you commit to before leaving. Daily = food, local transport, activities and shopping, divided by days away. "Per day"/"Per person-day" include fixed costs; "Daily/day" and "Daily/p-day" strip those out, so they show what a normal day there actually cost.`}{' '}
         <span className="text-ink-mute">
           {`Verdict always compares per-person-day cost against the average across every trip (${fmtEUR(basePpd, { decimals: 0 })}/p·day here) — ±10% is "on average", regardless of which metric is selected above. A ~ next to a date range means it's estimated from that trip's own transactions — click the pencil to set exact dates or rename the trip.`}

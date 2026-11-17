@@ -33,16 +33,16 @@ export default function AppLoading() {
 
       <div className="grid gap-4 lg:grid-cols-3">
         {[0, 1, 2].map((i) => (
-          <div key={i} className="glass-tile h-[180px] animate-pulse !rounded-[26px]" />
+          <div key={i} className="glass-tile h-[180px] animate-pulse" />
         ))}
       </div>
 
       <div className="grid gap-4 lg:grid-cols-[1.5fr_1fr]">
-        <div className="glass-tile h-[320px] animate-pulse !rounded-[28px]" />
-        <div className="glass-tile h-[320px] animate-pulse !rounded-[28px]" />
+        <div className="glass-tile h-[320px] animate-pulse" />
+        <div className="glass-tile h-[320px] animate-pulse" />
       </div>
 
-      <div className="glass-tile h-[220px] animate-pulse !rounded-[26px]" />
+      <div className="glass-tile h-[220px] animate-pulse" />
     </div>
   );
 }

@@ -37,12 +37,12 @@ export function DayGroupedList({
   const groups = groupTransactionsByDate(transactions, budgetFxRate, now);
 
   return (
-    <div className="glass !rounded-[26px] p-2">
+    <div className="glass p-2">
       {groups.map((group) => (
         <div key={group.date}>
-          <div className="flex items-center justify-between px-[18px] pb-[10px] pt-[14px]">
+          <div className="flex items-center justify-between px-4 pb-3 pt-4">
             <span className="text-[13px] font-bold text-ink-soft">{group.label}</span>
-            <span className="text-[12.5px] font-bold tabular-nums text-ink-mute">
+            <span className="text-[13px] font-bold tabular-nums text-ink-mute">
               {group.totalEUR >= 0 ? '+' : '−'}
               {fmtEUR(Math.abs(group.totalEUR))}
             </span>
@@ -70,7 +70,7 @@ export function DayGroupedList({
                   if (e.key === 'Enter') onEdit(tx);
                 }}
                 className={cn(
-                  'grid cursor-pointer items-center gap-3 rounded-[18px] px-[18px] py-[14px] transition-[background,transform] duration-[160ms]',
+                  'grid cursor-pointer items-center gap-3 rounded-[16px] px-4 py-4 transition-[background,transform] duration-[160ms]',
                   'grid-cols-[22px_40px_minmax(130px,1.5fr)_minmax(0,1fr)_minmax(0,.9fr)_minmax(0,.85fr)_auto]',
                   isSelected ? 'bg-white/[0.85]' : 'hover:translate-x-[6px] hover:bg-white/[0.85]',
                 )}
@@ -84,7 +84,7 @@ export function DayGroupedList({
                     e.stopPropagation();
                     onToggleSelect(tx.id);
                   }}
-                  className="group/check -m-[9px] flex shrink-0 items-center justify-center p-[9px]"
+                  className="group/check -m-[9px] flex shrink-0 items-center justify-center p-2"
                 >
                   <span
                     className={cn(
@@ -103,14 +103,14 @@ export function DayGroupedList({
                 </button>
 
                 <span
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] text-[14px] font-bold text-white"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] text-[14px] font-bold text-white"
                   style={{ background: hue }}
                 >
                   {initial}
                 </span>
 
                 <span className="flex min-w-0 flex-col items-start">
-                  <span className="w-full truncate text-[14.5px] font-semibold text-ink">
+                  <span className="w-full truncate text-[14px] font-semibold text-ink">
                     {tx.comment?.trim() || catName || 'No description'}
                   </span>
                   <span className="w-full truncate text-[12px] font-medium text-ink-mute">
@@ -121,16 +121,16 @@ export function DayGroupedList({
                 <span className="flex min-w-0 flex-col items-start gap-[3px]">
                   {catName ? (
                     <span
-                      className="inline-block max-w-full truncate rounded-full px-[11px] py-[5px] text-[11.5px] font-bold"
+                      className="inline-block max-w-full truncate rounded-full px-3 py-[5px] text-[12px] font-bold"
                       style={{ background: `${hue}29`, color: hue }}
                     >
                       {catName}
                     </span>
                   ) : (
-                    <span className="text-[11.5px] text-ink-mute">—</span>
+                    <span className="text-[12px] text-ink-mute">—</span>
                   )}
                   {tx.trip ? (
-                    <span className="flex max-w-full items-center gap-[4px] truncate text-[11px] font-semibold text-ink-mute">
+                    <span className="flex max-w-full items-center gap-1 truncate text-[12px] font-semibold text-ink-mute">
                       <Icon name="plane" size={10} className="shrink-0" />
                       <span className="truncate">{tx.trip}</span>
                     </span>
@@ -141,22 +141,22 @@ export function DayGroupedList({
                   {tx.subcategory ? (
                     <>
                       <span className="h-[5px] w-[5px] shrink-0 rounded-full" style={{ background: hue }} />
-                      <span className="truncate text-[12.5px] font-semibold text-ink-soft">{tx.subcategory}</span>
+                      <span className="truncate text-[13px] font-semibold text-ink-soft">{tx.subcategory}</span>
                     </>
                   ) : (
-                    <span className="text-[12.5px] text-ink-mute">—</span>
+                    <span className="text-[13px] text-ink-mute">—</span>
                   )}
                 </span>
 
-                <span className="truncate text-[12.5px] font-semibold text-ink-mute">{acc ? acc.name : '—'}</span>
+                <span className="truncate text-[13px] font-semibold text-ink-mute">{acc ? acc.name : '—'}</span>
 
                 <span className="flex min-w-[110px] flex-col items-end">
-                  <span className="text-[15.5px] font-extrabold tabular-nums" style={{ color: amountColor }}>
+                  <span className="text-[16px] font-bold tabular-nums" style={{ color: amountColor }}>
                     {isInflow ? '+' : '−'}
                     {fmtCurrency(Math.abs(tx.amount), tx.currency)}
                   </span>
                   {showEurLine ? (
-                    <span className="text-[11px] font-semibold tabular-nums text-ink-mute">
+                    <span className="text-[12px] font-semibold tabular-nums text-ink-mute">
                       ≈ {fmtEUR(signedEur)}
                     </span>
                   ) : null}

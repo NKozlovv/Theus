@@ -65,21 +65,21 @@ export function AccountForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-[13px]">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
       <label className="flex flex-col gap-[7px]">
-        <span className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">Name</span>
+        <span className="text-ink-mute t-label">Name</span>
         <input
           type="text"
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Revolut EUR"
-          className="rounded-[15px] border border-white/90 bg-white/80 px-[15px] py-3 text-[15px] font-semibold text-ink outline-none transition-shadow duration-150 focus:border-indigo focus:[box-shadow:0_0_0_3px_rgba(74,92,224,.18)]"
+          className="rounded-[16px] border border-white/90 bg-white/80 px-4 py-3 text-[15px] font-semibold text-ink outline-none transition-shadow duration-150 focus:border-indigo focus:[box-shadow:0_0_0_3px_rgba(74,92,224,.18)]"
         />
       </label>
 
       <div className="flex flex-col gap-[7px]">
-        <span className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">Currency</span>
+        <span className="text-ink-mute t-label">Currency</span>
         <div className="flex gap-1 rounded-full bg-[rgba(31,39,66,.06)] p-1">
           {(['EUR', 'USD'] as const).map((c) => (
             <button
@@ -87,7 +87,7 @@ export function AccountForm({
               type="button"
               onClick={() => setCurrency(c)}
               className={cn(
-                'flex-1 rounded-full py-[9px] text-[13px] font-bold transition-colors duration-150',
+                'flex-1 rounded-full py-2 text-[13px] font-bold transition-colors duration-150',
                 currency === c ? 'bg-white text-ink shadow-[0_4px_12px_-6px_rgba(31,39,66,.3)]' : 'text-ink-soft',
               )}
             >
@@ -98,7 +98,7 @@ export function AccountForm({
       </div>
 
       <label className="flex flex-col gap-[7px]">
-        <span className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">
+        <span className="text-ink-mute t-label">
           Opening balance ({currency})
         </span>
         <input
@@ -108,7 +108,7 @@ export function AccountForm({
           value={opening}
           onChange={(e) => setOpening(e.target.value)}
           placeholder="0.00"
-          className="rounded-[15px] border border-white/90 bg-white/80 px-[15px] py-3 text-[15px] font-semibold tabular-nums text-ink outline-none transition-shadow duration-150 focus:border-indigo focus:[box-shadow:0_0_0_3px_rgba(74,92,224,.18)]"
+          className="rounded-[16px] border border-white/90 bg-white/80 px-4 py-3 text-[15px] font-semibold tabular-nums text-ink outline-none transition-shadow duration-150 focus:border-indigo focus:[box-shadow:0_0_0_3px_rgba(74,92,224,.18)]"
         />
         <span className="text-[12px] font-semibold text-ink-mute">
           Negative is allowed — an overdraft is a real balance.

@@ -31,10 +31,10 @@ export function StatStrip({
   return (
     <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
       {tiles.map((tile) => (
-        <div key={tile.label} className="glass !rounded-[22px] p-5 px-[22px]">
+        <div key={tile.label} className="glass p-5 px-6">
           <div className="flex items-center gap-2">
             <span className="h-[9px] w-[9px] shrink-0 rounded-[2px]" style={{ background: tile.hue }} />
-            <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-ink-mute">{tile.label}</span>
+            <span className="text-ink-mute t-label">{tile.label}</span>
           </div>
           <div
             className="mt-2 text-[27px] font-extrabold -tracking-[0.03em] tabular-nums"

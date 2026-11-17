@@ -6,7 +6,7 @@ import { AuthHeader } from './AuthHeader';
 import { AuthBanner } from './AuthBanner';
 
 const input =
-  'rounded-[15px] border border-white/80 bg-white/[0.72] px-4 py-[13px] text-[15px] font-semibold text-ink outline-none transition-shadow duration-150 focus:border-indigo focus:[box-shadow:0_0_0_3px_rgba(74,92,224,.18)]';
+  'rounded-[16px] border border-white/80 bg-white/[0.72] px-4 py-3 text-[15px] font-semibold text-ink outline-none transition-shadow duration-150 focus:border-indigo focus:[box-shadow:0_0_0_3px_rgba(74,92,224,.18)]';
 
 /**
  * Final step of "forgot password": the emailed link went through
@@ -44,21 +44,21 @@ export function NewPasswordForm() {
     <form onSubmit={onSubmit} noValidate>
       <AuthHeader title="Choose a new password" subtitle="You’ll be signed in right after." />
       {error ? <AuthBanner tone="err">{error}</AuthBanner> : null}
-      <div className="flex flex-col gap-[14px]">
+      <div className="flex flex-col gap-4">
         <label className="flex flex-col gap-[7px]">
-          <span className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">New password</span>
+          <span className="text-ink-mute t-label">New password</span>
           <input type="password" autoComplete="new-password" required minLength={6} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" className={input} />
           <span className="text-[12px] font-semibold text-ink-mute">Minimum 6 characters</span>
         </label>
         <label className="flex flex-col gap-[7px]">
-          <span className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">Repeat it</span>
+          <span className="text-ink-mute t-label">Repeat it</span>
           <input type="password" autoComplete="new-password" required value={confirm} onChange={(e) => setConfirm(e.target.value)} placeholder="••••••••" className={input} />
         </label>
       </div>
       <button
         type="submit"
         disabled={pending}
-        className="mt-5 flex w-full items-center justify-center gap-[9px] rounded-full bg-[linear-gradient(180deg,#5a6be8,#4152d6)] py-[14px] text-[15px] font-bold text-white shadow-[0_8px_20px_rgba(74,92,224,.34),inset_0_1px_0_rgba(255,255,255,.35)] transition-transform duration-200 ease-theus disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
+        className="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(180deg,#5a6be8,#4152d6)] py-4 text-[15px] font-bold text-white shadow-[0_8px_20px_rgba(74,92,224,.34),inset_0_1px_0_rgba(255,255,255,.35)] transition-transform duration-200 ease-theus disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
       >
         {pending ? 'Saving…' : 'Save password'}
       </button>

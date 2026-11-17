@@ -33,7 +33,7 @@ export function ChartTooltip({
 
   return (
     <div
-      className="glass-popover pointer-events-none absolute z-30 whitespace-nowrap !rounded-[10px] px-2.5 py-1.5 text-[11px] leading-tight text-ink"
+      className="glass-popover pointer-events-none absolute z-30 whitespace-nowrap px-2.5 py-1.5 text-[12px] leading-tight text-ink"
       style={{ left: x, top: y - 10, transform: `translate(${xShift}, -100%)` }}
     >
       {children}

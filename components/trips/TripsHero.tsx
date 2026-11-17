@@ -62,14 +62,14 @@ export function TripsHero({ trips, metric }: { trips: TripSummary[]; metric: Tri
   ];
 
   return (
-    <section className="glass flex flex-col gap-[22px] !rounded-[34px] p-[24px] px-[26px]">
+    <section className="glass flex flex-col gap-6 p-6 px-6">
       <div className="flex flex-wrap items-start gap-5">
         <div className="min-w-0 flex-1 basis-[300px]">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-ink-mute">
+            <span className="text-ink-mute t-label">
               Travel · tagged by trip
             </span>
-            <span className="whitespace-nowrap rounded-full bg-indigo/[0.14] px-[11px] py-1 text-[11.5px] font-bold text-indigo-dark">
+            <span className="whitespace-nowrap rounded-full bg-indigo/[0.14] px-3 py-1 text-[12px] font-bold text-indigo-dark">
               {trips.length} {trips.length === 1 ? 'trip' : 'trips'}
             </span>
           </div>
@@ -82,34 +82,34 @@ export function TripsHero({ trips, metric }: { trips: TripSummary[]; metric: Tri
               .{figure.cents}
             </span>
           </div>
-          {insight ? <p className="mt-2 max-w-[62ch] text-[13.5px] font-semibold text-ink-soft">{insight}</p> : null}
+          {insight ? <p className="mt-2 max-w-[62ch] text-[14px] font-semibold text-ink-soft">{insight}</p> : null}
         </div>
       </div>
 
       <div className="grid grid-cols-[repeat(auto-fit,minmax(170px,1fr))] gap-3">
         {kpis.map((k) => (
-          <div key={k.label} className="glass-tile !rounded-[20px] p-4 px-[16px]">
-            <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">{k.label}</div>
-            <div className="mt-1.5 text-[23px] font-extrabold -tracking-[0.03em] tabular-nums text-ink">
+          <div key={k.label} className="glass-tile p-4 px-4">
+            <div className="text-ink-mute t-label">{k.label}</div>
+            <div className="mt-1.5 text-[23px] font-bold tabular-nums text-ink">
               {k.value}
             </div>
           </div>
         ))}
-        <div className="glass-tile !rounded-[20px] p-4 px-[16px]">
-          <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">Most efficient</div>
-          <div className="mt-1.5 truncate text-[23px] font-extrabold -tracking-[0.03em] text-in">
+        <div className="glass-tile p-4 px-4">
+          <div className="text-ink-mute t-label">Most efficient</div>
+          <div className="mt-1.5 truncate text-[23px] font-bold text-in">
             {cheapest.trip}
           </div>
-          <div className="mt-0.5 text-[12.5px] font-semibold text-ink-soft">
+          <div className="mt-0.5 text-[13px] font-semibold text-ink-soft">
             {formatMetric(cheapestVal, metric)}
           </div>
         </div>
-        <div className="glass-tile !rounded-[20px] p-4 px-[16px]">
-          <div className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-mute">Least efficient</div>
-          <div className="mt-1.5 truncate text-[23px] font-extrabold -tracking-[0.03em] text-out">
+        <div className="glass-tile p-4 px-4">
+          <div className="text-ink-mute t-label">Least efficient</div>
+          <div className="mt-1.5 truncate text-[23px] font-bold text-out">
             {priciest.trip}
           </div>
-          <div className="mt-0.5 text-[12.5px] font-semibold text-ink-soft">
+          <div className="mt-0.5 text-[13px] font-semibold text-ink-soft">
             {formatMetric(priciestVal, metric)}
           </div>
         </div>

@@ -69,12 +69,15 @@ export function TopNav({
   const pathname = usePathname();
   const [moreOpen, setMoreOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useDismissable<HTMLDivElement>(menuOpen, () => setMenuOpen(false));
   const moreRef = useDismissable<HTMLDivElement>(moreOpen, () => setMoreOpen(false));
   const accountRef = useDismissable<HTMLDivElement>(accountOpen, () => setAccountOpen(false));
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + '/');
   const moreActive = MORE.some((m) => isActive(m.href));
   const initials = initialsFromEmail(email);
+  const currentLabel = [...TABS, ...MORE].find((t) => isActive(t.href))?.label ?? 'Menu';
 
   return (
     <nav className="glass glass-nohover sticky top-[14px] z-20 flex items-center gap-5 !rounded-full py-3 pl-5 pr-4">
@@ -85,7 +88,38 @@ export function TopNav({
         <span className="text-[18px] font-extrabold -tracking-[0.02em] text-ink">Theus</span>
       </Link>
 
-      <div className="flex min-w-0 flex-1 flex-nowrap items-center gap-1">
+      {/* Below 1024px the nine tabs fold into one button that names the
+          current page and opens every route in a glass menu. */}
+      <div ref={menuRef} className="min-w-0 flex-1 lg:hidden">
+        <button
+          type="button"
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-expanded={menuOpen}
+          className="inline-flex items-center gap-2 rounded-full bg-indigo px-4 py-2 text-[14px] font-semibold text-white shadow-[0_4px_12px_-4px_rgba(31,39,66,0.5),inset_0_1px_0_rgba(255,255,255,0.25)]"
+        >
+          {currentLabel}
+          <Icon name="chevron-down" size={13} className={cn('transition-transform duration-200 ease-theus', menuOpen && 'rotate-180')} />
+        </button>
+        {menuOpen ? (
+          <div className="glass-popover absolute inset-x-0 top-full z-30 mt-3 grid grid-cols-2 gap-1 p-2">
+            {[...TABS, ...MORE].map((t) => (
+              <Link
+                key={t.href}
+                href={t.href}
+                onClick={() => setMenuOpen(false)}
+                className={cn(
+                  'rounded-[12px] px-3 py-2.5 text-[14px] font-semibold transition-colors',
+                  isActive(t.href) ? 'bg-indigo/[0.12] text-indigo-dark' : 'text-ink-soft hover:bg-white/70 hover:text-ink',
+                )}
+              >
+                {t.label}
+              </Link>
+            ))}
+          </div>
+        ) : null}
+      </div>
+
+      <div className="hidden min-w-0 flex-1 flex-nowrap items-center gap-1 lg:flex">
         {TABS.map((tab) => (
           <Link key={tab.href} href={tab.href} className={tabClass(isActive(tab.href))}>
             {tab.label}
@@ -133,12 +167,12 @@ export function TopNav({
           <button
             type="button"
             onClick={() => setAccountOpen((v) => !v)}
-            className="flex items-center gap-2 rounded-full bg-white/70 py-[5px] pl-[5px] pr-[14px] transition-colors duration-200 hover:bg-white"
+            className="flex items-center gap-2 rounded-full bg-white/70 py-[5px] pl-[5px] pr-[5px] sm:pr-4 transition-colors duration-200 hover:bg-white"
           >
             <span className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-indigo/[0.14] text-[12px] font-bold text-indigo-dark shadow-[inset_0_0_0_1px_rgba(74,92,224,0.22)]">
               {initials}
             </span>
-            <span className="max-w-[140px] truncate text-[13px] font-semibold text-ink">{email}</span>
+            <span className="hidden max-w-[140px] truncate text-[13px] font-semibold text-ink sm:inline">{email}</span>
           </button>
 
           {accountOpen ? (
