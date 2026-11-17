@@ -3,6 +3,7 @@
 import { Icon } from '@/components/ui';
 import { fmtEUR } from '@/lib/money';
 import { BudgetRing } from './BudgetRing';
+import { faceFor } from './accountFaces';
 import { GLOBAL_ADD_TRANSACTION_EVENT } from '@/components/transactions/GlobalAddTransactionModal';
 
 function splitFigure(n: number): { sign: string; whole: string; cents: string } {
@@ -31,6 +32,7 @@ export function BalancePanel({
   spentThisMonth,
   incomeThisMonth,
   monthLabel,
+  holdings,
   avgSavingsRate,
   projectedEOY,
   avgNet,
@@ -46,6 +48,8 @@ export function BalancePanel({
   spentThisMonth: number;
   incomeThisMonth: number;
   monthLabel: string;
+  /** Positive account balances in EUR, biggest first: the same accounts and colors as the cards below. */
+  holdings: { id: string; name: string; eur: number }[];
   avgSavingsRate: number;
   projectedEOY: number;
   avgNet: number;
@@ -56,6 +60,13 @@ export function BalancePanel({
   const figure = splitFigure(totalBalance);
   const down = monthDelta < 0;
   const avgRatePct = Math.round(avgSavingsRate * 100);
+
+  // Holdings strip: your money as blocks, one per account, sized by share.
+  const holdTotal = holdings.reduce((s, h) => s + h.eur, 0);
+  const topHold = holdings.slice(0, 4);
+  const restHold = holdings.slice(4);
+  const restEur = restHold.reduce((s, h) => s + h.eur, 0);
+  const pct = (v: number) => (holdTotal > 0 ? Math.round((v / holdTotal) * 100) : 0);
 
   return (
     <div className="glass glass-hero flex flex-col gap-6 p-6">
@@ -83,6 +94,48 @@ export function BalancePanel({
             </span>
             <span className="text-[clamp(26px,2.4vw,36px)] font-bold tabular-nums text-ink-mute">.{figure.cents}</span>
           </div>
+
+          {holdTotal > 0 ? (
+            <div className="mt-5">
+              <div
+                className="flex h-3.5 gap-[3px]"
+                role="img"
+                aria-label={`Where the balance is held: ${topHold.map((h) => `${h.name} ${pct(h.eur)}%`).join(', ')}`}
+              >
+                {topHold.map((h) => (
+                  <span
+                    key={h.id}
+                    title={`${h.name}: ${fmtEUR(h.eur, { decimals: 0 })} (${pct(h.eur)}%)`}
+                    className="meter h-full min-w-[6px] rounded-[7px]"
+                    style={{
+                      width: `${(h.eur / holdTotal) * 100}%`,
+                      background: faceFor(h.id).gradient,
+                      boxShadow: 'inset 0 1px 0 rgba(255,255,255,.5), inset 1px 0 0 rgba(255,255,255,.3)',
+                    }}
+                  />
+                ))}
+                {restEur > 0 ? (
+                  <span
+                    title={`${restHold.length} more: ${fmtEUR(restEur, { decimals: 0 })} (${pct(restEur)}%)`}
+                    className="meter h-full min-w-[6px] rounded-[7px]"
+                    style={{
+                      width: `${(restEur / holdTotal) * 100}%`,
+                      background: 'rgba(139,149,184,.55)',
+                      boxShadow: 'inset 0 1px 0 rgba(255,255,255,.5)',
+                    }}
+                  />
+                ) : null}
+              </div>
+              <div className="t-label mt-2 flex flex-wrap gap-x-4 gap-y-1">
+                {topHold.slice(0, 2).map((h) => (
+                  <span key={h.id} className="whitespace-nowrap">
+                    {h.name} {pct(h.eur)}%
+                  </span>
+                ))}
+                {holdings.length > 2 ? <span className="whitespace-nowrap">+{holdings.length - 2} more</span> : null}
+              </div>
+            </div>
+          ) : null}
         </div>
 
         <button

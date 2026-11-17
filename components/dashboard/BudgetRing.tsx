@@ -13,9 +13,10 @@ const C_INNER = 2 * Math.PI * R_INNER; // 257.61
  * for the part spent over income. Ring color is decided by this month's
  * savings rate against the YTD average, not fixed thresholds.
  *
- * A small notch on the ring marks where your *average* month ends (100%
- * minus your average savings rate), so the ring answers "ahead or behind
- * my usual pace" by position instead of only by color.
+ * A quiet tick cut into the ring marks where your *average* month ends
+ * (100% minus your average savings rate), so the ring answers "ahead or
+ * behind my usual pace" by position instead of only by color. It sits
+ * inside the groove, at the ring's own thickness, and doesn't protrude.
  */
 export function BudgetRing({
   spent,
@@ -45,10 +46,13 @@ export function BudgetRing({
   // the inner arc's darker red, not the outer ring's --out.
   const rowTwoColor = over ? OVERSPEND : 'var(--in)';
 
-  // Notch angle, measured from the ring's start (the SVG itself is rotated
-  // -90deg, so 0deg here is 12 o'clock on screen).
+  // Tick position, as an angle from the ring's start (the SVG itself is
+  // rotated -90deg, so 0deg here is 12 o'clock on screen).
   const avgSpendRatio = Math.min(Math.max(1 - avgSavingsRate, 0), 1);
-  const notchDeg = avgSpendRatio * 360;
+  const tickA = avgSpendRatio * 2 * Math.PI;
+  const tickHalf = (1.4 / 360) * 2 * Math.PI; // a ~3 degree cut, in radians
+  const arcPt = (a: number) => `${(60 + R_OUTER * Math.cos(a)).toFixed(2)} ${(60 + R_OUTER * Math.sin(a)).toFixed(2)}`;
+  const tickPath = `M ${arcPt(tickA - tickHalf)} A ${R_OUTER} ${R_OUTER} 0 0 1 ${arcPt(tickA + tickHalf)}`;
 
   const caption = over
     ? `Over income by ${Math.round((ratio - 1) * 100)}%`
@@ -92,19 +96,9 @@ export function BudgetRing({
             style={{ '--ring': innerOffset } as CSSProperties}
           />
           {income > 0 ? (
-            <g transform={`rotate(${notchDeg.toFixed(1)} 60 60)`}>
+            <path d={tickPath} fill="none" stroke="var(--ink)" strokeOpacity="0.32" strokeWidth="10">
               <title>{`Your average month ends here (${Math.round(avgSpendRatio * 100)}% of income)`}</title>
-              <line
-                x1={60 + R_OUTER - 9}
-                y1="60"
-                x2={60 + R_OUTER + 9}
-                y2="60"
-                stroke="var(--ink)"
-                strokeOpacity="0.7"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-              />
-            </g>
+            </path>
           ) : null}
         </svg>
         <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-1">

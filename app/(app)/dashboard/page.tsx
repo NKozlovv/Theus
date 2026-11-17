@@ -106,6 +106,15 @@ export default async function DashboardPage() {
   // workingMonth: a balance is a current-moment figure), ranked fairly
   // across currencies, displayed in each account's own native currency.
   const today = dateToISO(now);
+  const holdings = [...accounts]
+    .map((a) => ({
+      id: a.id,
+      name: a.name,
+      eur: accountBalanceEURAt({ account: a, date: today, transactions: allTx, fxRate }),
+    }))
+    .filter((h) => h.eur > 0)
+    .sort((a, b) => b.eur - a.eur);
+
   const accountFaces: AccountFaceData[] = [...accounts]
     .map((a) => ({
       account: a,
@@ -138,6 +147,7 @@ export default async function DashboardPage() {
           spentThisMonth={monthTotals.expense}
           incomeThisMonth={monthTotals.income}
           monthLabel={monthLabel}
+          holdings={holdings}
           avgSavingsRate={savingsRateAvg}
           projectedEOY={projectedEOY}
           avgNet={ytd.avgNet}
